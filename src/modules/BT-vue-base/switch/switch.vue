@@ -1,5 +1,5 @@
 <style lang="stylus" rel="stylesheet/stylus">
-@import "../../theme.styl"
+@import "../theme.styl"
 
 $switchTransition = 0.3s cubic-bezier(.25,.1,.25,1.2)
 $size = 24px
