@@ -6,6 +6,10 @@ Vue.config.productionTip = false
 
 import { switchVbt } from '@npm/BT-vue-base'
 
+// import { id } from '@npm/bestime'
+
+// console.log('getByClass', id)
+
 Vue.use(switchVbt)
 
 
