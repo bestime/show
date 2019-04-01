@@ -1,3 +1,10 @@
 
-import switch_vbt from './switch'
-export const switchVbt = switch_vbt
+
+import SwitchVbt from './switch'
+import { SwiperWrapperVbt, SwiperItemVbt } from './swiper-fullscreen'
+
+export {
+  SwitchVbt,
+  SwiperWrapperVbt,
+  SwiperItemVbt
+}
