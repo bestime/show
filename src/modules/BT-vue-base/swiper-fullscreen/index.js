@@ -3,14 +3,14 @@ import item from './scroll-item.vue'
 
 
 
-export const SwiperWrapperVbt = {
+export const SwiperWrapper = {
   install(Vue) {
-    Vue.component('SwiperWrapperVbt', wrapper)
+    Vue.component('vbt-swiper-wrapper', wrapper)
   }
 }
 
-export const SwiperItemVbt = {
+export const SwiperItem = {
   install (Vue) {
-    Vue.component('SwiperItemVbt', item)
+    Vue.component('vbt-swiper-item', item)
   }
 }

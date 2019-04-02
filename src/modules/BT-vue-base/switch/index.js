@@ -1,9 +1,9 @@
 import box from './switch.vue'
 
-const switchVbt = {
-    install(Vue) {
-      Vue.component('switchVbt', box)
-    }
+const Switch = {
+  install(Vue) {
+    Vue.component('vbt-switch', box)
   }
+}
 
-export default switchVbt
+export default Switch

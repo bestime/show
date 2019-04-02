@@ -3,10 +3,12 @@ import App from './App.vue'
 import { router } from './router'
 Vue.config.productionTip = false
 
-import { SwitchVbt, SwiperWrapperVbt, SwiperItemVbt } from '@npm/BT-vue-base'
-Vue.use(SwitchVbt)
-Vue.use(SwiperWrapperVbt)
-Vue.use(SwiperItemVbt)
+import { Switch, SwiperWrapper, SwiperItem } from '@npm/BT-vue-base'
+
+console.log(Switch, SwiperWrapper, SwiperItem)
+Vue.use(Switch)
+Vue.use(SwiperWrapper)
+Vue.use(SwiperItem)
 
 
 

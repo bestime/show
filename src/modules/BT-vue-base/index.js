@@ -1,10 +1,10 @@
 
 
-import SwitchVbt from './switch'
-import { SwiperWrapperVbt, SwiperItemVbt } from './swiper-fullscreen'
+import Switch from './switch'
+import { SwiperWrapper, SwiperItem } from './swiper-fullscreen'
 
 export {
-  SwitchVbt,
-  SwiperWrapperVbt,
-  SwiperItemVbt
+  Switch,
+  SwiperWrapper,
+  SwiperItem
 }
