@@ -2,7 +2,7 @@
 @import "../theme.styl"
 
 $switchTransition = 0.3s cubic-bezier(.25,.1,.25,1.2)
-$size = 24px
+$size = 28px
 $halfSize = $size / 2
 $width = $size * 1.9
 $diff = $width - $size
@@ -10,6 +10,7 @@ $diff = $width - $size
   display:inline-flex
   align-items:center
   user-select:none
+  box-sizing:border-box
   .slb
     font-size:16px
     color: $staticTextColor
@@ -27,8 +28,8 @@ $diff = $width - $size
       display:inline-flex
       align-items:center
       justify-content:center
-      width:$size
-      height:$size
+      width:$size - 4px
+      height:$size - 4px
       background: #fff
       border-radius: $halfSize
       transition:$switchTransition

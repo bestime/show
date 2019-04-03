@@ -7,7 +7,7 @@ export const HomeList = [
   {
     path: '/vue',
     name: 'vue',
-    label: 'vue',
+    label: 'test',
     component: () => import('@components/vue-examples/index.vue'),
     children: [
       {
