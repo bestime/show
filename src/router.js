@@ -20,7 +20,7 @@ export const HomeList = [
         }
       },
     ]
-  }  
+  } 
 ]
 
 
@@ -32,6 +32,11 @@ export const routerList = [
     component: () => import('@components/Home.vue'),
     children: HomeList
   },
+  {
+    path: '*',
+    name: '404',
+    component: () => import('@components/Page404.vue')
+  }
   
 ];
 
