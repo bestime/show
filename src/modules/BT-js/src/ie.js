@@ -77,7 +77,8 @@ var bestimeGroup = {
   numLimit          : require('./split/numLimit.js'),
   objectAssemble    : require('./split/objectAssemble.js'),
   isPhone           : require('./split/isPhone.js'),
-  loopFunc          : require('./split/loopFunc.js')
+  loopFunc          : require('./split/loopFunc.js'),
+  isNumber          : require('./split/isNumber.js')
 };
 
 module.exports = !function (name) {
