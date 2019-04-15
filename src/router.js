@@ -7,7 +7,7 @@ export const HomeList = [
   {
     path: '/vue',
     name: 'vue',
-    label: 'test',
+    label: 'vue',
     component: () => import('@components/vue-examples/index.vue'),
     children: [
       {
@@ -19,6 +19,15 @@ export const HomeList = [
           
         }
       },
+    ]
+  },
+  {
+    path: '/js',
+    name: 'js',
+    label: 'javascript',
+    component: () => import('@components/vue-examples/index.vue'),
+    children: [
+      
     ]
   } 
 ]
