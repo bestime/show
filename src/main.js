@@ -67,3 +67,15 @@ new Vue({
   render: h => h(App)
 }).$mount('#app')
 
+
+
+var arr = [
+  { name: '1' },
+  { name: '2' },
+  { name: 'bestime' },
+  { name: 'bestime' },
+  { name: '3' },
+  { name: '4' },
+]
+
+console.log(arr.find(item => item.name==='bestime'))
