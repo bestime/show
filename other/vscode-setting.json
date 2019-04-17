@@ -1,0 +1,35 @@
+{
+    "html.format.indentInnerHtml": true,
+    //编辑器主题
+    "workbench.colorTheme": "Default Light+",
+    //自动添加右括号，不好用，关掉
+    "editor.autoClosingBrackets": false,
+    //如果没有选择内容复制，会复制空格，不好用，关掉
+    "editor.emptySelectionClipboard": false,
+    //crrl + 鼠标滚轮控制字体大小
+    "editor.mouseWheelZoom": true,
+    //是否显示缩进参考线
+    "editor.renderIndentGuides": true,
+    "editor.cursorStyle": "line",
+    "editor.roundedSelection": true,
+    "editor.renderLineHighlight": "line",
+    //是否自动换行【内置4个参数】
+    "editor.wordWrap": "on",
+    "window.zoomLevel": -1,
+    //关闭右侧小地图
+    "editor.minimap.enabled": false,
+    "editor.tabSize": 2,
+    // 关闭自动 import
+    "vetur.completion.autoImport": false,
+    "files.associations": {
+        "*.cjson": "jsonc",
+        "*.wxss": "css",
+        "*.wxs": "javascript"
+    },
+    "emmet.includeLanguages": {
+        "wxml": "html"
+    },
+    "minapp-vscode.disableAutoConfig": true,
+    "javascript.suggest.autoImports": false,
+    //"editor.renderWhitespace": "boundary"
+}

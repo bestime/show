@@ -1,0 +1,3 @@
+强制拉去远程分支，放弃本地修改
+git fetch --all
+git reset --hard branchName
