@@ -75,7 +75,7 @@ var bus = {
 		this.events[eventName] = oneEventKind
 		
 		// 返回当前事件信息，用来移除事件
-		var initData = {name: eventName, id: useId}
+		var initData = { name: eventName, id: useId }
 		return { 
 			info: initData,
 			delete: function () {
