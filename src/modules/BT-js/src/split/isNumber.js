@@ -18,7 +18,6 @@ function isNumber (str, sign, integer) {
   var regStr = '^' + zhengfu + '[0-9]+' + xiaoshu + '$'
   
   var res = new RegExp(regStr, 'g').test(trim(str))
-  console.log(`【${str}】: `, res)
   return res
 }
 
