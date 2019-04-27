@@ -26,3 +26,8 @@ const arr = [
 console.log('reduce', arr.reduce((total, item) => {
   return total + item.num
 }, 0))
+
+
+var str = '13983924120'
+
+console.log(/^1[0-9]{10}$/g.test(str))
