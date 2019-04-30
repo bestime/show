@@ -55,7 +55,7 @@ $leftNavWidth = 200px
 		</div>
 		<div class="main-content-wrapper">
 			<router-view></router-view>
-			<div v-for="a in 50">{{a}}</div>
+			<div v-for="(a, index) in 50" :key="index">{{a}}</div>
 		</div>
 	</div>
 </template>
