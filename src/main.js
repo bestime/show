@@ -3,31 +3,26 @@ import App from './App.vue'
 import { router } from './router'
 Vue.config.productionTip = false
 
-import { Switch, SwiperWrapper, SwiperItem } from '@npm/BT-vue-base'
+import { 
+  Switch,
+  SwiperWrapper,
+  SwiperItem,
+  Loading,
+  Image,
+  RadioItem,
+  RadioGroup
+} from '@npm/BT-vue-base'
 
 
 Vue.use(Switch)
 Vue.use(SwiperWrapper)
 Vue.use(SwiperItem)
+Vue.use(Loading)
+Vue.use(Image)
+Vue.use(RadioItem)
+Vue.use(RadioGroup)
 
 new Vue({
   router,
   render: h => h(App)
 }).$mount('#app')
-
-
-
-const arr = [
-  { num: 1 },
-  { num: 2 },
-  { num: 3 },
-]
-
-console.log('reduce', arr.reduce((total, item) => {
-  return total + item.num
-}, 0))
-
-
-var str = '13983924120'
-
-console.log(/^1[0-9]{10}$/g.test(str))

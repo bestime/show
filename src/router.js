@@ -19,6 +19,24 @@ export const HomeList = [
           
         }
       },
+      {
+        path: 'Switch',
+        name: 'Switch',
+        label: 'Switch',
+        component: () => import('@components/vue-examples/switch-eg.vue')
+      },
+      {
+        path: 'Image',
+        name: 'Image',
+        label: 'Image',
+        component: () => import('@components/vue-examples/image-eg.vue')
+      },
+      {
+        path: 'Radio',
+        name: 'Radio',
+        label: 'Radio',
+        component: () => import('@components/vue-examples/radio-eg.vue')
+      },
     ]
   },
   {

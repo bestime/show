@@ -5,7 +5,7 @@ h1
 
 <template>
   <div>
-    <vbt-switch v-model="open"></vbt-switch>
+    <switch-vbt v-model="open"/>
     <button @click="customStop">{{ open ? '停止' : '开始' }}</button>
     <br>
     <div>{{ msg }}</div>

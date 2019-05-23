@@ -10,8 +10,7 @@ $leftNavWidth = 200px
 	background:#444
 	transition:0.2s
 .main-content-wrapper
-	height:2000px
-	background:#f2f2f2
+	margin-left:200px
 .toggle-nav
 	position:absolute
 	left:20px
@@ -54,8 +53,9 @@ $leftNavWidth = 200px
 			<NavTree :list="HomeList"></NavTree>   
 		</div>
 		<div class="main-content-wrapper">
-			<router-view></router-view>
-			<div v-for="(a, index) in 50" :key="index">{{a}}</div>
+			<router-view></router-view>			
+			
+			
 		</div>
 	</div>
 </template>
@@ -70,14 +70,17 @@ export default {
 	data () {
 		return {
 			HomeList,
-			currentCat: {}
+			currentCat: {},
+			
+			
 		}
 	},
 
 	methods: {
 		selectNav (item) {
 			this.currentCat = item
-		}
+		},
+		
 	},
 }
 

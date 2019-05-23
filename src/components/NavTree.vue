@@ -10,7 +10,7 @@
 <template>
 	<div class="nav-tree-item">
 		<div class="item-wrapper" v-for="(item, index) in list" :key="index">
-			<div class="item-name">{{item.label}}</div>
+			<div class="item-name" @click="goTo(item)">{{item.label}}</div>
 			<NavTree v-if="item.children" :list="item.children"></NavTree>
 		</div>
 	</div>
@@ -34,7 +34,10 @@ export default {
 	},
 
 	methods: {
-		
+		goTo (item) {
+			this.$router.push({ name: item.name })
+			console.log(item)
+		}
 	},
 }
 </script>

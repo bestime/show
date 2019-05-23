@@ -6,15 +6,18 @@ $size = 28px
 $halfSize = $size / 2
 $width = $size * 1.9
 $diff = $width - $size
-.vbt-switch
+.switch-vbt
   display:inline-flex
   align-items:center
   user-select:none
-  box-sizing:border-box
+  font-size:0
+  text-align:left
   .slb
-    font-size:16px
+    font-size:12px
     color: $staticTextColor
     margin-left:5px
+    display:flex
+    align-items:stretch
   .vbt-cir
     width:$width
     height:$size
@@ -23,6 +26,7 @@ $diff = $width - $size
     background: $staticBorderColor
     cursor:pointer
     position:relative
+    box-sizing:border-box
     .zaw
       overflow:hidden
       display:inline-flex
@@ -35,7 +39,6 @@ $diff = $width - $size
       transition:$switchTransition
       position:relative
       z-index:1
-      box-sizing:border-box
       box-shadow:0 5px 5px -1px rgba(0, 0, 0, 0.2), 0 0 0 2px $staticBorderColor
     &:before
       content: ''
@@ -67,32 +70,61 @@ $diff = $width - $size
 </style>
 
 <template>
-  <div class="vbt-switch" :class="{'open': value}" @click="toggle">    
-    <div class="vbt-cir"> 
-			<div class="zaw"></div>     
+  <div class="switch-vbt" :class="{'open': value==1}">    
+    <div class="vbt-cir" @click="toggle"> 
+			<div class="zaw">
+        <Loading v-if="doing" :size='12'/>
+      </div>
     </div>
     <div class="slb"><slot></slot></div>
   </div>
 </template>
 
 <script>
-
+import Loading from '../loading/Loading.vue'
 export default {
-  name: 'vbt-switch',
+  name: 'switch-vbt',
+  components: {
+    Loading
+  },
   props: {
     value: {
-      type: Boolean,
       default: false
+    },
+    index: {
+      default: 0
     }
   },
   data () {
     return {
+      doing: false,
+      timer: null
     }
   },
+
+  beforeDestroy () {
+    clearTimeout(this.timer)
+  },
+
   methods: {
     toggle () {
-      this.$emit('input', !this.value)
-      this.$emit('on-change', !this.value)
+      this.doing = true
+      const toVal = !Number(this.value)
+      this.$emit('input', toVal)
+      this.$emit('on-change', toVal, this.index)
+      clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
+        this.doing = false
+      }, 10000)
+    },
+  },
+
+  watch: {
+    value (newVal, oldVal) {
+      if(newVal!==oldVal) {
+        clearTimeout(this.timer)
+        this.doing = false
+      }
     }
   }
 }

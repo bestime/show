@@ -2,7 +2,7 @@ import box from './switch.vue'
 
 const Switch = {
   install(Vue) {
-    Vue.component('vbt-switch', box)
+    Vue.component('switch-vbt', box)
   }
 }
 
