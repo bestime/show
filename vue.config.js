@@ -8,7 +8,10 @@ module.exports = {
 	outputDir: 'dist',
 	filenameHashing: false,
 	productionSourceMap: false,
-	chainWebpack: GET_chainWebpack
+	chainWebpack: GET_chainWebpack,
+	publicPath: process.env.NODE_ENV === 'production'
+    ? './'
+    : '/',
 }
 
 function resolve (dir) {
