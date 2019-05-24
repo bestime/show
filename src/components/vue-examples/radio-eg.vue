@@ -30,8 +30,8 @@
         <button @click="g_model_01='3'" style="margin-left:10px;">选王五</button>
       </div>
       <radio-group-vbt v-model="g_model_01">
-        <radio-item-vbt groupkey="a">这个不是循环</radio-item-vbt>
-        <radio-item-vbt :groupkey="item.key" v-for="(item, index) in list01" :key="index">
+        <radio-item-vbt disabled groupkey="a">这个不是循环</radio-item-vbt>
+        <radio-item-vbt :groupkey="item.key" v-for="(item, index) in list01" :key="index" :disabled="item.disabled">
           {{ item.label }}
         </radio-item-vbt>
       </radio-group-vbt>
@@ -50,7 +50,7 @@ export default {
       g_model_01: '1',
       list01: [
         { key: '1', label: '张三', checked: false },
-        { key: '2', label: '李四', checked: false },
+        { key: '2', label: '李四', checked: false, disabled: true },
         { key: '3', label: '王五', checked: false },
         { key: '4', label: '赵六', checked: false },
       ]

@@ -37,6 +37,12 @@ export const HomeList = [
         label: 'Radio',
         component: () => import('@components/vue-examples/radio-eg.vue')
       },
+      {
+        path: 'Input',
+        name: 'Input',
+        label: 'Input',
+        component: () => import('@components/vue-examples/input-eg.vue')
+      },
     ]
   },
   {

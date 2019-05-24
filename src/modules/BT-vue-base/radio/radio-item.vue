@@ -4,6 +4,7 @@
   display inline-flex
   align-items:center
   cursor pointer
+  color $staticTextColor
   .radio-cir
     border $staticBorderColor solid 1px
     box-sizing border-box
@@ -11,6 +12,7 @@
     display flex
     align-items center
     justify-content center
+    transition 0.1s ease-in
     &:after
       content ''
       position absolute
@@ -31,15 +33,22 @@
       border-radius: 50%
       &:after
         border-radius: 50%
-
+  &:hover
+    .radio-cir
+      transform scale(1.2)
+  &.disabled
+    color $staticDisabledColor
+    cursor not-allowed    
+    .radio-cir
+      border-color $staticDisabledColor
+      transform none
 .radio-content
   font-size 12px
-  margin-left 3px
-  color $staticTextColor
+  margin-left 3px  
 </style>
 
 <template>
-  <div class="radio-item-vbt" :class="{'circle':type==='circle', 'checked': checked}" @click="toggle">
+  <div class="radio-item-vbt" :class="{'circle':type==='circle', 'checked': checked, 'disabled': hasProp(disabled)}" @click="toggle">
     <div class="radio-cir" :style="css_cir">
     </div>
     <div class="radio-content">
@@ -49,7 +58,7 @@
 </template>
 
 <script>
-import { findComponentUpward } from '../vue-tool'
+import { findComponentUpward, hasProp } from '../vue-tool'
 export default {
   name: 'radio-item-vbt',
   props: {
@@ -70,6 +79,9 @@ export default {
     type: {
       type: String,
       default: 'circle'
+    },
+    disabled: {
+      default: false
     }
   },
   data () {
@@ -99,7 +111,9 @@ export default {
 
 
   methods: {
+    hasProp,
     toggle () {
+      if(hasProp(this.disabled)) return;
       if(this.groupMode) return this.emitFather(this.groupkey);
       if(this.checked) return;
       const toVal = !this.checked

@@ -10,7 +10,9 @@ import {
   Loading,
   Image,
   RadioItem,
-  RadioGroup
+  RadioGroup,
+  Input,
+  Icon
 } from '@npm/BT-vue-base'
 
 
@@ -21,6 +23,8 @@ Vue.use(Loading)
 Vue.use(Image)
 Vue.use(RadioItem)
 Vue.use(RadioGroup)
+Vue.use(Input)
+Vue.use(Icon)
 
 new Vue({
   router,
