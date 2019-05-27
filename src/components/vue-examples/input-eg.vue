@@ -12,9 +12,10 @@
 .test-box
   width:150px
   height 300px
-  overflow:auto
+  overflow: hidden
   background:#dd4215
-  // transform-origin top
+  transform-origin top
+  // 
   // transform scaleY(0.5)
   // transition 0.2s
   // opacity: 0
@@ -45,11 +46,25 @@
         <input-vbt
           v-model="searchStr"
           placeholder="搜索内容"
-          @on-confirm="toSearch"
+          @on-enter="toSearch"
           style="flex:1"
-          confirmText="搜索"
         >
-          <icon-vbt type="search" slot="left" color="#cacaca" :size="14" style="margin-left:10px;"/>
+          <div slot="left" style="align-items:center;justiry-content:center;display:flex;padding:0 8px;">
+            <icon-vbt type="search" slot="left" color="#cacaca" :size="14"/>
+          </div>
+          
+        </input-vbt>
+      </li>
+
+      <li>
+        <input-vbt
+          v-model="phone"
+          placeholder="请输11位入数字"
+          :checkFunc="checkFunc"
+          disabled
+        >
+          <div slot="left" style="align-items:center;justiry-content:center;display:flex;padding:0 8px;"><span>会员卡</span></div>
+          <button-vbt slot="right">切换</button-vbt>
         </input-vbt>
       </li>
     </ul>

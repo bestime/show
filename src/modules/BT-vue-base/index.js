@@ -8,6 +8,7 @@ import { SwiperWrapper, SwiperItem } from './swiper-fullscreen'
 import { RadioItem, RadioGroup } from './radio'
 import Input from './Input'
 import Icon from './Icon'
+import Button from './Button'
 
 import './common.styl'
 
@@ -21,5 +22,6 @@ export {
   RadioItem,
   RadioGroup,
   Input,
-  Icon
+  Icon,
+  Button
 }

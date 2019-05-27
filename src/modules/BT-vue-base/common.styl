@@ -1,18 +1,7 @@
 .top_hide-enter-active, .top_hide-leave-active
   transform scaleY(1) 
-  transition 0.2s ease
-  transform-origin top
-// .top_hide-enter
-//   transform scaleY(1)
-.top_hide-leave-to
-  transform scaleY(0.3)
-.icon-vbt
-  box-sizing border-box
-  display flex
-  align-items center
-  justify-content center
-  svg
-    width 100%
-    height 100%
-    vertical-align middle
-    overflow hidden
+  transition 0.2s ease-out
+  opacity 1
+.top_hide-enter, .top_hide-leave-to
+  transform scaleY(0.7)
+  opacity 0.3

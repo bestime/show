@@ -12,7 +12,8 @@ import {
   RadioItem,
   RadioGroup,
   Input,
-  Icon
+  Icon,
+  Button
 } from '@npm/BT-vue-base'
 
 
@@ -25,6 +26,7 @@ Vue.use(RadioItem)
 Vue.use(RadioGroup)
 Vue.use(Input)
 Vue.use(Icon)
+Vue.use(Button)
 
 new Vue({
   router,

@@ -1,41 +1,53 @@
 <style lang="stylus" rel="stylesheet/stylus">
 @import "../theme.styl"
-.input-box-vbt
+.input-left, .input-right
+  display flex
+  align-items stretch
+  justify-content center
+  font-size 12px
+  color $staticTextColor
+  background #f9f9f9 
+  position relative
+  z-index: 5 
+.input-left
+  border $staticBorderColor solid 1px
+  border-right none
+.input-bd
   display flex
   align-items stretch
   justify-content center
   box-sizing border-box
-  &.focus, &:hover
-    .input-vbt
-      border-color getActiveColor(1)
-    .it-del
-      display flex
-  &.warning
-    .input-vbt
-      border-color getWarningColor(1)
-      color getWarningColor(1)
-  &.hasRight
-    .input-vbt
-      border-radius:$borderRadius 0 0 $borderRadius
+  height 100%
+  
 .input-vbt
   flex 1
   display:flex
   background:#fff
   position:relative  
-  transition:0.2s
-  height:32px
+  transition:0.2s  
   box-sizing:border-box
   border-radius:$borderRadius
   position:relative
   box-sizing border-box
-  border #eee solid 1px
+  border $staticBorderColor solid 1px
   align-items stretch
+  &.no-right-bd
+    margin-right -1px
   ::-webkit-input-placeholder
-    color $staticDisabledColor  
-  .it-left
-    display flex
-    align-items center
-    justify-content center
+    color $staticDisabledColor
+  &.focus, &:hover
+    border-color getActiveColor(1)    
+    .it-del
+      display flex
+      border-radius: 0 $borderRadius $borderRadius 0
+  &.focus
+    box-shadow 0 0 0 2px getActiveColor(0.2)
+    z-index: 6
+    &.warning
+      box-shadow 0 0 0 2px getWarningColor(0.2)
+  &.warning    
+    border-color getWarningColor(1)
+    color getWarningColor(1)  
   input
     border none
     transition:0.2s
@@ -49,7 +61,7 @@
     margin:0    
     box-sizing:border-box
     color $staticTextColor
-    text-indent 5px
+    padding 0 5px
   .iptbtn
     border-radius:0 $borderRadius $borderRadius 0
   .input-msg
@@ -69,7 +81,8 @@
     z-index: 2
     max-height 200px
     overflow-y auto
-    overflow-x hidden    
+    overflow-x hidden  
+    transform-origin top  
 .input-content
   display flex
   align-items center
@@ -104,32 +117,50 @@
   border-radius 0 $borderRadius $borderRadius 0
   &:active
     background getActiveColor(0.7)
+.input-box-vbt
+  padding 2px
+  box-sizing border-box
+  height:36px
+  display inline-flex
+  &.disabled    
+    .input-vbt
+      background #f9f9f9
+      &:hover
+        border-color $staticBorderColor
+    input 
+      cursor not-allowed
+    .it-del
+      display none !important
+
 </style>
 
 <template>
-  <div class="input-box-vbt" :class="[!showType ? '' : msgType, {'focus': isFocus, 'hasRight': confirmText}]">
-    <div class="input-vbt" >
-      <div class="it-left"><slot name="left"/></div>
-      <div class="input-content">
-        <input
-          ref="input"
-          :value="value"
-          spellcheck="false"      
-          @blur="onBlur"
-          @focus="onFocus"
-          :placeholder="usePlaceHolder"
-          @keyup.enter="onConfirm"
-          @keyup="onValueChange"
-        />
-        <div class="it-del" @click="onCheck(null)" v-if="value">
-          <icon-vbt type="delete" color="#ddd"/>
-        </div>      
-      </div>      
-      <transition name="top_hide">
-        <div v-if="showMsg" class="input-msg">{{ msg }}</div>
-      </transition>      
-    </div>
-    <div class="input-r-btn" v-if="confirmText" @click="onConfirm"><span>确定</span></div>   
+  <div class="input-box-vbt" :class="[{'disabled': hasProp(disabled)}]">
+    <div class="input-bd">
+      <div class="input-left" v-if="$slots.left"><slot name="left"/></div>
+      <div class="input-vbt" :class="[!showType ? '' : msgType, {'focus': isFocus, 'no-right-bd': $slots.right}]">
+        <div class="input-content">
+          <input
+            ref="input"
+            :value="value"
+            spellcheck="false"      
+            @blur="onBlur"
+            @focus="onFocus"
+            :placeholder="usePlaceHolder"
+            @keyup.enter="onEnter"
+            @keyup="onValueChange"
+            :disabled="hasProp(disabled)"
+          />
+          <div class="it-del" @click="onCheck(null)" v-if="value">
+            <icon-vbt type="delete" color="#ddd"/>
+          </div>        
+        </div>
+        <transition name="top_hide">
+          <div v-if="showMsg" class="input-msg">{{ msg }}</div>
+        </transition>      
+      </div>
+      <div class="input-right" v-if="$slots.right"><slot name="right"/></div>
+    </div> 
   </div>
 </template>
 
@@ -141,16 +172,13 @@ export default {
   props: {
     value: null,
     placeholder: '',
-
-    confirmText: {
-      type: String,
-      default: ''
-    },
     // 自定义过滤方法
     checkFunc: {
       type: Function,
       default: val => val
-    }
+    },
+
+    disabled: null
   },
   data () {
     return {
@@ -161,6 +189,7 @@ export default {
   },
   mounted() {
     this.onCheck(this.value)
+    console.log('slot', this.$slots)
   },
   computed: {
     usePlaceHolder () {
@@ -197,8 +226,8 @@ export default {
       return this.$refs.input.value
     },
 
-    onConfirm () {
-      this.$emit('on-confirm', this.getValue())
+    onEnter () {
+      this.$emit('on-enter', this.getValue())
     },
 
     onValueChange () {
