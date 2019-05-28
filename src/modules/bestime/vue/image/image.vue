@@ -6,6 +6,10 @@
   background:#d9d9d9
   position:relative
   box-sizing border-box
+  img
+    margin 0 !important
+    border none !important
+    vertical-align middle
   svg
     width 100%
     height 100%
@@ -40,7 +44,7 @@
 </style>
 
 <template>
-  <div class="image-vbt-wrapper">
+  <div class="image-vbt-wrapper" @click="$emit('click')">
     <img class="image-vbt" @error="on_err" @load="on_load" :src="useSrc"/>
     <div class="image-vbt-default" v-if="showDefault">
       <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">

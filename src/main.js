@@ -14,7 +14,7 @@ import {
   Input,
   Icon,
   Button
-} from '@npm/BT-vue-base'
+} from '@npm/bestime/vue'
 
 
 Vue.use(Switch)

@@ -36,7 +36,6 @@ function GET_chainWebpack (config) {
 											.set('@src', resolve('src'))
 											.set('@css', resolve('src/assets/css'))
 											.set('@images', resolve('src/assets/images'))
-											.set('@npm/BT-vue-base', resolve('src/modules/BT-vue-base'))
-											.set('@npm/bestime', resolve('src/modules/BT-js'))
+											.set('@npm/bestime', resolve('src/modules/bestime'))
 											.set('@components', resolve('src/components'))
 }

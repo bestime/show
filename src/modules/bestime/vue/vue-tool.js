@@ -1,4 +1,4 @@
-import { getType } from '../BT-js'
+import { getType } from '../js'
  
 
 // 寻找子组件 - 数组
