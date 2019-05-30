@@ -2,6 +2,12 @@ import Vue from 'vue'
 import App from './App.vue'
 import { router } from './router'
 Vue.config.productionTip = false
+import * as ns_es6 from '@npm/bestime/js'
+
+Vue.prototype.ns = ns_es6
+
+
+console.log('ns', ns)
 
 import { 
   Switch,

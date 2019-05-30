@@ -15,13 +15,6 @@
   overflow: hidden
   background:#dd4215
   transform-origin top
-  // 
-  // transform scaleY(0.5)
-  // transition 0.2s
-  // opacity: 0
-  // &.show
-  //   transform scaleY(1)
-  //   opacity: 1
 </style>
 
 <template>
@@ -48,6 +41,7 @@
           placeholder="搜索内容"
           @on-enter="toSearch"
           style="flex:1"
+          disabled
         >
           <div slot="left" style="align-items:center;justiry-content:center;display:flex;padding:0 8px;">
             <icon-vbt type="search" slot="left" color="#cacaca" :size="14"/>
@@ -58,22 +52,16 @@
 
       <li>
         <input-vbt
-          v-model="phone"
-          placeholder="请输11位入数字"
-          :checkFunc="checkFunc"
-          disabled
+          v-model="num01"
+          placeholder="请输11位入数字"   
         >
-          <div slot="left" style="align-items:center;justiry-content:center;display:flex;padding:0 8px;"><span>会员卡</span></div>
-          <button-vbt slot="right">切换</button-vbt>
+          <div slot="left" style="align-items:center;justiry-content:center;display:flex;padding:0 8px;"><span>随机数</span></div>
+          <button-vbt slot="right" @click="ns.average(7, num01, 2)">分成3份</button-vbt>
         </input-vbt>
       </li>
     </ul>
 
-    <button @click="show=!show">测试</button>
 
-<transition name="top_hide">
-    <div class="test-box" v-if="show">电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字</div>
-  </transition> 
  
   </div>
 </template>
@@ -86,7 +74,7 @@ export default {
       name: '',
       phone: '',
       searchStr: '',
-      show: false
+      num01: '10'
     }
   },
   mounted(){    
@@ -96,7 +84,7 @@ export default {
   methods: {
     checkFunc (val, next) {
       const res = String(val).replace(/[^0-9]/g, '').substr(0,11)
-      next(isPhone(res) ? false : 'warning', '电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字电话格式不正确，需要11位数字')
+      next(isPhone(res) ? false : 'warning', '电话格式不正确')
       return res
     },
 

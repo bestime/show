@@ -43,15 +43,14 @@
       border-color $staticDisabledColor
       transform none
 .radio-content
-  font-size 12px
-  margin-left 3px  
+  margin-left 5px  
 </style>
 
 <template>
   <div class="radio-item-vbt" :class="{'circle':type==='circle', 'checked': checked, 'disabled': hasProp(disabled)}" @click="toggle">
     <div class="radio-cir" :style="css_cir">
     </div>
-    <div class="radio-content">
+    <div class="radio-content" :style="{'font-size': `${size-4}px`}">
       <slot></slot>
     </div>
   </div>  

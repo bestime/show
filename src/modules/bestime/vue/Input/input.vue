@@ -146,7 +146,7 @@
             spellcheck="false"      
             @blur="onBlur"
             @focus="onFocus"
-            :placeholder="usePlaceHolder"
+            :placeholder="placeholder"
             @keyup.enter="onEnter"
             @keyup="onValueChange"
             :disabled="hasProp(disabled)"
@@ -189,12 +189,8 @@ export default {
   },
   mounted() {
     this.onCheck(this.value)
-    console.log('slot', this.$slots)
   },
   computed: {
-    usePlaceHolder () {
-      return this.isFocus ? null : this.placeholder
-    },
     showMsg () {
       return this.isFocus && this.showType && this.msgType
     },
