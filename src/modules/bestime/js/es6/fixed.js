@@ -1,6 +1,6 @@
 
 
-import toNumber from './toNumber.js'
+import _Number from './_Number.js'
 /**
  * toFixed()优化版
  * 
@@ -14,10 +14,10 @@ import toNumber from './toNumber.js'
  */
 
 export default function fixed (fix) {
-	fix = toNumber(fix)
+	fix = _Number(fix)
 	fix = fix < 0 ? 0 : fix
 	return function (num) {
-		return toNumber(num).toFixed(fix)
+		return _Number(num).toFixed(fix)
 	}
 }
 

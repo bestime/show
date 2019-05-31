@@ -1,4 +1,4 @@
-import toNumber from './toNumber'
+import _Number from './_Number'
 import fixed from './fixed'
 /**
  * 计算平均数
@@ -7,8 +7,8 @@ import fixed from './fixed'
  * @param {Number} decimal 保留几位小数，默认0
  */
 export default function average (section, num, decimal) {
-  decimal = toNumber(decimal)
-  section = toNumber(section) || 1  
+  decimal = _Number(decimal)
+  section = _Number(section) || 1
   num = fixed(decimal)(num)
   const avg = fixed(decimal)(num / section)
   const res = new Array(section).fill(avg)

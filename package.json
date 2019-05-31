@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "better-scroll": "^1.14.1",
+    "jquery-param": "^1.0.1",
     "vue": "^2.6.6",
     "vue-router": "^3.0.2"
   },
