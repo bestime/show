@@ -1,5 +1,7 @@
-const trim = require('./trim.js')
-const toNumber = require('./toNumber')
+/*eslint no-unused-expressions: "error"*/
+
+import toNumber from './toNumber'
+import trim from './trim'
 
 /**
  * 
@@ -8,7 +10,7 @@ const toNumber = require('./toNumber')
  * @param {String} integer 是否为整数 ['*', 'int']
  */
 
-function isNumber (str, sign, integer) {
+export default function isNumber (str, sign, integer) {
   var zhengfu = '(-|\\+)?' // 正负
   var xiaoshu = integer==='int' ? '(\.0+)?' : '(\.[0-9]+)?' // 是否整数
   if(sign==='-') {
@@ -21,11 +23,10 @@ function isNumber (str, sign, integer) {
   var bol = new RegExp(reg, 'g').test(trim(str))
   const number = toNumber(str)
   
+  let res = bol  
   switch(sign) {
-    case '+': return bol && number > 0;
-    case '-': bol && number < 0;
-    default: return bol
+    case '+': res = bol && number > 0; break;
+    case '-': res = bol && number < 0; break;
   }
+  return res
 }
-
-module.exports = isNumber
