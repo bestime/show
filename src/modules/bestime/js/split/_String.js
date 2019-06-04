@@ -1,10 +1,13 @@
 import getType from './getType'
-const name = 'String'
+const NAME = 'String'
 
 export default function _String (data, def) {
-  const temp = getType(def)===name ? def : ''
+  const TEMP = getType(def)===NAME ? def : ''
+  
   switch (getType(data)) {
     case 'Number': data = String(data); break;
+    case 'Undefined': data = ''; break;
   }
-  return getType(data)===name ? data : temp
+  
+  return getType(data)===NAME ? data : TEMP
 }

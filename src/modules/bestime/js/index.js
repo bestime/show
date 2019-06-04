@@ -1,39 +1,41 @@
 
 
-import $getType from './es6/getType' 
-import $isPhone from './es6/isPhone'
-import $trim from './es6/trim'
-import $getRandom from './es6/getRandom' 
-import $createUUID from './es6/createUUID'
-import $average from './es6/average'
-import $fixed from './es6/fixed'
-import $loopFunc from './es6/loopFunc'
+import $getType from './split/getType' 
+import $isPhone from './split/isPhone'
+import $trim from './split/trim'
+import $getRandom from './split/getRandom' 
+import $createUUID from './split/createUUID'
+import $average from './split/average'
+import $fixed from './split/fixed'
+import $loopFunc from './split/loopFunc'
 
-import $_Number from './es6/_Number' 
-import $_Function from './es6/_Function'
-import $_Object from './es6/_Object' 
-import $_Array from './es6/_Array'
-import $_Boolean from './es6/_Boolean'
-import $_String from './es6/_String'
+import $_Number from './split/_Number' 
+import $_Function from './split/_Function'
+import $_Object from './split/_Object' 
+import $_Array from './split/_Array'
+import $_Boolean from './split/_Boolean'
+import $_String from './split/_String'
 
-import $isObject from './es6/isObject'
-import $isArray from './es6/isArray'
-import $isFunction from './es6/isFunction'
-import $isString from './es6/isString'
+import $isObject from './split/isObject'
+import $isArray from './split/isArray'
+import $isFunction from './split/isFunction'
+import $isString from './split/isString'
 
-import $oFetch from './es6/oFetch' 
-import $jsonp from './es6/jsonp'
-import $isEmptyData from './es6/isEmptyData'
-import $clear from './es6/clear'
-import $clone from './es6/clone'
-import $each from './es6/each'
-import $toClass from './es6/toClass'
-import $getCookie from './es6/getCookie'
-import $setCookie from './es6/setCookie'
-import $removeCookie from './es6/removeCookie'
-import $split from './es6/split'
-import $toNumber from './es6/toNumber'
-import $isNumber from './es6/isNumber'
+import $oFetch from './split/oFetch' 
+import $jsonp from './split/jsonp'
+import $isEmptyData from './split/isEmptyData'
+import $clear from './split/clear'
+import $clone from './split/clone'
+import $each from './split/each'
+import $toClass from './split/toClass'
+import $getCookie from './split/getCookie'
+import $setCookie from './split/setCookie'
+import $removeCookie from './split/removeCookie'
+import $split from './split/split'
+import $toNumber from './split/toNumber'
+import $isNumber from './split/isNumber'
+import $barCode from './split/barCode'
+import $bus from './split/bus'
 
 
 export const getType = $getType
@@ -72,3 +74,5 @@ export const split = $split
 export const isString = $isString
 export const isNumber = $isNumber
 export const toNumber = $toNumber
+export const barCode = $barCode
+export const bus = $bus

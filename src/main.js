@@ -116,7 +116,7 @@ const barCode = {
   },
 
   create: function () {
-    var str='69';
+    var str = '69';
     for(var i=0;i<10;i++){
       str+=Math.floor(Math.random()*10);
     }
