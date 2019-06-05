@@ -9,7 +9,6 @@ import _String from './_String'
 import _Function from './_Function'
 import getType from './getType'
 import isFunction from './isFunction'
-import numberMin from './numberMin'
 
 
 
@@ -20,11 +19,11 @@ function addStyle (callback) {
   oStyle.id = id
   fillHtml(oStyle, `
     .dialog-vbt{z-index:500;position:fixed;left:0;right:0;bottom:0;top:0;display:flex;align-items:center;justify-content:center;}    
-    .dialog-bg {z-index:1;background:rgba(0,0,0,0.7);position:absolute;left:0;right:0;top:0;bottom:0;opacity:0;transition:0.2s;}
-    .dialog-content{z-index:2;position:relative;background:#fff;opacity:0;transform:translateY(-10%);transition:0.2s ease-out;box-shadow:0 0 20px rgba(0,0,0,0.4);min-width:200px;max-width:80%;max-height:80%;display:flex;flex-direction:column;}
+    .dialog-bg {z-index:1;background:rgba(0,0,0,0.5);position:absolute;left:0;right:0;top:0;bottom:0;opacity:0;transition:0.2s;}
+    .dialog-content{z-index:2;position:relative;background:#fff;opacity:0;transform:translateY(-10%);transition:0.2s ease-out;box-shadow:0 0 20px rgba(0,0,0,0.4);min-width:300px;max-width:80%;max-height:80%;display:flex;flex-direction:column;}
     .dialog-vbt.active .dialog-bg{opacity:1;}
     .dialog-vbt.active .dialog-content{transform:translateY(0);opacity:1;border-radius:4px;}
-    .dialog-title{font-size:14px;color:#000;border-bottom:#f2f2f2 solid 1px;padding:8px 10px;}
+    .dialog-title{font-size:16px;color:#000;border-bottom:#f2f2f2 solid 1px;padding:8px 10px;}
     .dialog-title *{display:inline-block;vertical-align:middle;}
     .dialog-msg-box{padding:10px;font-size:12px;color:#444;overflow:auto;}
     .dialog-btn-box{padding:0 5px 10px 10px;text-align:right;font-size:0;}
@@ -34,9 +33,8 @@ function addStyle (callback) {
     .dialog-btn.confirm:active{box-shadow:0 0 0 2px rgba(100,150,255,0.2);}
     .dialog-btn.cancel{background:#e6e6e6;color:#8c8c8c;}
     .dialog-btn.cancel:active{background:#bbbbbb;}
-    .dialog-vbt .duration{font-size:12px;color:#949494;font-weight:normal;}
-    .dialog-vbt.group .dialog-bg{background:transparent;}
-    
+    .dialog-vbt .duration{font-size:14px;color:#949494;font-weight:normal;}
+    .dialog-vbt.group .dialog-bg{background:transparent;}    
   `);
   document.body.appendChild(oStyle)
   setTimeout(callback, 16)
@@ -50,16 +48,14 @@ export default function dialog (opt) {
   opt.closed = _Function(opt.closed) // 关闭完成回调
   opt.onShow = _Function(opt.onShow) // 显示完成回调
 
-
-  var closeing = false; // 关闭中，禁止多次点击
-  var timer_show = null; // 显示的timer
-  var timer_autoClose = null // 自动关闭的timer
-
-
-  addStyle(function () {    
+  addStyle(function () {  
+    var closeing = false; // 关闭中，禁止多次点击
+    var timer_show = null; // 显示的timer
+    var timer_autoClose = null // 自动关闭的timer  
+    
+    var oldWrappers = getByClass('dialog-vbt')
     var oWrapper = document.createElement('div')
-    var oldWrapper = getByClass('dialog-vbt')
-    var gpName = oldWrapper.length ? ` group dialog-${oldWrapper.length}` : ''
+    var gpName = oldWrappers.length ? ` group dialog-${oldWrappers.length}` : ''
     oWrapper.className = 'dialog-vbt' + gpName
     oWrapper.innerHTML = `
       <div class="dialog-bg"></div>
@@ -78,9 +74,9 @@ export default function dialog (opt) {
     document.body.appendChild(oWrapper)
     setTimeout(function () {
       addClass(oWrapper, 'active')
+      doAutoClose()
       timer_show = setTimeout(function () {
-        opt.onShow()
-        doAutoClose()        
+        opt.onShow()                
       }, 200 + 16)
     }, 16);
 
@@ -91,7 +87,6 @@ export default function dialog (opt) {
     getByClass('confirm', oWrapper)[0].onclick = function () {
       checkToClose('confirm')
     }
-
     getByClass('cancel', oWrapper)[0].onclick = function () {
       checkToClose('cancel')
     }
@@ -101,14 +96,13 @@ export default function dialog (opt) {
       if(getType(opt.autoClose)=='Number') {
         var duration = opt.autoClose < 2000 ? 2000 : opt.autoClose; // 最小值2000
         oDuration.innerHTML = '(' + Math.ceil(duration/1000) + 's)';
-        timer_autoClose = setInterval(function () {          
+        timer_autoClose = setInterval(function () {
           if(duration<=0) {
             checkToClose()
             clearInterval(timer_autoClose)
           } else {
             duration -= 1000
             oDuration.innerHTML = '(' + Math.ceil(duration/1000) + 's)';
-
           }
         }, 1000)
       }
@@ -123,18 +117,19 @@ export default function dialog (opt) {
       if(hideType=='confirm' && isFunction(opt.startClose)) {
         opt.startClose(function (isClose, checkedMsg) {
           if(isClose!==false) {
-            close(hideType)
+            removeDialog(hideType)
           } else {
             oMsgBox.innerHTML = checkedMsg
             closeing = false
           }
         }, hideType)
       } else {
-        close(hideType)
+        removeDialog(hideType)
       }
     }
 
-    function close (hideType) {
+    // 执行关闭
+    function removeDialog (hideType) {
       removeClass(oWrapper, 'active')
       setTimeout(function () {
         clearInterval(timer_autoClose)

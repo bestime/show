@@ -37,6 +37,7 @@ import $isNumber from './split/isNumber'
 import $barCode from './split/barCode'
 import $bus from './split/bus'
 import $dialog from './split/dialog'
+import $loading from './split/loading'
 import $fillHtml from './split/fillHtml'
 import $addClass from './split/addClass'
 import $hasClass from './split/hasClass'
@@ -88,6 +89,7 @@ export const toNumber = $toNumber
 export const barCode = $barCode
 export const bus = $bus
 export const dialog = $dialog
+export const loading = $loading
 export const fillHtml = $fillHtml
 export const addClass = $addClass
 export const hasClass = $hasClass
