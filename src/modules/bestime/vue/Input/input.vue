@@ -122,6 +122,7 @@
   box-sizing border-box
   height:36px
   display inline-flex
+  vertical-align middle
   &.disabled    
     .input-vbt
       background #f9f9f9

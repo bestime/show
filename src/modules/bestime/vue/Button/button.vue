@@ -1,37 +1,45 @@
 <style lang="stylus" rel="stylesheet/stylus">
 @import "../theme.styl"
 .button-vbt
-  user-select none
+  height 36px
   display inline-flex
-  align-items center
-  justify-content center
-  background getActiveColor(1)
-  color #fff
-  cursor pointer
-  padding 0 15px
-  transition:0.15s
-  &:hover
-    background getActiveColor(0.8)
-  &:active
+  padding 2px
+  box-sizing border-box
+  vertical-align middle
+  font-size 14px
+  .button-main
+    user-select none
+    display inline-flex
+    align-items center
+    justify-content center
     background getActiveColor(1)
-  &.default
-    background #eee
-    color $staticTextColor
-    border $staticBorderColor solid 1px
+    color #fff
+    cursor pointer
+    padding 0 15px
+    transition:0.15s  
+    height 100%  
     &:hover
-      background:#f9f9f9
+      background getActiveColor(0.8)
     &:active
+      box-shadow 0 0 0 2px getActiveColor(0.2)
+    &.default
       background #eee
-  
-
+      color $staticTextColor
+      border $staticBorderColor solid 1px
+      &:hover
+        background:#f9f9f9
+      &:active
+        background #eee
 </style>
 
 <template>
   <div class="button-vbt" :class="[type]" @click="$emit('click')">
-    <slot></slot>
-    <div class="button-vbt-loading" v-if="doing">
-      <Loading/>
-    </div>
+    <div class="button-main">
+      <slot></slot>
+      <div class="button-vbt-loading" v-if="doing">
+        <Loading/>
+      </div>
+    </div>    
   </div>  
 </template>
 

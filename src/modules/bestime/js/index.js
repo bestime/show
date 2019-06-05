@@ -36,6 +36,17 @@ import $toNumber from './split/toNumber'
 import $isNumber from './split/isNumber'
 import $barCode from './split/barCode'
 import $bus from './split/bus'
+import $dialog from './split/dialog'
+import $fillHtml from './split/fillHtml'
+import $addClass from './split/addClass'
+import $hasClass from './split/hasClass'
+import $removeClass from './split/removeClass'
+import $removeElement from './split/removeElement'
+import $unique from './split/unique'
+import $getByClass from './split/getByClass'
+import $getById from './split/getById'
+import $numberMin from './split/numberMin'
+import $numberMax from './split/numberMax'
 
 
 export const getType = $getType
@@ -76,3 +87,14 @@ export const isNumber = $isNumber
 export const toNumber = $toNumber
 export const barCode = $barCode
 export const bus = $bus
+export const dialog = $dialog
+export const fillHtml = $fillHtml
+export const addClass = $addClass
+export const hasClass = $hasClass
+export const removeClass = $removeClass
+export const removeElement = $removeElement
+export const unique = $unique
+export const getByClass = $getByClass
+export const getById = $getById
+export const numberMin = $numberMin
+export const numberMax = $numberMax

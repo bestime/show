@@ -21,7 +21,7 @@ function getLastCode (s) {
 
 // 生成随机条码
 function create () {
-  const str = '69';
+  let str = '69';
   for(let i=0; i<10; i++){
     str += Math.floor(Math.random()*10);
   }

@@ -44,7 +44,7 @@
 </style>
 
 <template>
-  <div class="image-vbt-wrapper" @click="$emit('click')">
+  <div class="image-vbt-wrapper" @click="$emit('click')" :data-src="src">
     <img class="image-vbt" @error="on_err" @load="on_load" :src="useSrc"/>
     <div class="image-vbt-default" v-if="showDefault">
       <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">

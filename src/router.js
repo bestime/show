@@ -5,6 +5,12 @@ Vue.use(Router)
 
 export const HomeList = [
   {
+    path: '/index',
+    name: '首页',
+    label: '首页',
+    component: () => import('@components/Home.vue')
+  },
+  {
     path: '/vue',
     name: 'vue',
     label: 'vue',
@@ -51,7 +57,12 @@ export const HomeList = [
     label: 'javascript',
     component: () => import('@components/vue-examples/index.vue'),
     children: [
-      
+      {
+        path: 'dialog',
+        name: 'dialog',
+        label: 'dialog',
+        component: () => import('@components/vue-examples/dialog-eg.vue')
+      },
     ]
   } 
 ]
@@ -60,9 +71,10 @@ export const HomeList = [
 export const routerList = [
   {
     path: '/',
+    redirect: '/index',
     name: 'home',
-    label: '首页',
-    component: () => import('@components/Home.vue'),
+    label: '右侧路由容器',    
+    component: () => import('@components/RightRouterWrapper.vue'),
     children: HomeList
   },
   {

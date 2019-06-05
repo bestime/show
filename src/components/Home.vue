@@ -1,89 +1,54 @@
 <style lang="stylus" rel="stylesheet/stylus">
-$leftNavWidth = 200px
-.left-nav-wrapper
-	position:fixed
-	width:$leftNavWidth
-	left:0
-	top:0
-	bottom:0
-	z-index:1
-	background:#444
-	transition:0.2s
-.main-content-wrapper
-	margin-left:200px
-.toggle-nav
-	position:absolute
-	left:20px
-	top:20px
-	background:#dd4215
-	z-index:20
-.l-nav-name
-	color:#a9a9a9
-	text-align:center
-	line-height:40px
-	cursor:pointer
-	border-bottom:#5d5d5d solid 1px
-.catList
-	background:#fff
-	position:absolute
-	left:100%
-	top:5px
-	width:200px
-	margin-left:5px
-	box-shadow:5px 5px 10px rgba(0,0,0,0.1)
-.nav-s-pt
-	border-top:#f2f2f2 solid 1px
-	padding:10px 20px
-	cursor: pointer
-	font-size:14px
-	color:#666
-	&:hover
-		background:#f9f9f9
-.catList
-	.nav-s-pt:nth-of-type(1)
-		border-top:none
-
-
+.home-wrapper
+  background:#f9f9f9
+  overflow hidden
+  .home-title
+    border-bottom:#eee solid 1px
+    font-size:14px
+    padding:10px
+    color:#999
+    margin-bottom:10px
+  .home-floor
+    padding:20px
+    background:#fff
+    margin:20px
+    border:#ddd dashed 1px
+    
 </style>
 
 <template>
-	<div class="home-wrapper">
-		
-		<div class="left-nav-wrapper">
-			<NavTree :list="HomeList"></NavTree>   
-		</div>
-		<div class="main-content-wrapper">
-			<router-view></router-view>			
-			
-			
-		</div>
-	</div>
+  <div class="home-wrapper">
+    <div class="home-floor">
+      <div class="home-title">条码生成与校验</div>    
+      <div>
+        <button-vbt @click="createBarCode">生成条码</button-vbt>
+        <input-vbt v-model="barcode" disabled></input-vbt>
+      </div>
+      <div>
+        <input-vbt v-model="userBarCode"></input-vbt>
+        <button-vbt @click="checkBarCode">验证有效性</button-vbt>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import { HomeList } from '@/router.js'
-import NavTree from './NavTree.vue'
 export default {
-	components: {
-		NavTree
-	},
-	data () {
-		return {
-			HomeList,
-			currentCat: {},
-			
-			
-		}
-	},
+  data () {
+    return {
+      barcode: '',
+      userBarCode: '6935155997315'
+    }
+  },
 
-	methods: {
-		selectNav (item) {
-			this.currentCat = item
-		},
-		
-	},
+  methods: {
+    createBarCode () {
+      this.barcode = ns.barCode.create()
+    },
+
+    checkBarCode () {
+      alert(ns.barCode.check(this.userBarCode))
+    }
+  }
 }
-
-
-
 </script>
