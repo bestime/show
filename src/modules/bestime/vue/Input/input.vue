@@ -123,6 +123,9 @@
   height:36px
   display inline-flex
   vertical-align middle
+  .button-vbt
+    padding 0
+    height auto
   &.disabled    
     .input-vbt
       background #f9f9f9
@@ -152,7 +155,7 @@
             @keyup="onValueChange"
             :disabled="hasProp(disabled)"
           />
-          <div class="it-del" @click="onCheck(null)" v-if="value">
+          <div class="it-del" @click="onCheck('')" v-if="value">
             <icon-vbt type="delete" color="#ddd"/>
           </div>        
         </div>

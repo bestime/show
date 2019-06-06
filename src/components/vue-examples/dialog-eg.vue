@@ -27,8 +27,9 @@ export default {
           console.log('显示了')
         },
         startClose: function (next, type) {
-          console.log('关闭前操作：', type)
+          ns.loading.show('关闭弹窗前操作')
           setTimeout(function () {
+            ns.loading.close()
             next(true, '有什么失败了')
           }, 1000)          
         },

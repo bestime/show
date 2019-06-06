@@ -48,6 +48,8 @@ import $getByClass from './split/getByClass'
 import $getById from './split/getById'
 import $numberMin from './split/numberMin'
 import $numberMax from './split/numberMax'
+import $sleep from './split/sleep'
+import $onDomRoll from './split/onDomRoll'
 
 
 export const getType = $getType
@@ -100,3 +102,7 @@ export const getByClass = $getByClass
 export const getById = $getById
 export const numberMin = $numberMin
 export const numberMax = $numberMax
+export const sleep = $sleep
+export const onDomRoll = $onDomRoll
+
+

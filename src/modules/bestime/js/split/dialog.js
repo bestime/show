@@ -25,7 +25,7 @@ function addStyle (callback) {
     .dialog-vbt.active .dialog-content{transform:translateY(0);opacity:1;border-radius:4px;}
     .dialog-title{font-size:16px;color:#000;border-bottom:#f2f2f2 solid 1px;padding:8px 10px;}
     .dialog-title *{display:inline-block;vertical-align:middle;}
-    .dialog-msg-box{padding:10px;font-size:12px;color:#444;overflow:auto;}
+    .dialog-msg-box{padding:10px;font-size:14px;color:#444;overflow:auto;}
     .dialog-btn-box{padding:0 5px 10px 10px;text-align:right;font-size:0;}
     .dialog-btn{font-size:12px;display:inline-block;cursor:pointer;user-select:none;padding:5px 10px;border-radius:4px;transition:0.2s;margin-right:5px;}
     .dialog-btn.confirm{background:rgba(100,150,255,1);color:#fff;}

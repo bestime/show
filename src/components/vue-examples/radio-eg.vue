@@ -63,8 +63,10 @@ export default {
 
   methods: {
     t2Change (toVal) {
+      ns.loading.show()
       setTimeout(() => {
         this.test02 = toVal
+        ns.loading.close()
       }, 1000)
     }
   }

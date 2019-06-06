@@ -63,6 +63,12 @@ export const HomeList = [
         label: 'dialog',
         component: () => import('@components/vue-examples/dialog-eg.vue')
       },
+      {
+        path: 'dom-on-bottom',
+        name: 'dom-on-bottom',
+        label: 'pc滚动到底部加载',
+        component: () => import('@components/vue-examples/scroll-bottom-eg.vue')
+      },
     ]
   } 
 ]

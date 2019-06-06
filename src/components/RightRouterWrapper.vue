@@ -47,7 +47,7 @@ $leftNavWidth = 200px
 </style>
 
 <template>
-	<div class="home-wrapper">
+	<div class="router-wrapper">
 		
 		<div class="left-nav-wrapper">
 			<NavTree :list="HomeList"></NavTree>   

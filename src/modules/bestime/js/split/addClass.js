@@ -12,7 +12,7 @@ import hasClass from './hasClass'
  * @param {object} element # dom元素 
  * @param {String || Array} addClassName # 需要增加的className。可接受单个字符串或数组 
  */
-export default function addClass (obj, addClassName) {
+export default function addClass (el, addClassName) {
   if(getType(addClassName)=='Array') {
     each((unique(addClassName)), function (_item) {
       addOne(_item);
@@ -22,8 +22,8 @@ export default function addClass (obj, addClassName) {
   }
   
   function addOne(oneClassName) {
-    if(!hasClass(obj, oneClassName)) {
-      obj.className += (obj.className ? (' ' + oneClassName) : oneClassName);
+    if(!hasClass(el, oneClassName)) {
+      el.className += (el.className ? (' ' + oneClassName) : oneClassName);
     }
   }
 }
