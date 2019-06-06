@@ -20,7 +20,7 @@ function addStyle (callback) {
   fillHtml(oStyle, `
     .dialog-vbt{z-index:500;position:fixed;left:0;right:0;bottom:0;top:0;display:flex;align-items:center;justify-content:center;}    
     .dialog-bg {z-index:1;background:rgba(0,0,0,0.5);position:absolute;left:0;right:0;top:0;bottom:0;opacity:0;transition:0.2s;}
-    .dialog-content{z-index:2;position:relative;background:#fff;opacity:0;transform:translateY(-10%);transition:0.2s ease-out;box-shadow:0 0 20px rgba(0,0,0,0.4);min-width:300px;max-width:80%;max-height:80%;display:flex;flex-direction:column;}
+    .dialog-content{z-index:2;position:relative;background:#fff;opacity:0;transform:translateY(-10%);transition:0.2s ease-out;box-shadow:0 0 20px rgba(0,0,0,0.2);min-width:300px;max-width:80%;max-height:80%;display:flex;flex-direction:column;}
     .dialog-vbt.active .dialog-bg{opacity:1;}
     .dialog-vbt.active .dialog-content{transform:translateY(0);opacity:1;border-radius:4px;}
     .dialog-title{font-size:16px;color:#000;border-bottom:#f2f2f2 solid 1px;padding:8px 10px;}

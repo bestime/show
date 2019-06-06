@@ -9,6 +9,8 @@ import { RadioItem, RadioGroup } from './radio'
 import Input from './Input'
 import Icon from './Icon'
 import Button from './Button'
+import Select from './Select'
+import TextOverflow from './TextOverflow'
 
 import './common.styl'
 
@@ -23,5 +25,7 @@ export {
   RadioGroup,
   Input,
   Icon,
-  Button
+  Button,
+  Select,
+  TextOverflow
 }

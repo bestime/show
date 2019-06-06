@@ -56,10 +56,6 @@ export default {
         }, 1000)
       }
     })
-  },
-
-  methods: {
-
   }
 }
 </script>

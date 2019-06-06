@@ -1,20 +1,20 @@
 
-import _Function from './_Function'
 import isObject from './isObject'
+import isFunction from './isFunction'
 
 export default function onDomRoll (el, opt) {
   if(!isObject(opt)) return;  
   var doing = false
   el.onscroll = function () {
     if(!doing) {
-      if(el.scrollTop<=0) {
+      if(isFunction(opt.onTop) && el.scrollTop<=0) {
         doing = true
-        _Function(opt.onTop)(function () {
+        opt.onTop(function () {
           doing = false;
         })
-      }else if(el.scrollTop >= el.scrollHeight - el.offsetHeight) {
+      }else if(isFunction(opt.onBottom) && el.scrollTop >= el.scrollHeight - el.offsetHeight) {
         doing = true;
-        _Function(opt.onBottom)(function () {
+        opt.onBottom(function () {
           doing = false
         })
       } else {

@@ -50,6 +50,11 @@ import $numberMin from './split/numberMin'
 import $numberMax from './split/numberMax'
 import $sleep from './split/sleep'
 import $onDomRoll from './split/onDomRoll'
+import $prevent from './split/prevent'
+import $domShowDir from './split/domShowDir'
+import $getScrollPosition from './split/getScrollPosition'
+import $getRelativePos from './split/getRelativePos'
+import $getWindowSize from './split/getWindowSize'
 
 
 export const getType = $getType
@@ -104,5 +109,10 @@ export const numberMin = $numberMin
 export const numberMax = $numberMax
 export const sleep = $sleep
 export const onDomRoll = $onDomRoll
+export const prevent = $prevent
+export const domShowDir = $domShowDir
+export const getScrollPosition = $getScrollPosition
+export const getRelativePos = $getRelativePos
+export const getWindowSize = $getWindowSize
 
 

@@ -19,7 +19,8 @@ import {
   RadioGroup,
   Input,
   Icon,
-  Button
+  Button,
+  Select
 } from '@npm/bestime/vue'
 
 
@@ -33,6 +34,7 @@ Vue.use(RadioGroup)
 Vue.use(Input)
 Vue.use(Icon)
 Vue.use(Button)
+Vue.use(Select)
 
 new Vue({
   router,

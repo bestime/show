@@ -49,6 +49,12 @@ export const HomeList = [
         label: 'Input',
         component: () => import('@components/vue-examples/input-eg.vue')
       },
+      {
+        path: 'Select',
+        name: 'Select',
+        label: 'Select',
+        component: () => import('@components/vue-examples/select-eg.vue')
+      },
     ]
   },
   {
