@@ -51,8 +51,8 @@ function useOldLoading (msg, iconHtml) {
     addClass(oWrapper, 'active')
     var oText = getByClass('loading-bt-text', oWrapper)[0]
     var oIcon = getByClass('loading-bt-icon', oWrapper)[0]
-    oText.innerHTML = msg
-    oIcon.innerHTML = iconHtml
+    msg && (oText.innerHTML = msg);
+    iconHtml && (oIcon.innerHTML = iconHtml);
   })
   return isUseOld
 }

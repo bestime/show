@@ -34,6 +34,7 @@ function isEmptyData (data) {
 		case 'Boolean': return false
 		case 'Number': return false
 		case 'String': return data=='undefined' || data=='' ? true : false
+		case 'Null': return true
 		default: return !data
 	}
 }

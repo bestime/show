@@ -1,11 +1,9 @@
 
 
-
-const unique = require('./unique.js')
 import getType from './getType'
 import each from './each'
 import hasClass from './hasClass'
-
+import unique from './unique'
 
 /**
  * 添加class

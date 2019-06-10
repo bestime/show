@@ -26,10 +26,9 @@
     align-items center
     padding 0 10px
   &.active
-    .select-more
+    .select-more      
       transform scaleY(1)
       opacity 1
-
 .select-more
   background #fff
   box-shadow 0 0 5px rgba(0,0,0,0.2)
@@ -43,19 +42,19 @@
   overflow-x hidden  
   transform scaleY(0.7)  
   display none
-  opacity 0
+  opacity 0  
   &.top
     top auto
     bottom 100%
     margin 0 0 5px 0
     transform-origin bottom
-    transition 0.2s ease-out
+    transition transform 10s ease-out  
   &.bottom
-    transition 0.2s ease-out
     transform-origin top
     top 100%
     bottom auto
     margin 5px 0 0 0
+    transition transform 10s ease-out
   li
     list-style none
     font-size 12px
@@ -81,7 +80,6 @@
         </li>
       </ul>  
     </div>
-    
   </div>  
 </template>
 
@@ -134,14 +132,23 @@ export default {
       this.$emit('on-select', item.key, item)
     },
     toggle () {
-      if(!this.open) {
+      if(!this.open) {        
         this.$refs.more.style.display = 'block'
-        this.dir = domShowDir(this.$refs.more)
-        this.$nextTick(() => {   
-          this.open = true
-        })
+        setTimeout(() => {
+          this.dir = domShowDir(this.$refs.more)
+          this.$nextTick(() => {   
+            this.open = true
+          })
+        }, 16)
       } else {
+         
         this.open = false
+        this.$nextTick(()=> {
+          setTimeout(() => {
+            //this.dir = {}       
+            //this.$refs.more.style.display = 'none'
+          }, 200+16)
+        })
       }
     }
   },
