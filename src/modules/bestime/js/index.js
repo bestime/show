@@ -55,6 +55,8 @@ import $domShowDir from './split/domShowDir'
 import $getScrollPosition from './split/getScrollPosition'
 import $getRelativePos from './split/getRelativePos'
 import $getWindowSize from './split/getWindowSize'
+import $bind from './split/bind'
+import $unbind from './split/unbind'
 
 
 export const getType = $getType
@@ -114,5 +116,7 @@ export const domShowDir = $domShowDir
 export const getScrollPosition = $getScrollPosition
 export const getRelativePos = $getRelativePos
 export const getWindowSize = $getWindowSize
+export const bind = $bind
+export const unbind = $unbind
 
 

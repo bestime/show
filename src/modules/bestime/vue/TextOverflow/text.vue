@@ -3,9 +3,7 @@
 .text-vbt
   vertical-align middle
   display: -webkit-box
-  /* autoprefixer: off */
   -webkit-box-orient vertical
-  /* autoprefixer: on */
   overflow: hidden
 </style>
 

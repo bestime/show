@@ -6,7 +6,7 @@
   padding 2px
   box-sizing border-box
   vertical-align middle
-  font-size 14px
+  font-size 12px
   .button-main
     user-select none
     display inline-flex

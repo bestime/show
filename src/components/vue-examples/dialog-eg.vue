@@ -5,6 +5,8 @@
 <template>
   <div class="dialog-eg">
     <button-vbt @click="show01">测试</button-vbt>
+
+
   </div>
 </template>
 

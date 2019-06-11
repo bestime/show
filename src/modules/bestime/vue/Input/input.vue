@@ -156,7 +156,7 @@
             :disabled="hasProp(disabled)"
           />
           <div class="it-del" @click="onCheck('')" v-if="value">
-            <icon-vbt type="delete" color="#ddd"/>
+            <Icon type="delete" color="#ddd"/>
           </div>        
         </div>
         <transition name="top_hide">
@@ -171,8 +171,10 @@
 <script>
 
 import { hasProp } from '../vue-tool'
+import Icon from '../Icon/index.vue'
 export default {
   name: 'input-vbt',
+  components: { Icon },
   props: {
     value: null,
     placeholder: '',

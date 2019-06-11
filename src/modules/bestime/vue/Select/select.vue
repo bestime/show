@@ -17,65 +17,130 @@
     transition:0.15s  
     height 100%
     position:relative
+    display flex
+    align-items stretch
+    justify-content space-between    
     &:hover
       border-color getActiveColor(1)
+    .text-wrapper  
+      &:after
+        content ''
+        display block
+        width 0
+        height 0
+        border-left 4px solid transparent
+        border-right 4px solid transparent
+        border-top 5px solid $staticTextColor
+        transition 0.2s ease-out
+        position absolute
+        right 10px
+        top 50%
+        margin-top:-4px
   .text-wrapper
     font-size 14px
     color $staticTextColor
     display flex
     align-items center
-    padding 0 10px
+    padding 0 0 0 10px
+    margin 0
+    width 100%
+    position relative  
   &.active
-    .select-more      
+    .select-more
       transform scaleY(1)
       opacity 1
+    .select-main
+      box-shadow 0 0 0 2px getActiveColor(0.2)
+      border-color getActiveColor(1)
+      .text-wrapper
+        &:after
+          transform rotate(180deg)      
+  &.close-to
+    .select-more      
+      transform scaleY(0.7)
+      opacity 0  
+  &.placeholder
+    .text-wrapper
+      color $staticDisabledColor
+    .select-main .text-wrapper:after
+      border-top-color $staticDisabledColor
+  
+
+
 .select-more
   background #fff
   box-shadow 0 0 5px rgba(0,0,0,0.2)
   position absolute
+  z-index:20
   left 0  
   right 0
   list-style none
   padding 5px 0
   max-height 300px
   overflow auto
-  overflow-x hidden  
-  transform scaleY(0.7)  
+  overflow-x hidden
   display none
-  opacity 0  
+  opacity 0
+  transform scaleY(0.5)
+  transition transform 0.2s ease-out,opacity 0.2s ease-out
+  transform-origin top
+  top 100%
+  bottom auto
+  margin 5px 0 0 0
   &.top
     top auto
     bottom 100%
     margin 0 0 5px 0
-    transform-origin bottom
-    transition transform 10s ease-out  
-  &.bottom
-    transform-origin top
-    top 100%
-    bottom auto
-    margin 5px 0 0 0
-    transition transform 10s ease-out
+    transform-origin bottom  
   li
     list-style none
     font-size 12px
     color $staticTextColor
     padding 6px 10px
     transition 0.1s
+    cursor pointer
     &:hover
       background #f2f2f2
     &.active
       background getActiveColor(1)
-      color #fff    
+      color #fff  
+  .no-data
+    font-size 12px
+    color $staticDisabledColor
+    text-align center
+    padding 5px 0
+.hasCancel
+  .del-wrapper
+    position:absolute
+    top:0
+    right 0
+    bottom 0
+    z-index 20    
+    align-items center
+    justify-content center
+    padding 0 7px
+    display none
+  .text-wrapper
+    &:hover
+      .del-wrapper
+        display flex
+      &:after
+        display none
 </style>
 
 <template>
-  <div class="select-vbt" :class="{'active': open}">
+  <div class="select-vbt" :class="{'active': open, 'close-to': startClose, 'placeholder': !showLabel, 'hasCancel': showLabel}">
     <div ref="manWrapper" class="select-main" @click="toggle">
       <div class="text-wrapper">
-        <TextOverflow class="text">{{showLabel}}</TextOverflow>
+        <TextOverflow class="text" line="1">{{ showLabel || placeholder }}</TextOverflow>
+        <div class="del-wrapper" v-if="showLabel" @click="clear">
+          <Icon type="delete" color="#ddd"/>
+        </div>     
       </div>
-      <ul ref="more" class="select-more" :class="[dir.vertical]">
-        <li :class="{'active': item.key==value}" v-for="item in options" :key="item.key" @click="choose(item)">
+      
+      <ul id="test" ref="more" class="select-more" :class="[dir.vertical]">
+        <div v-if="!options.length" class="no-data">暂无选项</div>
+        <li :class="{'active': !isEmptyData(value) && item[useKey]==value}" v-for="item in options" :key="item[useKey]" @click.stop="choose(item)">
           <TextOverflow line="1">{{ item.label }}</TextOverflow>
         </li>
       </ul>  
@@ -85,71 +150,118 @@
 
 <script>
 import TextOverflow from '../TextOverflow/text'
-import { isObject, domShowDir } from '../../js'
+import { isObject, domShowDir, bind, unbind, createUUID, prevent, isEmptyData } from '../../js'
+import Icon from '../Icon/index.vue'
+
+const testArr = new Array(15).fill('').map((item, index) => {
+  return {
+    key: `a_${index}`,
+    label: `示例${index}`
+  }
+})
 export default {
   name: 'select-vbt',
-  components: {
-    TextOverflow
-  },
+  components: { TextOverflow, Icon },
   props: {
     value: null,
+    placeholder: {
+      type: String,
+      default: '请选择'
+    },   
+    useKey: {
+      type: String,
+      default () {
+        return 'key'
+      }
+    },
     options: {
       type: Array,
       default () {
-        return new Array(20).fill('').map((item, index) => {
-          return {
-            key: `a_${index}`,
-            label: `选项${index}`
-          }
-        })
+        return testArr
       }
     }
   },
 
   computed: {
     showLabel () {
-      const item = this.options.find(item=>item.key==this.value)
-      return isObject(item) ? item.label : '请选择'
+      let item = null;
+      if(!isEmptyData(this.value)) {
+        item = this.options.find(item=>item[this.useKey]==this.value)
+      }
+      return isObject(item) ? item.label : null
     }
   },
 
-  mounted () {
-    this.$nextTick(() => {
-      
-    })
+  beforeDestroy () {
+    console.log('下拉移除')
+    unbind(document, `select${this.uuid}`, 'click')
   },
 
   data () {
     return {
       dir: {},
-      open: false
+      open: false,
+      startClose: false,
+      uuid: createUUID(),
+      clearing: false
     }
   },
 
+  mounted () {
+    bind(document, `select${this.uuid}`, 'click', this.bodyClick)
+  },
+
   methods: {
-    choose (item) {
-      this.$emit('input', item.key, item)
-      this.$emit('on-select', item.key, item)
-    },
-    toggle () {
-      if(!this.open) {        
-        this.$refs.more.style.display = 'block'
-        setTimeout(() => {
-          this.dir = domShowDir(this.$refs.more)
-          this.$nextTick(() => {   
-            this.open = true
-          })
-        }, 16)
-      } else {
-         
-        this.open = false
-        this.$nextTick(()=> {
-          setTimeout(() => {
-            //this.dir = {}       
-            //this.$refs.more.style.display = 'none'
-          }, 200+16)
-        })
+    isEmptyData,
+    bodyClick () {
+      if(this.open) {
+        console.log('下拉关闭')
+        this.close()
       }
+    },
+
+    choose (item) {
+      this.$emit('input', item[this.useKey], item)
+      this.$emit('on-select', item[this.useKey], item)
+      this.close()
+    },
+
+    clear (e) {
+      this.clearing = true
+      if(this.open) {
+        prevent(e)
+        this.close()
+      }
+      const emptyIem = {}
+      this.$emit('input', '', emptyIem)
+      this.$emit('on-select', '', emptyIem)
+    },
+
+    toggle () {
+      if(this.clearing) return this.clearing = false;
+      this.open ? this.close() : this.show()
+    },
+
+    show () {   
+      this.$refs.more && (this.$refs.more.style.display = 'block');
+      setTimeout(() => {
+        this.dir = domShowDir(this.$refs.more)
+        this.$nextTick(() => {   
+          this.open = true
+        })
+      }, 16)
+    },
+
+    close () {
+      this.startClose = true
+      this.$nextTick(()=> {
+        setTimeout(() => {
+          this.open = false
+          this.startClose = false
+          this.dir = {}
+          this.$refs.more && (this.$refs.more.style.display = 'none');
+        }, 200)
+      })
     }
   },
 }

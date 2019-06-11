@@ -1,13 +1,15 @@
 import Vue from 'vue'
 import App from './App.vue'
+import store from './store'
 import { router } from './router'
+import { mapActions } from 'vuex'
 Vue.config.productionTip = false
+
+
 import * as bestime from '@npm/bestime/js'
 window['ns'] = bestime
 Vue.prototype.ns = bestime
 
-
-console.log('ns', ns)
 
 import { 
   Switch,
@@ -37,8 +39,21 @@ Vue.use(Button)
 Vue.use(Select)
 
 new Vue({
+  name: 'vue-01',
   router,
-  render: h => h(App)
+  store,
+  render: h => h(App),
+  beforeMount() {
+    router.beforeResolve((to, from, next) => {
+      this.do_currentRouteName(to.name)
+      next()
+    })
+  },
+  methods: {
+    ...mapActions([
+      'do_currentRouteName'
+    ])
+  },
 }).$mount('#app')
 
 

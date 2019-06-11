@@ -7,7 +7,7 @@ $leftNavWidth = 200px
 	top:0
 	bottom:0
 	z-index:1
-	background:#444
+	background:#f9f9f9
 	transition:0.2s
 .main-content-wrapper
 	margin-left:200px
@@ -47,9 +47,9 @@ $leftNavWidth = 200px
 </style>
 
 <template>
-	<div class="router-wrapper">
-		
+	<div class="router-wrapper">		
 		<div class="left-nav-wrapper">
+			<input :value="currentRouteName" disabled/>
 			<NavTree :list="HomeList"></NavTree>   
 		</div>
 		<div class="main-content-wrapper">
@@ -61,6 +61,7 @@ $leftNavWidth = 200px
 <script>
 import { HomeList } from '@/router.js'
 import NavTree from './NavTree.vue'
+import { mapGetters } from 'vuex'
 export default {
 	components: {
 		NavTree
@@ -72,6 +73,12 @@ export default {
 			
 			
 		}
+	},
+
+	computed: {
+		...mapGetters([
+			'currentRouteName'
+		])
 	},
 
 	methods: {

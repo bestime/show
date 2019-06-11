@@ -11,6 +11,6 @@ export default function domShowDir (el) {
   const res = {
     vertical
   }
-  console.log(res, pos_1.y, pos_1.height, win.height)
+  
   return res
 }
