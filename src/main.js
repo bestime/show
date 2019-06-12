@@ -57,3 +57,8 @@ new Vue({
 }).$mount('#app')
 
 
+
+// const nowUrl = 'defa'
+// const authentication = ['a', 'b', 'c']
+// const res = authentication.some(item => nowUrl.indexOf(item) !== -1)
+// alert(res)
