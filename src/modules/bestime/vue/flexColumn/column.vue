@@ -20,3 +20,9 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'flex-column-vbt'
+}
+</script>

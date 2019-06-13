@@ -1,9 +1,7 @@
-import ld from './Loading.vue'
+import Loading from './Loading.vue'
 
-const Loading = {
-  install(Vue) {
-    Vue.component('loading-vbt', ld)
-  }
+Loading.install = function (Vue) {
+  Vue.component(Loading.name, Loading)
 }
 
 export default Loading

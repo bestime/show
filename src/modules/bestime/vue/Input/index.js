@@ -1,9 +1,8 @@
-import box from './input.vue'
+import Input from './input.vue'
 
-const Input = {
-  install(Vue) {
-    Vue.component('input-vbt', box)
-  }
+
+Input.install = function (Vue) {
+  Vue.component(Input.name, Input)
 }
 
 export default Input

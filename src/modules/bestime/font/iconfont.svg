@@ -1,0 +1,29 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<!--
+2013-9-30: Created.
+-->
+<svg>
+<metadata>
+Created by iconfont
+</metadata>
+<defs>
+
+<font id="iconfont" horiz-adv-x="1024" >
+  <font-face
+    font-family="iconfont"
+    font-weight="500"
+    font-stretch="normal"
+    units-per-em="1024"
+    ascent="896"
+    descent="-128"
+  />
+    <missing-glyph />
+    
+    <glyph glyph-name="check" unicode="&#59207;" d="M414.165333 140.501333l426.666667 426.666667-60.330667 60.330667L384 230.997333l-183.168 183.168-60.330667-60.330666 213.333334-213.333334a42.538667 42.538667 0 0 1 60.330666 0z"  horiz-adv-x="1024" />
+
+    
+
+
+  </font>
+</defs></svg>

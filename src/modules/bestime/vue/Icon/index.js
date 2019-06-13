@@ -1,9 +1,7 @@
-import box from './index.vue'
+import Icon from './index.vue'
 
-const Icon = {
-  install(Vue) {
-    Vue.component('icon-vbt', box)
-  }
+Icon.install = function (Vue) {
+  Vue.component(Icon.name, Icon)
 }
 
 export default Icon

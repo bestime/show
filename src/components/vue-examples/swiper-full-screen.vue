@@ -10,15 +10,15 @@ h1
     <br>
     <div>{{ msg }}</div>
     
-    <vbt-swiper-wrapper style="width:300px;height:500px;border:#000 solid 1px;">
-      <vbt-swiper-item>1</vbt-swiper-item>
-      <vbt-swiper-item>2</vbt-swiper-item>
-      <vbt-swiper-item>3</vbt-swiper-item>
-      <vbt-swiper-item>4</vbt-swiper-item>
-      <vbt-swiper-item>5</vbt-swiper-item>
-      <vbt-swiper-item>6</vbt-swiper-item>
-      <vbt-swiper-item>7</vbt-swiper-item>
-    </vbt-swiper-wrapper>
+    <swiper-wrapper-vbt style="width:300px;height:500px;border:#000 solid 1px;">
+      <swiper-item-vbt>1</swiper-item-vbt>
+      <swiper-item-vbt>2</swiper-item-vbt>
+      <swiper-item-vbt>3</swiper-item-vbt>
+      <swiper-item-vbt>4</swiper-item-vbt>
+      <swiper-item-vbt>5</swiper-item-vbt>
+      <swiper-item-vbt>6</swiper-item-vbt>
+      <swiper-item-vbt>7</swiper-item-vbt>
+    </swiper-wrapper-vbt>
     
   </div>
 </template>

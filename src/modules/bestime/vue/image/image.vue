@@ -44,7 +44,7 @@
 </style>
 
 <template>
-  <div class="image-vbt-wrapper" @click="$emit('click')" :data-src="src">
+  <div class="image-vbt-wrapper" @click="$emit('click')" :original-src="src || '空'">
     <img class="image-vbt" @error="on_err" @load="on_load" :src="useSrc"/>
     <div class="image-vbt-default" v-if="showDefault">
       <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -66,15 +66,7 @@ export default {
   props: {
 
     // 图片地址
-    src: {
-      default: ''
-    },
-
-    // 超时之后直接显示默认图片
-    timeout: {
-      type: Number,
-      default: 1000 * 15
-    },
+    src: null,
 
     // 待选图片列表
     list: {
@@ -100,11 +92,7 @@ export default {
   },
 
   beforeDestroy () {
-    clearTimeout(this.timer)
-  },
-
-  mounted() {
-    this.checkOverTime()
+    this.toEmptyTimer()
   },
 
   methods: {
@@ -116,13 +104,11 @@ export default {
     getDifferentPic () {
       this.errIdx++      
       if(this.errIdx > this.list.length-1) {
+        // 没有有效图片,使用默认图片
         this.showDefault = true
-        this.doing = false
-        console.log('%c没有有效图片,使用默认svg', 'background:#dd4215;color:#fff;')
+        this.doing = false        
         return false
-      }
-      console.log('使用备用图片索引:', this.errIdx)  
-      if(this.list[this.errIdx]===this.useSrc) {
+      } else if(this.list[this.errIdx]===this.useSrc) {
         return this.getDifferentPic()
       } else {        
         return this.list[this.errIdx]
@@ -132,22 +118,17 @@ export default {
     on_load () {
       this.doing = false
       this.showDefault = false
-      clearTimeout(this.timer)
+      this.toEmptyTimer()      
     },
 
-    checkOverTime () {
+    toEmptyTimer () {
       clearTimeout(this.timer)
-      this.timer = setTimeout(() => {
-        this.showDefault = true
-        this.doing = false
-      }, this.timeout)
+      this.timer = null
     }
   },
-
   watch: {
     src (newSrc) {
       this.on_load()
-      this.checkOverTime()
       this.useSrc = newSrc
     }
   }

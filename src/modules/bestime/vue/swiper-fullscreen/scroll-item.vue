@@ -26,7 +26,7 @@
 <script>
 function tempFunc () {} 
 export default {
-  name: 'swipe-full-item',
+  name: 'swiper-item-vbt',
   props: {
     direction: {
       default: () => 'vertical'
@@ -60,9 +60,9 @@ export default {
   },
   methods: {
     getParent () {
-      if(this.$parent.$options.name==='swipe-full-wrapper') {
+      if(this.$parent.$options.name==='swiper-wrapper-vbt') {
         return this.$parent
-      } else if(this.$parent.$parent.$options.name==='swipe-full-wrapper') {
+      } else if(this.$parent.$parent.$options.name==='swiper-wrapper-vbt') {
         return this.$parent.$parent
       } else {
         return {

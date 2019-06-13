@@ -56,6 +56,12 @@ export const HomeList = [
         label: 'Select',
         component: () => import('@components/vue-examples/select-eg.vue')
       },
+      {
+        path: 'CheckBox',
+        name: 'CheckBox',
+        label: 'CheckBox',
+        component: () => import('@components/vue-examples/checkbox-eg.vue')
+      },
     ]
   },
   {

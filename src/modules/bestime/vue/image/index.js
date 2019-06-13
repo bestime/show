@@ -1,9 +1,7 @@
-import box from './image.vue'
-
-const Image = {
-  install(Vue) {
-    Vue.component('image-vbt', box)
-  }
+import Image from './image.vue'
+Image.install = function (Vue) {
+  Vue.component(Image.name, Image)
 }
+
 
 export default Image

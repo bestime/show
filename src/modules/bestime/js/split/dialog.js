@@ -9,6 +9,9 @@ import _String from './_String'
 import _Function from './_Function'
 import getType from './getType'
 import isFunction from './isFunction'
+import bind from './bind'
+import unbind from './unbind'
+import createUUID from './createUUID'
 
 
 
@@ -47,8 +50,8 @@ export default function dialog (opt) {
   opt.startClose = opt.startClose || null // 关闭前回调
   opt.closed = _Function(opt.closed) // 关闭完成回调
   opt.onShow = _Function(opt.onShow) // 显示完成回调
-
-  addStyle(function () {  
+  var wrpId = 'dialog_' + createUUID(); // 弹窗ID
+  addStyle(function () {
     var closeing = false; // 关闭中，禁止多次点击
     var timer_show = null; // 显示的timer
     var timer_autoClose = null // 自动关闭的timer  
@@ -57,6 +60,7 @@ export default function dialog (opt) {
     var oWrapper = document.createElement('div')
     var gpName = oldWrappers.length ? ` group dialog-${oldWrappers.length}` : ''
     oWrapper.className = 'dialog-vbt' + gpName
+    oWrapper.id = wrpId
     oWrapper.innerHTML = `
       <div class="dialog-bg"></div>
       <div class="dialog-content">
@@ -73,6 +77,7 @@ export default function dialog (opt) {
     `;
     document.body.appendChild(oWrapper)
     setTimeout(function () {
+      listenKeyBoard()
       addClass(oWrapper, 'active')
       doAutoClose()
       timer_show = setTimeout(function () {
@@ -89,6 +94,21 @@ export default function dialog (opt) {
     }
     getByClass('cancel', oWrapper)[0].onclick = function () {
       checkToClose('cancel')
+    }
+
+    // 监听按键
+    function listenKeyBoard () {
+      bind(document, wrpId, 'keydown', function (e) {
+        var ev = e || window.event        
+        if(ev.keyCode ==27) {
+          checkToClose()
+        }
+      })
+    }
+
+    // 移除按键监听
+    function removeKeyBoard () {
+      unbind(document, wrpId, 'keydown')
     }
 
     // 计算自动关闭
@@ -130,12 +150,14 @@ export default function dialog (opt) {
 
     // 执行关闭
     function removeDialog (hideType) {
+      removeKeyBoard()
       removeClass(oWrapper, 'active')
       setTimeout(function () {
         clearInterval(timer_autoClose)
         removeElement(oWrapper)
         opt.closed(hideType)
         closeing = false
+        oWrapper = null;
       }, 200 + 16)
     }
   })

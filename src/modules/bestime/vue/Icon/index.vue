@@ -32,7 +32,7 @@ const _new = `
 `
 
 export default {
-  name: 'icon-search-vbt',
+  name: 'icon-vbt',
   props: {
     size: {
       type: Number,

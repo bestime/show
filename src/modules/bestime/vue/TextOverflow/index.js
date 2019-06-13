@@ -1,9 +1,7 @@
-import box from './text.vue'
+import TextOverflow from './text.vue'
 
-const TextOverflow = {
-  install(Vue) {
-    Vue.component('text-overflow-vbt', box)
-  }
+TextOverflow.install = function (Vue) {
+  Vue.component(TextOverflow.name, TextOverflow)
 }
 
 export default TextOverflow

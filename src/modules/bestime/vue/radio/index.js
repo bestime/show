@@ -1,16 +1,15 @@
-import item from './radio-item.vue'
-import group from './group.vue'
+import $RadioItem from './radio-item.vue'
+import $RadioGroup from './group.vue'
 
-
-
-export const RadioItem = {
-  install(Vue) {
-    Vue.component('radio-item-vbt', item)
-  }
+$RadioItem.install = function (Vue) {
+  Vue.component($RadioItem.name, $RadioItem)
 }
 
-export const RadioGroup = {
-  install (Vue) {
-    Vue.component('radio-group-vbt', group)
-  }
+$RadioGroup.install = function (Vue) {
+  Vue.component($RadioGroup.name, $RadioGroup)
 }
+
+
+
+export const RadioItem = $RadioItem
+export const RadioGroup = $RadioGroup

@@ -1,9 +1,7 @@
-import box from './select.vue'
+import Select from './select.vue'
 
-const Select = {
-  install(Vue) {
-    Vue.component('select-vbt', box)
-  }
+Select.install = function (Vue) {
+  Vue.component(Select.name, Select)
 }
 
 export default Select

@@ -44,15 +44,14 @@ function oWrapperReady (callback) {
 }
 
 // 检测是否已存在loading
-function useOldLoading (msg, iconHtml) {
+function useOldLoading (msg) {
   window.jcy = _Object(window.jcy)
   var isUseOld = isObject(window.jcy.loading) && !isEmptyData(window.jcy.loading)
   isObject(window.jcy.loading) && oWrapperReady(function (oWrapper) {
     addClass(oWrapper, 'active')
     var oText = getByClass('loading-bt-text', oWrapper)[0]
-    var oIcon = getByClass('loading-bt-icon', oWrapper)[0]
     msg && (oText.innerHTML = msg);
-    iconHtml && (oIcon.innerHTML = iconHtml);
+    // 使用已存在的loading时不改变动画，可能一闪一闪体验不好
   })
   return isUseOld
 }
@@ -97,11 +96,11 @@ function hideLoading () {
   var oWrapper = getById('loading-bt-wrapper')  
   if(oWrapper) {    
     removeClass(oWrapper, 'active')
-    window.jcy.loading.timer_h = setTimeout(function () {
-      
+    window.jcy.loading.timer_h = setTimeout(function () {      
       window.jcy = _Object(window.jcy)
       window.jcy.loading = {}
       removeElement(oWrapper)
+      oWrapper = null
     }, 200 + 16)
   }
 }

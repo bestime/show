@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: 'swipe-full-wrapper',
+  name: 'swiper-wrapper-vbt',
   props: {
     // 子组件层级深度，默认1，如果子组件套在另外的组件内部，需要加上tier
     tier: {
@@ -79,7 +79,7 @@ export default {
 
       for(let a=0; a<vmChildren.length; a++) {
         let vChild = vmChildren[a]
-        if(vChild.$options.name==='swipe-full-item') {
+        if(vChild.$options.name==='swiper-item-vbt') {
           if(this.swiper.activeIndex===index++) {
             return vChild
           }

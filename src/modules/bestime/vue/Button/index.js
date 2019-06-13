@@ -1,9 +1,8 @@
-import box from './button.vue'
-
-const Button = {
-  install(Vue) {
-    Vue.component('button-vbt', box)
-  }
+import Button from './button.vue'
+Button.install = function (Vue) {
+  Vue.component(Button.name, Button)
 }
+
+
 
 export default Button
