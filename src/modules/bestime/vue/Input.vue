@@ -1,5 +1,5 @@
 <style lang="stylus" rel="stylesheet/stylus">
-@import "../theme.styl"
+@import "./theme.styl"
 .input-left, .input-right
   display flex
   align-items stretch
@@ -170,8 +170,8 @@
 
 <script>
 
-import { hasProp } from '../vue-tool'
-import Icon from '../Icon/index.vue'
+import { hasProp } from './vue-tool'
+import Icon from './Icon.vue'
 export default {
   name: 'input-vbt',
   components: { Icon },

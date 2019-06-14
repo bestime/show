@@ -1,5 +1,5 @@
 <style lang="stylus" rel="stylesheet/stylus">
-@import "../theme.styl"
+@import "./theme.styl"
 .select-vbt
   height 36px
   display inline-flex
@@ -149,9 +149,9 @@
 </template>
 
 <script>
-import TextOverflow from '../TextOverflow/text'
-import { isObject, domShowDir, bind, unbind, createUUID, prevent, isEmptyData } from '../../js'
-import Icon from '../Icon/index.vue'
+import TextOverflow from './TextOverflow.vue'
+import { isObject, domShowDir, bind, unbind, createUUID, prevent, isEmptyData } from '../js'
+import Icon from './Icon.vue'
 
 const testArr = new Array(15).fill('').map((item, index) => {
   return {

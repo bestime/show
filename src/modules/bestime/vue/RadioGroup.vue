@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { findComponentsDownward } from '../vue-tool.js'
+import { findComponentsDownward } from './vue-tool.js'
 export default {
   name: 'radio-group-vbt',
   props: {

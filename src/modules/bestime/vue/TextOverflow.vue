@@ -1,5 +1,5 @@
 <style lang="stylus" rel="stylesheet/stylus">
-@import "../theme.styl"
+@import "./theme.styl"
 .text-vbt
   vertical-align middle
   display: -webkit-box

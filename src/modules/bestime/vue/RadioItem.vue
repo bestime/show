@@ -1,5 +1,5 @@
 <style lang="stylus" rel="stylesheet/stylus">
-@import "../theme.styl"
+@import "./theme.styl"
 .radio-item-vbt
   display inline-flex
   align-items:center
@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { findComponentUpward, hasProp } from '../vue-tool'
+import { findComponentUpward, hasProp } from './vue-tool'
 export default {
   name: 'radio-item-vbt',
   props: {

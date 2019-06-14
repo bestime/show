@@ -1,5 +1,5 @@
 <style lang="stylus" rel="stylesheet/stylus">
-@import "../theme.styl"
+@import "./theme.styl"
 .button-vbt
   height 36px
   display inline-flex
@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import Loading from '../loading/Loading.vue'
+import Loading from './Loading.vue'
 export default {
   name: 'button-vbt',
   components: { Loading },

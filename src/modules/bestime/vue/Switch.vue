@@ -1,5 +1,5 @@
 <style lang="stylus" rel="stylesheet/stylus">
-@import "../theme.styl"
+@import "./theme.styl"
 
 $switchTransition = 0.3s cubic-bezier(.25,.1,.25,1.2)
 $size = 28px
@@ -81,7 +81,7 @@ $diff = $width - $size
 </template>
 
 <script>
-import Loading from '../loading/Loading.vue'
+import Loading from './Loading.vue'
 export default {
   name: 'switch-vbt',
   components: {

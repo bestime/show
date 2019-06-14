@@ -21,7 +21,7 @@
 export default {
   name: 'swiper-wrapper-vbt',
   props: {
-    // 子组件层级深度，默认1，如果子组件套在另外的组件内部，需要加上tier
+  // 子组件层级深度，默认1，如果子组件套在另外的组件内部，需要加上tier
     tier: {
       type: Number,
       default: 1

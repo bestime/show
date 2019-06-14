@@ -41,7 +41,7 @@
   </div>
 </template>
 <script type="text/ecmascript-6">
-const COMPONENT_NAME = 'vbt-loading'
+const COMPONENT_NAME = 'loading-vbt'
 export default {
   name: COMPONENT_NAME,
   props: {

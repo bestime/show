@@ -1,6 +1,6 @@
 
 <style lang="stylus" rel="stylesheet/stylus">
-@import "../theme.styl"
+@import "./theme.styl"
 .checkbox-vbt
   display inline-flex
   vertical-align middle
