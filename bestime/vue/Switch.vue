@@ -40,6 +40,7 @@ $diff = $width - $size
       position:relative
       z-index:1
       box-shadow:0 5px 5px -1px rgba(0, 0, 0, 0.2), 0 0 0 2px $staticBorderColor
+      transition-delay:0.02s
     &:before
       content: ''
       display: block
@@ -51,8 +52,7 @@ $diff = $width - $size
       transform:scale(1)
       transition: $switchTransition
       border-radius:$size
-      position:absolute   
-      transition-delay:0.05s
+      position:absolute
   &.open
     .vbt-cir      
       border-color: getActiveColor(1)
@@ -61,8 +61,7 @@ $diff = $width - $size
         box-shadow:0 5px 5px -1px rgba(0, 0, 0, 0.2), 0 0 0 2px getActiveColor(1)
         transform:translate3D($diff, 0, 0)				
       &:before
-        transform:scale(0)
-        transition-delay:0s
+        transform:scale(0) 
   &.disabled    
     opacity:0.7
     .vbt-cir

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { isPhone } from '@npm/bestime/js'
+import { isPhone } from '@bestime/js'
 export default {
   data () {
     return {

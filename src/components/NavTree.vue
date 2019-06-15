@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { hasProp } from '@npm/bestime/vue/vue-tool.js'
+import { hasProp } from '@bestime/vue/vue-tool.js'
 import { mapGetters } from 'vuex'
 export default {
 	name: 'NavTree',	

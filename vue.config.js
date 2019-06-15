@@ -36,6 +36,6 @@ function GET_chainWebpack (config) {
 											.set('@src', resolve('src'))
 											.set('@css', resolve('src/assets/css'))
 											.set('@images', resolve('src/assets/images'))
-											.set('@npm/bestime', resolve('src/modules/bestime'))
+											.set('@bestime', resolve('bestime'))
 											.set('@components', resolve('src/components'))
 }

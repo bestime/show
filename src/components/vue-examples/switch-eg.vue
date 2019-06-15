@@ -3,8 +3,8 @@
 </style>
 
 <template>
-  <div>
-    <switch-vbt v-model="eg0">双向绑定</switch-vbt>
+  <div style="background:#000;height:500px;">
+    <switch-vbt v-model="eg0" type="bg-black">双向绑定</switch-vbt>
 
     <switch-vbt :value="open" @on-change="changeing">
       <span>这是开关</span>
@@ -22,6 +22,7 @@ export default {
       eg0: true,
     }
   },
+  
   mounted(){    
     
   },

@@ -12,8 +12,7 @@
     padding:0 20px 20px 20px
     background:#fff
     margin:20px
-    border:#ddd dashed 1px
-    
+    border:#ddd dashed 1px    
 </style>
 
 <template>
@@ -41,8 +40,10 @@
 </template>
 
 <script>
-
 export default {
+  components: {
+    
+  },
   data () {
     return {
       barcode: '',
