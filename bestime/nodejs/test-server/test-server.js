@@ -36,24 +36,31 @@ function printColor (name) {
 
 const printColor = {
 	yellow: function (name) {
-		return "\033[33m "+ name +" \033[0m"
+		return "\033[33m"+ name +"\033[0m"
+	},
+	black: function (name) {
+		return "\033[30m"+ name +"033[30m"
+	},
+	red: function (name) {
+		return "\033[31m"+ name +"\033[0m"
+	},
+	green: function (name) {
+		return "\033[32m"+ name +"\033[0m"
+	},
+	blue: function (name) {
+		return "\033[34m"+ name +"\033[0m"
+	},
+	purple: function (name) {
+		return "\033[35m"+ name +"\033[0m"
+	},
+	azure: function (name) {
+		// 天蓝色
+		return "\033[36m"+ name +"\033[0m"
+	},
+	white: function (name) {
+		return "\033[37m"+ name +"\033[0m"
 	}
 }
-
-console.log(printColor.yellow('黄色字'))
-
-/*
-
-console.log("\033[30m 黑色字 \033[0m",)
-console.log("\033[31m 红色字 \033[0m")
-console.log("\033[32m 绿色字 \033[0m")
-console.log("\033[33m 黄色字 \033[0m")
-console.log("\033[34m 蓝色字 \033[0m")
-console.log("\033[35m 紫色字 \033[0m")
-console.log("\033[36m 天蓝字 \033[0m")
-console.log("\033[37m 白色字 \033[0m")
-
-*/
 
 
 
@@ -86,6 +93,8 @@ app.all('*',function (req, res, next) {
 });
 /* 跨域 end */
 
+
+
 app.get('/',function (req, res) {
 	res.json({
 		result: true,
@@ -95,21 +104,18 @@ app.get('/',function (req, res) {
 
 
 // get 测试，直接返回传过来的数据
-app.get('/test-get',function (req, res) {
-	var result = {"username": "13983924120", "password": "123456"}
-	res.json(result)
-	//res.json(req.query)
+app.get('/get',function (req, res) {
+	res.json(req.query)
 })
 
 // post 测试，直接返回传过来的数据
-app.post('/test-post',function (req, res) {
-	console.log('req', req.body)
-	//console.log(JSON.parse(req.body))
+app.post('/post',function (req, res) {
 	res.json(req.body)
 })
 
 
-function getOS () {
+// 获取IP
+function getIP () {
 	var interfaces = require('os').networkInterfaces();　　
     for (var devName in interfaces) {　　　　
         var iface = interfaces[devName];　　　　　　
@@ -130,9 +136,9 @@ function server(){
 		if(err){
 			console.log('服务启动失败：', err);
 		}else{
-			const url = `http://${getOS()}:${config.port}`
+			const url = `http://${getIP()}:${config.port}`
 			//require('opn')(url); // 打开浏览器			
-			console.log(`Bestime测试服务启动：${url}`);
+			console.log(printColor.red('Bestime测试服务启动').concat('：').concat(printColor.yellow(url)));
 		}
 	})
 }

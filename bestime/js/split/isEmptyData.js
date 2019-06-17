@@ -5,7 +5,7 @@ import getType from './getType'
  * @param {All} data 需要处理的数据
  * @return {Boolean}
  */
-export default function isEmptyData (data) {	
+export default function isEmptyData (data) {
 	switch(getType(data)) {
 		case 'Object':
 			for(var key in data) return false

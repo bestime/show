@@ -33,3 +33,14 @@ new Vue({
     ])
   },
 }).$mount('#app')
+
+
+var d
+
+console.log('清空', bestime.clear({
+  a: null,
+  b: '',
+  c: undefined,
+  d,
+  e: '大大'
+}))

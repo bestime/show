@@ -4,10 +4,18 @@ import clone from './clone'
 import isEmptyData from './isEmptyData'
 import each from './each'
 
+function retain (data) {
+	if(data==='') {
+		return true
+	}else {
+		return !isEmptyData(data)
+	}
+}
+
 function clearObj (obj) {
 	var res = {}
 	for(var key in obj) {
-		!isEmptyData(obj[key]) && (res[key] = clone(obj[key]));
+		retain(obj[key]) && (res[key] = clone(obj[key]));
 	}
 	return res
 }
@@ -15,7 +23,7 @@ function clearObj (obj) {
 function clearArr (arr) {
   var res = []
   each(arr, item => {
-    !isEmptyData(item) && res.push(clone(item))
+    retain && res.push(clone(item))
   })
 	return res
 }
