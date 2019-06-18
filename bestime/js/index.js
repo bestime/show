@@ -81,7 +81,6 @@ export const isObject = $isObject
 export const isArray = $isArray
 export const isFunction = $isFunction
 
-
 export const oFetch = $oFetch
 export const jsonp = $jsonp
 export const isEmptyData = $isEmptyData
@@ -120,5 +119,3 @@ export const getWindowSize = $getWindowSize
 export const bind = $bind
 export const unbind = $unbind
 export const getQuery = $getQuery
-
-
