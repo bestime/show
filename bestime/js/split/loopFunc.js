@@ -36,7 +36,7 @@ import _Object from './_Object'
   })
 
   myPoll.start.call(this)
-  myPoll.stop()
+  myPoll.stop.call(this)
 
 
   */
@@ -45,6 +45,7 @@ export default function loopFunc (opt) {
   var handle = _Function(opt.handle)
   var sleepTime = _Number(opt.sleepTime)
   sleepTime = sleepTime < 17 ? 17 : sleepTime
+  var times = 0
 
   var overTime = _Object(opt.overTime)
   overTime.time = _Number(overTime.time)
@@ -57,6 +58,7 @@ export default function loopFunc (opt) {
 
 	function start () {
     var self = this
+    times++
     // 处理超时
     if(!isStart) {
       isStart = true;      
@@ -77,10 +79,11 @@ export default function loopFunc (opt) {
       }, sleepTime)
     }, function () {
       stop.call(self)
-    })
+    }, times)
   }
 
 	function stop () {
+    times = 0
     isStart = false
     clearTimeout(timer)
     clearTimeout(overTimeTimer)

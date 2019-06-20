@@ -1,3 +1,57 @@
-ǿ����ȥԶ�̷�֧�����������޸�
+cd 到项目目录
+
+git pull #将最新版本同步到本地
+
+git config --global user.name 'bestime'
+git config --global uesr.email '1174295440@qq.com'
+git config --blobal user.name #查看某个配置
+git config --list #查看配置列表
+
+git add <file.name>|<.> #添加单个文件或者全部添加到暂存区
+git commit 确认提交
+git commit -a -m '这里填写注释' #一步直接提交
+git remote #查看远程仓库的名字
+git remote -v #查看远程仓库的地址
+git push origin <branchName> #同步到指定分支
+
+git merge <id>|<branckName>  #合并分支到master
+git branch --merged #查看master所合并的分支
+git branch --no-merged #查看master没有合并的分支
+git branch -d <branchName> #删除合并后的分支
+git branch -D <branchName> #强制删除没有合并的分支
+
+git branch #查看分支
+git branch <name> #新建分支
+git checkout <branchName> #切换到分支
+
+
+git tag v1.0 #打标签
+git tag #查看标签
+git push origin --tags  # 将本地所有标签一次性提交到git服务器
+git push origin 1.0 #设置版本号
+
+
+git diff    #工作区与暂存区的对比
+git diff --cached（或者：--staged）  #暂存区与版本区的对比
+git diff <branch>   #工作区与版本区的对比
+
+
+git reset HEAD <file.name>   #撤销回工作区
+git checkout -- <file.name>  #还原工作区到版本区的最新版本（如果有缓存区，就使用缓存区文件）
+git commit -m '注释' --amend #撤销上一次提交，并和当前融合为一次提交（而不是两次提交）
+
+git rm <file.name> #删除暂存区的文件【前提是工作区已经删除这个文件】
+git rm -f <file.name> #将工作区和暂存区的文件同时删除
+git rm --cached <file.name> #删除暂存区文件，保留工作区文件
+
+git checkout <commit_id> <file.name>  #恢复一个文件
+git reset --hard master # 恢复到和远程一样
+git reset --hard <commit_id>  #恢复到某一个版本
+git reset --hard HEAD^   #恢复到 【下一个】版本
+git reset --hard HEAD~2  #恢复到 【下num个】版本
+git reflog #如果回到某一个版本，找不到某些commit_id的时候可以通过这个查看操作记录，回到某一个版本
+
+
+强制拉去远程分支，放弃本地修改
 git fetch --all
 git reset --hard branchName

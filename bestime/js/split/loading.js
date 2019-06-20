@@ -18,7 +18,7 @@ function addStyle (callback) {
   var oStyle = document.createElement('style')
   oStyle.id = id
   fillHtml(oStyle, `
-    #loading-bt-wrapper{position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:5000;display:flex;align-items:center;justify-content:center;flex-direction:column;opacity:0;transition:0.2s;}
+    #loading-bt-wrapper{position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:80001;display:flex;align-items:center;justify-content:center;flex-direction:column;opacity:0;transition:0.2s;}
     .loading-bt-text{font-size:14px;color:#fff;}
     #loading-bt-wrapper.active{opacity:1;}
   `);

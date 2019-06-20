@@ -172,11 +172,15 @@
 
 import { hasProp } from './vue-tool'
 import Icon from './Icon.vue'
+import _String from '../js/split/_String'
 export default {
   name: 'input-vbt',
   components: { Icon },
   props: {
-    value: null,
+    value: {
+      type: [String],
+      default: ''
+    },
     placeholder: '',
     // 自定义过滤方法
     checkFunc: {
@@ -207,7 +211,6 @@ export default {
   methods: {
     hasProp,
     setFocus (boolean) {
-      console.log('111111', boolean)
       if(boolean) {
         this.$refs.input.focus()
       } else {
@@ -237,6 +240,7 @@ export default {
     },
 
     onCheck (oldVal) {
+      oldVal = _String(oldVal)
       const toVal = this.checkFunc(oldVal, (msgType, msg) => {
         if(msgType=== '' || typeof msgType==='undefind') {
           this.msgType = null

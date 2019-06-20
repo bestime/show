@@ -25,7 +25,6 @@ export default function oFetch (opt) {
     ..._Object(opt.headers)
   }
 
-
   return new Promise((resolve, reject) => {
     const dataParam = param(opt.data) // 编码后的数据
 

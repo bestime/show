@@ -58,6 +58,8 @@ import $getWindowSize from './split/getWindowSize'
 import $bind from './split/bind'
 import $unbind from './split/unbind'
 import $getQuery from './split/getQuery'
+import $createExcel from './split/createExcel'
+import $convertTime from './split/convertTime'
 
 
 export const getType = $getType
@@ -119,3 +121,5 @@ export const getWindowSize = $getWindowSize
 export const bind = $bind
 export const unbind = $unbind
 export const getQuery = $getQuery
+export const createExcel = $createExcel
+export const convertTime = $convertTime

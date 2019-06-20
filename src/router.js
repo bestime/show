@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import { mapActions } from 'vuex'
 Vue.use(Router)
 
 
@@ -68,8 +67,8 @@ export const HomeList = [
     path: '/js',
     name: 'js',
     label: 'javascript',
-    component: () => import('@components/vue-examples/index.vue'),
-    children: [
+    component: () => import('@components/vue-examples/js-index.vue'),
+    children: [      
       {
         path: 'dialog',
         name: 'dialog',
@@ -82,10 +81,21 @@ export const HomeList = [
         label: 'pc滚动到底部加载',
         component: () => import('@components/vue-examples/scroll-bottom-eg.vue')
       },
+      {
+        path: 'loopFunc',
+        name: 'loopFunc',
+        label: '轮询',
+        component: () => import('@components/vue-examples/loopFunc-eg.vue')
+      },
+      {
+        path: 'excel',
+        name: 'excel',
+        label: '导出Excel',
+        component: () => import('@components/vue-examples/excel-eg.vue')
+      },
     ]
   } 
 ]
-
 
 export const routerList = [
   {
