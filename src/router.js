@@ -72,7 +72,7 @@ export const HomeList = [
       {
         path: 'dialog',
         name: 'dialog',
-        label: 'dialog',
+        label: '弹框',
         component: () => import('@components/vue-examples/dialog-eg.vue')
       },
       {
@@ -92,6 +92,18 @@ export const HomeList = [
         name: 'excel',
         label: '导出Excel',
         component: () => import('@components/vue-examples/excel-eg.vue')
+      },
+      {
+        path: 'drag',
+        name: 'drag',
+        label: '拖拽',
+        component: () => import('@components/vue-examples/drag-eg.vue')
+      },
+      {
+        path: 'code',
+        name: 'code',
+        label: 'code',
+        component: () => import('@components/vue-examples/code-eg.vue')
       },
     ]
   } 

@@ -16,6 +16,7 @@ import Button from './Button.vue'
 import Select from './Select.vue'
 import TextOverflow from './TextOverflow.vue'
 import CheckBox from './CheckBox.vue'
+import CodeView from './CodeView.vue'
 
 BestimeVueBaseInstall(Vue, [
   FlexColumn,
@@ -31,6 +32,7 @@ BestimeVueBaseInstall(Vue, [
   Button,
   Select,
   TextOverflow,
-  CheckBox
+  CheckBox,
+  CodeView
 ])
 

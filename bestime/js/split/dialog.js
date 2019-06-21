@@ -1,6 +1,5 @@
 
 import _Object from './_Object'
-import fillHtml from './fillHtml'
 import addClass from './addClass'
 import removeClass from './removeClass'
 import removeElement from './removeElement'
@@ -12,36 +11,29 @@ import isFunction from './isFunction'
 import bind from './bind'
 import unbind from './unbind'
 import createUUID from './createUUID'
+import drag from './drag'
+import createStyleElement from './createStyleElement'
 
-
-
-function addStyle (callback) {
-  var id = 'dialog-vbt-css'
-  if(document.getElementById(id)) return callback();
-  var oStyle = document.createElement('style')
-  oStyle.id = id
-  fillHtml(oStyle, `
-    .dialog-vbt{z-index:80000;position:fixed;left:0;right:0;bottom:0;top:0;display:flex;align-items:center;justify-content:center;}    
-    .dialog-bg {z-index:1;background:rgba(0,0,0,0.5);position:absolute;left:0;right:0;top:0;bottom:0;opacity:0;transition:0.2s;}
-    .dialog-content{z-index:2;position:relative;background:#fff;opacity:0;transform:translateY(-10%);transition:0.2s ease-out;box-shadow:0 0 20px rgba(0,0,0,0.2);min-width:300px;max-width:80%;max-height:80%;display:flex;flex-direction:column;}
-    .dialog-vbt.active .dialog-bg{opacity:1;}
-    .dialog-vbt.active .dialog-content{transform:translateY(0);opacity:1;border-radius:4px;}
-    .dialog-title{font-size:16px;color:#000;border-bottom:#f2f2f2 solid 1px;padding:8px 10px;}
-    .dialog-title *{display:inline-block;vertical-align:middle;}
-    .dialog-msg-box{padding:10px;font-size:14px;color:#585858;overflow:auto;}
-    .dialog-btn-box{padding:0 5px 10px 10px;text-align:right;font-size:0;}
-    .dialog-btn{font-size:12px;display:inline-block;cursor:pointer;user-select:none;padding:5px 10px;border-radius:4px;transition:0.2s;margin-right:5px;}
-    .dialog-btn.confirm{background:rgba(100,150,255,1);color:#fff;}
-    .dialog-btn.confirm:hover{rgba(100,150,255,0.8);}
-    .dialog-btn.confirm:active{box-shadow:0 0 0 2px rgba(100,150,255,0.2);}
-    .dialog-btn.cancel{background:#e6e6e6;color:#8c8c8c;}
-    .dialog-btn.cancel:active{background:#bbbbbb;}
-    .dialog-vbt .duration{font-size:14px;color:#949494;font-weight:normal;}
-    .dialog-vbt.group .dialog-bg{background:transparent;}    
-  `);
-  document.body.appendChild(oStyle)
-  setTimeout(callback, 16)
-}
+var cssStr =  `
+  .dialog-vbt{z-index:80000;position:fixed;left:0;right:0;bottom:0;top:0;display:flex;align-items:center;justify-content:center;}    
+  .dialog-bg {z-index:1;background:rgba(0,0,0,0.5);position:absolute;left:0;right:0;top:0;bottom:0;opacity:0;}
+  .dialog-bg, .dialog-content, .dialog-btn{transition: opacity 0.2s, transform 0.2s ease-out;}
+  .dialog-content{z-index:2;position:relative;background:#fff;opacity:0;transform:translateY(-10%);;box-shadow:0 0 20px rgba(0,0,0,0.2);min-width:300px;max-width:80%;max-height:80%;display:flex;flex-direction:column;}
+  .dialog-vbt.active .dialog-bg{opacity:1;}
+  .dialog-vbt.active .dialog-content{transform:translateY(0);opacity:1;border-radius:4px;overflow:hidden;}
+  .dialog-title{font-size:16px;color:#000;border-bottom:#f2f2f2 solid 1px;padding:8px 10px;cursor:move;background:#fbfbfb;}
+  .dialog-title *{display:inline-block;vertical-align:middle;}
+  .dialog-msg-box{padding:10px;font-size:14px;color:#585858;overflow:auto;}
+  .dialog-btn-box{padding:0 5px 10px 10px;text-align:right;font-size:0;}
+  .dialog-btn{font-size:12px;display:inline-block;cursor:pointer;user-select:none;padding:5px 10px;border-radius:4px;margin-right:5px;}
+  .dialog-btn.confirm{background:rgba(100,150,255,1);color:#fff;}
+  .dialog-btn.confirm:hover{rgba(100,150,255,0.8);}
+  .dialog-btn.confirm:active{box-shadow:0 0 0 2px rgba(100,150,255,0.2);}
+  .dialog-btn.cancel{background:#e6e6e6;color:#8c8c8c;}
+  .dialog-btn.cancel:active{background:#bbbbbb;}
+  .dialog-vbt .duration{font-size:14px;color:#949494;font-weight:normal;}
+  .dialog-vbt.group .dialog-bg{background:transparent;}    
+`;
 
 export default function dialog (opt) {
   opt = _Object(opt)
@@ -51,7 +43,7 @@ export default function dialog (opt) {
   opt.closed = _Function(opt.closed) // 关闭完成回调
   opt.onShow = _Function(opt.onShow) // 显示完成回调
   var wrpId = 'dialog_' + createUUID(); // 弹窗ID
-  addStyle(function () {
+  createStyleElement('bt-dialog-css', cssStr, function () {
     var closeing = false; // 关闭中，禁止多次点击
     var timer_show = null; // 显示的timer
     var timer_autoClose = null // 自动关闭的timer  
@@ -80,15 +72,19 @@ export default function dialog (opt) {
       listenKeyBoard()
       addClass(oWrapper, 'active')
       doAutoClose()
+      drag({
+        oHandle: getByClass('dialog-title', oWrapper)[0],
+        oWrapper: getByClass('dialog-content', oWrapper)[0]
+      })
       timer_show = setTimeout(function () {
-        opt.onShow()                
+        opt.onShow()
       }, 200 + 16)
     }, 16);
 
     var oMsgBox = getByClass('dialog-msg-box', oWrapper)[0]
     var oDuration = getByClass('duration', oWrapper)[0]
 
-    getByClass('dialog-bg', oWrapper)[0].onclick = checkToClose    
+    // getByClass('dialog-bg', oWrapper)[0].onclick = checkToClose
     getByClass('confirm', oWrapper)[0].onclick = function () {
       checkToClose('confirm')
     }

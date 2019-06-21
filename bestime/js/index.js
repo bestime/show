@@ -60,7 +60,9 @@ import $unbind from './split/unbind'
 import $getQuery from './split/getQuery'
 import $createExcel from './split/createExcel'
 import $convertTime from './split/convertTime'
-
+import $drag from './split/drag'
+import $createStyleElement from './split/createStyleElement'
+import $getStyle from './split/getStyle'
 
 export const getType = $getType
 export const isPhone = $isPhone
@@ -123,3 +125,6 @@ export const unbind = $unbind
 export const getQuery = $getQuery
 export const createExcel = $createExcel
 export const convertTime = $convertTime
+export const drag = $drag
+export const createStyleElement = $createStyleElement
+export const getStyle = $getStyle
