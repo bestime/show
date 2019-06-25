@@ -105,6 +105,12 @@ export const HomeList = [
         label: 'code',
         component: () => import('@components/vue-examples/code-eg.vue')
       },
+      {
+        path: 'gwc',
+        name: 'gwc',
+        label: '抛物线',
+        component: () => import('@components/vue-examples/gwc-eg.vue')
+      },
     ]
   } 
 ]

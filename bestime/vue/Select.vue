@@ -193,7 +193,6 @@ export default {
   },
 
   beforeDestroy () {
-    console.log('下拉移除')
     unbind(document, `select${this.uuid}`, 'click')
   },
 

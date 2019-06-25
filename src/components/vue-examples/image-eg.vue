@@ -36,15 +36,6 @@ export default {
       })
     }
   },
-  beforeMount () {
-    console.log('加载前:', +new Date())
-  },
-  mounted(){    
-    this.$nextTick(() => {
-      console.log('加载后:', +new Date())
-    })
-  },
-
   methods: {
     changeing (val, next) {
 			setTimeout(() => {

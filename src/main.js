@@ -44,3 +44,9 @@ console.log('清空', bestime.clear({
   d,
   e: '大大'
 }))
+
+
+var test02 = 'my name is bestime 中文 hh'
+const arr = test02.match(/\b[a-zA-z][^ ]*\b/g)
+arr.sort()
+console.log('字符串：',test02, '结果：',  arr)

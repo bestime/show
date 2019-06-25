@@ -12,8 +12,8 @@ export default function getStyle (el, styleName, inlineStyle) {
   }else if(document.defaultView && document.defaultView.getComputedStyle){
     styleName = styleName.replace(/([A-Z])/g,'-$1').toLowerCase();
     var s = document.defaultView.getComputedStyle(el, '');
-    return s && s.getPropertyValue(styleName);
+    return s && s.getPropertyValue(styleName)
   }else{
-    return null;
+    return null
   }
 }

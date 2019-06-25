@@ -63,6 +63,7 @@ import $convertTime from './split/convertTime'
 import $drag from './split/drag'
 import $createStyleElement from './split/createStyleElement'
 import $getStyle from './split/getStyle'
+import $Parabola from './split/Parabola'
 
 export const getType = $getType
 export const isPhone = $isPhone
@@ -128,3 +129,4 @@ export const convertTime = $convertTime
 export const drag = $drag
 export const createStyleElement = $createStyleElement
 export const getStyle = $getStyle
+export const Parabola = $Parabola
