@@ -50,3 +50,25 @@ var test02 = 'my name is bestime 中文 hh'
 const arr = test02.match(/\b[a-zA-z][^ ]*\b/g)
 arr.sort()
 console.log('字符串：',test02, '结果：',  arr)
+
+
+
+let max = {
+  length: 0,
+  value: ''
+}
+
+test02.replace(/\b[a-zA-z][^ ]*\b/g, g => {
+  console.log( g, '长度：', g.length)
+  if(g.length > max.length) {
+    max = {
+      length: g.length,
+      value: g
+    }
+  }  
+})
+
+console.log(test02, ' => 结果：', max)
+
+
+

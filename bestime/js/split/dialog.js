@@ -14,7 +14,7 @@ import createUUID from './createUUID'
 import drag from './drag'
 import createStyleElement from './createStyleElement'
 
-var cssStr =  `
+const cssStr =  `
   .dialog-vbt{z-index:80000;position:fixed;left:0;right:0;bottom:0;top:0;display:flex;align-items:center;justify-content:center;}    
   .dialog-bg {z-index:1;background:rgba(0,0,0,0.5);position:absolute;left:0;right:0;top:0;bottom:0;opacity:0;}
   .dialog-bg, .dialog-content, .dialog-btn{transition: opacity 0.2s, transform 0.2s ease-out;}
@@ -43,11 +43,11 @@ export default function dialog (opt) {
   opt.closed = _Function(opt.closed) // 关闭完成回调
   opt.onShow = _Function(opt.onShow) // 显示完成回调
   var wrpId = 'dialog_' + createUUID(); // 弹窗ID
+
   createStyleElement('bt-dialog-css', cssStr, function () {
     var closeing = false; // 关闭中，禁止多次点击
     var timer_show = null; // 显示的timer
-    var timer_autoClose = null // 自动关闭的timer  
-    
+    var timer_autoClose = null // 自动关闭的timer
     var oldWrappers = getByClass('dialog-vbt')
     var oWrapper = document.createElement('div')
     var gpName = oldWrappers.length ? ` group dialog-${oldWrappers.length}` : ''

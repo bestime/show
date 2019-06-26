@@ -52,6 +52,10 @@ export default {
     }
   },
 
+  mounted () {
+    
+  },
+
   methods: {
     createBarCode () {
       this.barcode = ns.barCode.create()

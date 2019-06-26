@@ -1,5 +1,4 @@
 import _String from './_String'
-import fillHtml from './fillHtml'
 import _Object from './_Object'
 import addClass from './addClass'
 import getById from './getById'
@@ -8,23 +7,15 @@ import removeElement from './removeElement'
 import isObject from './isObject'
 import removeClass from './removeClass'
 import isEmptyData from './isEmptyData'
+import createStyleElement from './createStyleElement'
 
-
-
-// 添加样式
-function addStyle (callback) {
-  var id = 'loading-bt-css'
-  if(document.getElementById(id)) return callback();
-  var oStyle = document.createElement('style')
-  oStyle.id = id
-  fillHtml(oStyle, `
-    #loading-bt-wrapper{position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:80001;display:flex;align-items:center;justify-content:center;flex-direction:column;opacity:0;transition:0.2s;}
-    .loading-bt-text{font-size:14px;color:#fff;}
-    #loading-bt-wrapper.active{opacity:1;}
-  `);
-  document.body.appendChild(oStyle)
-  setTimeout(callback, 16)
-}
+const cssStr = `
+  #loading-bt-wrapper{position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:80001;display:flex;align-items:center;justify-content:center;flex-direction:column;opacity:0;transition:0.2s;}
+  .loading-bt-text{font-size:14px;color:#fff;}
+  #loading-bt-wrapper.active{opacity:1;}
+  .loading-bt-close{position:absolute;right:10px;top:10px;font-size:12px;color:rgba(255,255,255,0.8);cursor:pointer;}
+  .loading-bt-close:hover{color:#fff;}
+`
 
 function oWrapperReady (callback) {
   clearInterval(window.jcy.loading.timer_r)
@@ -46,7 +37,7 @@ function oWrapperReady (callback) {
 // 检测是否已存在loading
 function useOldLoading (msg) {
   window.jcy = _Object(window.jcy)
-  var isUseOld = isObject(window.jcy.loading) && !isEmptyData(window.jcy.loading)
+  var isUseOld = !isEmptyData(window.jcy.loading) && isObject(window.jcy.loading)
   isObject(window.jcy.loading) && oWrapperReady(function (oWrapper) {
     addClass(oWrapper, 'active')
     var oText = getByClass('loading-bt-text', oWrapper)[0]
@@ -77,19 +68,25 @@ function showLoading (msg, iconHtml) {
   window.jcy = _Object(window.jcy)
   if(!isObject(window.jcy.loading)) {
     window.jcy.loading = {}
-  }  
-  addStyle(function () {
+  }
+
+  window.jcy.loading.exist = true
+
+  createStyleElement('bt-loading-css', cssStr, function () {
     var el = document.createElement('div')
     el.id = 'loading-bt-wrapper';
     el.innerHTML = `
       <div class="loading-bt-icon">${iconHtml}</div>
       <div class="loading-bt-text">${msg}</div>
+      <div class="loading-bt-close">关闭</div>
     `;
     document.body.appendChild(el)
+    getByClass('loading-bt-close', el)[0].onclick = hideLoading
     setTimeout(function () {      
       addClass(el, 'active')
     }, 16)
-  });
+  })
+
 }
 
 function hideLoading () {
