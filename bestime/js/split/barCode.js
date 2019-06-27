@@ -71,14 +71,11 @@ function check (str) {
   }
 
   //console.log(`${oushu}偶数和：`, o_num)
-  
-
   const d3 = o_num * 3
   
   //console.log('偶数3倍：', d3)
   //console.log(`${jishu}奇数和 + 偶数3倍：`, j_num)
   const total = j_num + d3
-
   //console.log('奇数与上一步求和：', total)
   
   let ck = 10 - total % 10

@@ -111,6 +111,12 @@ export const HomeList = [
         label: '抛物线',
         component: () => import('@components/vue-examples/gwc-eg.vue')
       },
+      {
+        path: 'createBus',
+        name: 'createBus',
+        label: 'createBus',
+        component: () => import('@components/vue-examples/createBus-eg.vue')
+      },
     ]
   } 
 ]

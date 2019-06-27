@@ -47,49 +47,62 @@ export default {
 	// 获取同名事件集
 	getKind: function (eventName) {
 		var oneEventKind = _Object(this.events[eventName]); // 用于保存此类事件
-		oneEventKind.func = _Object(oneEventKind.func)
+		oneEventKind.children = _Object(oneEventKind.children)
 		return oneEventKind
 	},
   
 	// 事件通知
 	emit: function (eventName, data) {		
 		var oneEventKind = this.getKind(eventName)
-		var func = oneEventKind.func
+		var func = oneEventKind.children
 		for(var key in func) {
-			func[key](data, {name: eventName, id: key})
+			func[key].handle(data, {name: eventName, id: key})
+			if(_Object(func[key]).once) {
+				delete oneEventKind.children[key]
+			}
 		}
   },	
 	
 	// eventName 事件
 	// kind_id 同事件id。id相同会被覆盖
-	on: function (eventName, callback, kind_id) {
-		var self = this;
-		
-		var oneEventKind = this.getKind(eventName)
-		
+	on: function (eventName, callback, kind_id, once) {
+		var self = this;		
+		var oneEventKind = this.getKind(eventName)		
 		var defaultId = _Number(oneEventKind.did);//自动生成id
 		!kind_id && defaultId++; // 自定义id
 		
 		var useId = kind_id || defaultId; // 判断使用哪个id
 		
 		oneEventKind.did = defaultId; // 用于记录上一次自动生成的id
-		oneEventKind.func[useId] = callback		
-		
+
+		var oneHandle = {
+			handle: callback,
+			once: once ? true : false,
+			id: useId
+		}		
+		oneEventKind.children[useId] = oneHandle		
 		this.events[eventName] = oneEventKind
-		
-		// 返回当前事件信息，用来移除事件
-		var initData = { name: eventName, id: useId }
 		return { 
-			info: initData,
+			info: oneHandle,
 			delete: function () {
-				self.delete(initData)
+				self.delete(oneHandle.id, oneHandle.name)
 			}
 		}
 	},
+
+	// 执行一次后自动就销毁
+	once: function (eventName, callback, kind_id) {
+		this.on(eventName, callback, kind_id, true)
+	},
+
+	// 相同函数只注册一次
+	one: function (eventName, callback) {
+
+	},
 	
 	// 事件移除
-	delete: function (opt) {
-		var oneEventKind = this.getKind(opt.name)
-		delete oneEventKind.func[opt.id]
+	delete: function (id, name) {
+		var oneEventKind = this.getKind(name)
+		delete oneEventKind.children[id]
 	}
 }
