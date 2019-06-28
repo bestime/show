@@ -11,6 +11,62 @@ export const HomeList = [
     component: () => import('@components/Home.vue')
   },
   {
+    path: '/js',
+    name: 'js',
+    label: 'javascript',
+    component: () => import('@components/vue-examples/js-index.vue'),
+    children: [      
+      {
+        path: 'dialog',
+        name: 'dialog',
+        label: '弹框',
+        component: () => import('@components/vue-examples/dialog-eg.vue')
+      },
+      {
+        path: 'dom-on-bottom',
+        name: 'dom-on-bottom',
+        label: 'pc滚动到底部加载',
+        component: () => import('@components/vue-examples/scroll-bottom-eg.vue')
+      },
+      {
+        path: 'loopFunc',
+        name: 'loopFunc',
+        label: '轮询',
+        component: () => import('@components/vue-examples/loopFunc-eg.vue')
+      },
+      {
+        path: 'excel',
+        name: 'excel',
+        label: '导出Excel',
+        component: () => import('@components/vue-examples/excel-eg.vue')
+      },
+      {
+        path: 'drag',
+        name: 'drag',
+        label: '拖拽',
+        component: () => import('@components/vue-examples/drag-eg.vue')
+      },
+      // {
+      //   path: 'code',
+      //   name: 'code',
+      //   label: 'code',
+      //   component: () => import('@components/vue-examples/code-eg.vue')
+      // },
+      {
+        path: 'gwc',
+        name: 'gwc',
+        label: '抛物线',
+        component: () => import('@components/vue-examples/gwc-eg.vue')
+      },
+      {
+        path: 'createBus',
+        name: 'createBus',
+        label: 'createBus',
+        component: () => import('@components/vue-examples/createBus-eg.vue')
+      },
+    ]
+  },
+  {
     path: '/vue',
     name: 'vue',
     label: 'vue',
@@ -63,62 +119,7 @@ export const HomeList = [
       },
     ]
   },
-  {
-    path: '/js',
-    name: 'js',
-    label: 'javascript',
-    component: () => import('@components/vue-examples/js-index.vue'),
-    children: [      
-      {
-        path: 'dialog',
-        name: 'dialog',
-        label: '弹框',
-        component: () => import('@components/vue-examples/dialog-eg.vue')
-      },
-      {
-        path: 'dom-on-bottom',
-        name: 'dom-on-bottom',
-        label: 'pc滚动到底部加载',
-        component: () => import('@components/vue-examples/scroll-bottom-eg.vue')
-      },
-      {
-        path: 'loopFunc',
-        name: 'loopFunc',
-        label: '轮询',
-        component: () => import('@components/vue-examples/loopFunc-eg.vue')
-      },
-      {
-        path: 'excel',
-        name: 'excel',
-        label: '导出Excel',
-        component: () => import('@components/vue-examples/excel-eg.vue')
-      },
-      {
-        path: 'drag',
-        name: 'drag',
-        label: '拖拽',
-        component: () => import('@components/vue-examples/drag-eg.vue')
-      },
-      {
-        path: 'code',
-        name: 'code',
-        label: 'code',
-        component: () => import('@components/vue-examples/code-eg.vue')
-      },
-      {
-        path: 'gwc',
-        name: 'gwc',
-        label: '抛物线',
-        component: () => import('@components/vue-examples/gwc-eg.vue')
-      },
-      {
-        path: 'createBus',
-        name: 'createBus',
-        label: 'createBus',
-        component: () => import('@components/vue-examples/createBus-eg.vue')
-      },
-    ]
-  } 
+  
 ]
 
 export const routerList = [
