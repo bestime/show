@@ -108,3 +108,68 @@ function server(){
 
 // 启动服务	
 server();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.get('/user/return-record/list',function (req, res) {
+	res.json({
+		code: 1,
+		data: {
+			list: new Array(15).fill('').map((item, index)=> {
+				return {
+					product_id: index,
+					name: `Bestime键盘${index}`,
+					product_pic: 'https://static.aiwanhezi.com/2019/06/16/0426bc2832d4b81807f2be4dc897ea8b.jpg'
+				}
+			}),
+			hasMore: false
+		}
+	})
+})
+
+
+
+app.post('/user/return-record/request',function (req, res) {
+	console.log('退货申请：', req.body)
+	res.json({
+		code: 1,
+		msg: '申请成功'
+	})
+})

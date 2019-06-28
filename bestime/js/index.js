@@ -1,4 +1,5 @@
 
+// 版本测试
 
 import $getType from './split/getType' 
 import $isPhone from './split/isPhone'
@@ -65,6 +66,7 @@ import $createStyleElement from './split/createStyleElement'
 import $getStyle from './split/getStyle'
 import $Parabola from './split/Parabola'
 import $createBus from './split/createBus'
+import $defaultType from './split/defaultType'
 
 export const getType = $getType
 export const isPhone = $isPhone
@@ -132,3 +134,4 @@ export const createStyleElement = $createStyleElement
 export const getStyle = $getStyle
 export const Parabola = $Parabola
 export const createBus = $createBus
+export const defaultType = $defaultType

@@ -1,0 +1,27 @@
+{
+  "name": "bestime",
+  "version": "1.0.3",
+  "description": "原生JS、vue、微信小程序",
+  "main": "index.js",
+  "scripts": {
+    "test": "bestime"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/bestime/show.git"
+  },
+  "keywords": [
+    "bestime",
+    "Bestime"
+  ],
+  "author": "Bestime",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bestime/show/issues"
+  },
+  "homepage": "https://github.com/bestime/show#readme",
+  "dependencies": {
+    "jquery-param": "^1.0.1",
+    "bestime-runtime": "^1.0.0"
+  }
+}

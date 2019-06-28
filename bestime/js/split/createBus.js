@@ -45,12 +45,12 @@ export default function createBus () {
     return create(id, name, handle, true)
   }
 
-  // 【注册】 唯一函数
+  // 【注册】 永久唯一函数
   function one (name, handle) {
     return create(null, name, handle, false, true)
   }
 
-  // 【注册】 唯一一次性函数
+  // 【注册】 一次性唯一函数
   function oneonce (name, handle) {    
     return create(null, name, handle, true, true)
   }
