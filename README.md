@@ -1,5 +1,6 @@
 - 发布npm包
 	```
+	npm init
 	npm login
 	npm publish
 	```

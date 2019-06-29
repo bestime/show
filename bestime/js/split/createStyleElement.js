@@ -3,7 +3,6 @@ import _Function from './_Function'
 import _String from './_String'
 
 
-
 /**
  * 插入静态<style></style>至文档
  * 如果存在相同ID，则不执行

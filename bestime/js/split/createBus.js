@@ -1,5 +1,5 @@
-import _Object from './_Object'
-import _Number from './_Number'
+
+
 import _Array from './_Array'
 import _Boolean from './_Boolean'
 import getType from './getType'
@@ -35,26 +35,6 @@ export default function createBus () {
     return oneHandle
   }
 
-  // 【注册】 永久函数
-  function on (name, handle, id) {
-    return create(id, name, handle)    
-  }
-
-  // 【注册】 一次性函数
-  function once (name, handle, id) {
-    return create(id, name, handle, true)
-  }
-
-  // 【注册】 永久唯一函数
-  function one (name, handle) {
-    return create(null, name, handle, false, true)
-  }
-
-  // 【注册】 一次性唯一函数
-  function oneonce (name, handle) {    
-    return create(null, name, handle, true, true)
-  }
-
   // 通知
   function emit (name, data) {    
     switch (getType(events[name])) {
@@ -78,7 +58,6 @@ export default function createBus () {
 
   // 清空bus
   function clear (opt) {
-    console.log('opt', opt)
     if(!isObject(opt)) return;
     switch (getType(events[opt.name])) {
       case 'Object':
@@ -92,13 +71,26 @@ export default function createBus () {
         }
         break;
     }
-  }
+  }  
 
   return {
-    on: on,
-    once: once,
-    one: one,
-    oneonce: oneonce,
+    // 【注册】 永久函数
+    on: function (name, handle, id) {
+      return create(id, name, handle)    
+    },
+    // 【注册】 一次性函数
+    once: function (name, handle, id) {
+      return create(id, name, handle, true)
+    },
+
+    // 【注册】 永久唯一函数
+    one: function (name, handle) {
+      return create(null, name, handle, false, true)
+    },
+    // 【注册】 一次性唯一函数
+    oneonce: function (name, handle) {    
+      return create(null, name, handle, true, true)
+    },
     emit: emit,
     clear: clear,
     _events: events

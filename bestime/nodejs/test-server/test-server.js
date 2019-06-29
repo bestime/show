@@ -76,6 +76,10 @@ app.post('/post',function (req, res) {
 })
 
 
+
+
+
+
 // 获取IP
 function getIP () {
 	var interfaces = require('os').networkInterfaces();　　
@@ -141,7 +145,16 @@ server();
 
 
 
-
+app.get('/jsonp-test', (req, res) => {
+	const { node_callback } = req.query
+	res.send(`${node_callback}(${JSON.stringify({
+		code: 1,
+		msg: `当前函数名：${node_callback}`,
+		data: [
+			{ name: 'Bestime', jon: 'web前端' }
+		]
+	})})`)
+})
 
 
 

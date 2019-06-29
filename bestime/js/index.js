@@ -22,8 +22,7 @@ import $isArray from './split/isArray'
 import $isFunction from './split/isFunction'
 import $isString from './split/isString'
 
-import $oFetch from './split/oFetch' 
-import $jsonp from './split/jsonp'
+import $oFetch from './split/oFetch'
 import $isEmptyData from './split/isEmptyData'
 import $clear from './split/clear'
 import $clone from './split/clone'
@@ -77,7 +76,7 @@ export const average = $average
 export const fixed = $fixed
 export const loopFunc = $loopFunc
 
-
+export const defaultType = $defaultType
 export const _Number = $_Number
 export const _Function = $_Function
 export const _Object = $_Object
@@ -87,10 +86,9 @@ export const _String = $_String
 
 export const isObject = $isObject
 export const isArray = $isArray
+export const isString = $isString
+export const isNumber = $isNumber
 export const isFunction = $isFunction
-
-export const oFetch = $oFetch
-export const jsonp = $jsonp
 export const isEmptyData = $isEmptyData
 export const clear = $clear
 export const clone = $clone
@@ -100,13 +98,8 @@ export const getCookie = $getCookie
 export const setCookie = $setCookie
 export const removeCookie = $removeCookie
 export const split = $split
-export const isString = $isString
-export const isNumber = $isNumber
 export const toNumber = $toNumber
-export const barCode = $barCode
-export const bus = $bus
-export const dialog = $dialog
-export const loading = $loading
+
 export const fillHtml = $fillHtml
 export const addClass = $addClass
 export const hasClass = $hasClass
@@ -119,19 +112,25 @@ export const numberMin = $numberMin
 export const numberMax = $numberMax
 export const sleep = $sleep
 export const onDomRoll = $onDomRoll
-export const prevent = $prevent
 export const domShowDir = $domShowDir
+export const prevent = $prevent
 export const getScrollPosition = $getScrollPosition
 export const getRelativePos = $getRelativePos
 export const getWindowSize = $getWindowSize
 export const bind = $bind
 export const unbind = $unbind
 export const getQuery = $getQuery
-export const createExcel = $createExcel
 export const convertTime = $convertTime
-export const drag = $drag
-export const createStyleElement = $createStyleElement
 export const getStyle = $getStyle
+export const barCode = $barCode
+
+export const createExcel = $createExcel
+export const createStyleElement = $createStyleElement
+export const drag = $drag
 export const Parabola = $Parabola
 export const createBus = $createBus
-export const defaultType = $defaultType
+export const bus = $bus
+export const oFetch = $oFetch
+
+export const dialog = $dialog
+export const loading = $loading
