@@ -35,7 +35,7 @@
         position absolute
         right 10px
         top 50%
-        margin-top:-4px
+        margin-top:-2px
   .text-wrapper
     font-size 14px
     color $staticTextColor

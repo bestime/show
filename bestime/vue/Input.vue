@@ -18,7 +18,7 @@
   justify-content center
   box-sizing border-box
   height 100%
-  
+  flex 1
 .input-vbt
   flex 1
   display:flex
@@ -154,6 +154,7 @@
             @keyup.enter="onEnter"
             @keyup="onValueChange"
             :disabled="hasProp(disabled)"
+            :type="type"
           />
           <div class="it-del" @click="onCheck('')" v-if="value">
             <Icon type="delete" color="#ddd"/>
@@ -177,6 +178,7 @@ export default {
   name: 'input-vbt',
   components: { Icon },
   props: {
+    type: String,
     value: {
       type: [String],
       default: ''

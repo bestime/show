@@ -8,6 +8,7 @@
   vertical-align middle
   font-size 12px
   .button-main
+    flex 1
     user-select none
     display inline-flex
     align-items center
@@ -22,6 +23,7 @@
       background getActiveColor(0.8)
     &:active
       box-shadow 0 0 0 2px getActiveColor(0.2)
+      background getActiveColor(0.9)
     &.default
       background #eee
       color $staticTextColor

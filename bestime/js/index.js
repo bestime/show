@@ -64,7 +64,6 @@ import $drag from './split/drag'
 import $createStyleElement from './split/createStyleElement'
 import $getStyle from './split/getStyle'
 import $Parabola from './split/Parabola'
-import $createBus from './split/createBus'
 import $defaultType from './split/defaultType'
 
 export const getType = $getType
@@ -128,7 +127,6 @@ export const createExcel = $createExcel
 export const createStyleElement = $createStyleElement
 export const drag = $drag
 export const Parabola = $Parabola
-export const createBus = $createBus
 export const bus = $bus
 export const oFetch = $oFetch
 

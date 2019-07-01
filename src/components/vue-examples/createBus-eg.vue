@@ -66,8 +66,10 @@
 </template>
 
 <script>
-import { createBus } from '@bestime/js'
-const bus = createBus()
+
+
+const bus = new (require('create-event-bus'))()
+// a
 window.bus03 = bus
 export default {
   data () {
