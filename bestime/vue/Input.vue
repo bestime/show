@@ -8,7 +8,7 @@
   color $staticTextColor
   background #f9f9f9 
   position relative
-  z-index: 5 
+  z-index: 20 
 .input-left
   border $staticBorderColor solid 1px
   border-right none
@@ -42,7 +42,7 @@
       border-radius: 0 $borderRadius $borderRadius 0
   &.focus
     box-shadow 0 0 0 2px getActiveColor(0.2)
-    z-index: 6
+    z-index: 30
     &.warning
       box-shadow 0 0 0 2px getWarningColor(0.2)
   &.warning    
@@ -78,7 +78,7 @@
     padding 5px 10px
     margin-top 5px
     border-radius $borderRadius
-    z-index: 2
+    z-index: 23
     max-height 200px
     overflow-y auto
     overflow-x hidden  

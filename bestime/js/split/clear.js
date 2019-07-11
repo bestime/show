@@ -1,14 +1,14 @@
 
 import getType from './getType'
 import clone from './clone'
-import isEmptyData from './isEmptyData'
+import isEmpty from './isEmpty'
 import each from './each'
 
 function retain (data) {
 	if(data==='') {
 		return true
 	}else {
-		return !isEmptyData(data)
+		return !isEmpty(data)
 	}
 }
 

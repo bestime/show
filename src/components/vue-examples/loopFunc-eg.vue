@@ -7,7 +7,8 @@
     <br/>
     <br/>
     <br/>
-    <button-vbt @click="test01">{{ polling ? '停止轮询': '轮询是否登录' }}</button-vbt>
+    <button-vbt @click="test01">轮询是否登录</button-vbt>
+    <button-vbt @click="test01stop">停止轮询</button-vbt>
     <ul>
       <li v-for="(item, index) in msg" :key="index" v-html="item"></li>
     </ul>
@@ -15,27 +16,8 @@
 </template>
 
 <script>
-import { loopFunc } from '@bestime/js'
-const loop01 = loopFunc({
-  sleepTime: 500,
-  handle: function (next, stop, times) {
-    this.msg.push(`<div style="color:${this.isLogin ? 'green': 'red'}">第${times}次结果：${this.isLogin ? '登录成功' : '未登录'}</div>`)
-    if(this.isLogin) {
-      stop()
-      this.polling = false
-      ns.dialog({ msg: '登录成功' })
-    }else {
-      next()
-    }
-  },
-  overTime: {
-    time: 5000,
-    handle: function () {
-      this.polling = false
-      ns.dialog({ msg: '获取登录状态超时' })
-    }
-  }
-})
+import { FunctionLoop, dialog } from '@bestime/js'
+
 export default {
   data () {
     return {
@@ -45,16 +27,35 @@ export default {
     }
   },
 
+  beforeDestroy () {
+    this.test01(false)
+  },
+
   methods: {
-    test01 () {
-      if(this.polling) {
-        this.polling = false
-        loop01.stop.call(this)
-      } else {
-        this.polling = true
-        this.msg = []
-        loop01.start.call(this)
+    test01: FunctionLoop({
+      sleepTime: 500,
+      handle: function (next, stop, times) {
+        this.msg.push(`<div style="color:${this.isLogin ? 'green': 'red'}">第${times}次结果：${this.isLogin ? '登录成功' : '未登录'}</div>`)
+        if(this.isLogin) {
+          stop()
+          this.polling = false
+          dialog({ msg: '登录成功' })
+        }else {
+          console.log('继续')
+          next()
+        }
+      },
+      overTime: {
+        time: 5000,
+        handle: function () {
+          this.polling = false
+          dialog({ msg: '获取登录状态超时' })
+        }
       }
+    }),
+
+    test01stop () {
+      this.test01(false)
     }
   }
 }

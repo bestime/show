@@ -21,9 +21,11 @@ import $isObject from './split/isObject'
 import $isArray from './split/isArray'
 import $isFunction from './split/isFunction'
 import $isString from './split/isString'
+import $getNowTime from './split/getNowTime'
+import $zero from './split/zero'
 
 import $oFetch from './split/oFetch'
-import $isEmptyData from './split/isEmptyData'
+import $isEmpty from './split/isEmpty'
 import $clear from './split/clear'
 import $clone from './split/clone'
 import $each from './split/each'
@@ -65,6 +67,12 @@ import $createStyleElement from './split/createStyleElement'
 import $getStyle from './split/getStyle'
 import $Parabola from './split/Parabola'
 import $defaultType from './split/defaultType'
+import $throttle from './split/throttle'
+import $debounce from './split/debounce'
+import $FunctionOnce from './split/FunctionOnce'
+import $FunctionConfirm from './split/FunctionConfirm'
+import $FunctionLoop from './split/FunctionLoop'
+
 
 export const getType = $getType
 export const isPhone = $isPhone
@@ -88,7 +96,7 @@ export const isArray = $isArray
 export const isString = $isString
 export const isNumber = $isNumber
 export const isFunction = $isFunction
-export const isEmptyData = $isEmptyData
+export const isEmpty = $isEmpty
 export const clear = $clear
 export const clone = $clone
 export const each = $each
@@ -98,7 +106,6 @@ export const setCookie = $setCookie
 export const removeCookie = $removeCookie
 export const split = $split
 export const toNumber = $toNumber
-
 export const fillHtml = $fillHtml
 export const addClass = $addClass
 export const hasClass = $hasClass
@@ -122,13 +129,37 @@ export const getQuery = $getQuery
 export const convertTime = $convertTime
 export const getStyle = $getStyle
 export const barCode = $barCode
-
 export const createExcel = $createExcel
 export const createStyleElement = $createStyleElement
 export const drag = $drag
 export const Parabola = $Parabola
 export const bus = $bus
 export const oFetch = $oFetch
-
 export const dialog = $dialog
 export const loading = $loading
+export const throttle = $throttle
+export const debounce = $debounce
+export const FunctionOnce = $FunctionOnce
+export const FunctionConfirm = $FunctionConfirm
+export const FunctionLoop = $FunctionLoop
+export const getNowTime = $getNowTime
+export const zero = $zero
+
+// 设置本地存储
+export function setStorage (key, value) {
+  localStorage.setItem(key, JSON.stringify(value));
+}
+
+// 获取本地存储
+export function getStorage(key) {
+  try {
+    return JSON.parse(localStorage.getItem(key))
+  }catch(e) {
+    return ''
+  }
+}
+
+// 删除本地存储
+export function removeStorage(key) {
+  localStorage.removeItem(key);
+}

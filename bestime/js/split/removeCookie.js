@@ -1,12 +1,12 @@
 
 
 import _Object from './_Object'
-import isEmptyData from './isEmptyData'
+import isEmpty from './isEmpty'
 
 //删除cookie
 export default function removeCookie (key, opt) {
   opt = _Object(opt)    
-  if(isEmptyData(opt)) {
+  if(isEmpty(opt)) {
     toClear()
   }else {
     for(var pk in opt) {

@@ -4,9 +4,9 @@
  * @param flag {String} 需要分隔的标识符
  */
 
-import isEmptyData from './isEmptyData'
+import isEmpty from './isEmpty'
 import _String from './_String'
 
 export default function split (str, flag) {
-	return isEmptyData(str) ? [] : _String(str).split(_String(flag))
+	return isEmpty(str) ? [] : _String(str).split(_String(flag))
 }

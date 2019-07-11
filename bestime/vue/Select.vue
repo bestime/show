@@ -64,9 +64,6 @@
       color $staticDisabledColor
     .select-main .text-wrapper:after
       border-top-color $staticDisabledColor
-  
-
-
 .select-more
   background #fff
   box-shadow 0 0 5px rgba(0,0,0,0.2)
@@ -99,6 +96,9 @@
     padding 6px 10px
     transition 0.1s
     cursor pointer
+    display flex
+    align-items center
+    justify-content space-between
     &:hover
       background #f2f2f2
     &.active
@@ -140,8 +140,9 @@
       
       <ul id="test" ref="more" class="select-more" :class="[dir.vertical]">
         <div v-if="!options.length" class="no-data">暂无选项</div>
-        <li :class="{'active': !isEmptyData(value) && item[useKey]==value}" v-for="item in options" :key="item[useKey]" @click.stop="choose(item)">
+        <li :class="{'active': !isEmpty(value) && item[useKey]==value}" v-for="item in options" :key="item[useKey]" @click.stop="choose(item)">
           <TextOverflow line="1">{{ item.label }}</TextOverflow>
+          <div v-if="hasProp(deleteItem)" class="iconfont" @click.stop="remove(item)">&#xe603;</div>
         </li>
       </ul>  
     </div>
@@ -150,8 +151,9 @@
 
 <script>
 import TextOverflow from './TextOverflow.vue'
-import { isObject, domShowDir, bind, unbind, createUUID, prevent, isEmptyData } from '../js'
+import { isObject, domShowDir, bind, unbind, createUUID, prevent, isEmpty } from '../js'
 import Icon from './Icon.vue'
+import { hasProp } from './vue-tool'
 
 const testArr = new Array(15).fill('').map((item, index) => {
   return {
@@ -163,6 +165,7 @@ export default {
   name: 'select-vbt',
   components: { TextOverflow, Icon },
   props: {
+    deleteItem: null,
     value: null,
     placeholder: {
       type: String,
@@ -185,7 +188,7 @@ export default {
   computed: {
     showLabel () {
       let item = null;
-      if(!isEmptyData(this.value)) {
+      if(!isEmpty(this.value)) {
         item = this.options.find(item=>item[this.useKey]==this.value)
       }
       return isObject(item) ? item.label : null
@@ -211,12 +214,17 @@ export default {
   },
 
   methods: {
-    isEmptyData,
+    hasProp,
+    isEmpty,
     bodyClick () {
       if(this.open) {
         console.log('下拉关闭')
         this.close()
       }
+    },
+
+    remove (item) {
+      this.$emit('on-remove', item[this.useKey], item)
     },
 
     choose (item) {

@@ -32,14 +32,17 @@
         background:#f9f9f9
       &:active
         background #eee
+      
+.button-vbt-loading
+  margin-left 5px
 </style>
 
 <template>
-  <div class="button-vbt" :class="[type]" @click="$emit('click')">
+  <div class="button-vbt" :class="[type]" @click="click">
     <div class="button-main">
       <slot></slot>
       <div class="button-vbt-loading" v-if="doing">
-        <Loading/>
+        <Loading color="#fff"/>
       </div>
     </div>    
   </div>  
@@ -66,9 +69,17 @@ export default {
   mounted() {
     
   },
-
+  
   methods: {
-    
+    isLoading () {
+      return this.doing
+    },
+    setLoading (bol) {
+      this.doing = bol ? true : false
+    },
+    click () {
+      this.$emit('click')
+    }
   },
 }
 </script>

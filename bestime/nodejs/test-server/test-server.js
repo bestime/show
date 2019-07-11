@@ -138,7 +138,20 @@ server();
 
 
 
+app.post('/login', (req, res) => {
+	res.json({
+		code: 0,
+		msg: '登录成功'
+	})
+})
 
+app.post('/logout', (req, res) => {
+	const code = 0
+	res.json({
+		code,
+		msg: code ? '不允许退出' : '退出成功'
+	})
+})
 
 
 

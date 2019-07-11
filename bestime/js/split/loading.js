@@ -6,7 +6,7 @@ import getByClass from './getByClass'
 import removeElement from './removeElement'
 import isObject from './isObject'
 import removeClass from './removeClass'
-import isEmptyData from './isEmptyData'
+import isEmpty from './isEmpty'
 import createStyleElement from './createStyleElement'
 
 const cssStr = `
@@ -37,7 +37,7 @@ function oWrapperReady (callback) {
 // 检测是否已存在loading
 function useOldLoading (msg) {
   window.jcy = _Object(window.jcy)
-  var isUseOld = !isEmptyData(window.jcy.loading) && isObject(window.jcy.loading)
+  var isUseOld = !isEmpty(window.jcy.loading) && isObject(window.jcy.loading)
   isObject(window.jcy.loading) && oWrapperReady(function (oWrapper) {
     addClass(oWrapper, 'active')
     var oText = getByClass('loading-bt-text', oWrapper)[0]

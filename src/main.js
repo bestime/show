@@ -5,10 +5,10 @@ import { router } from './router'
 import { mapActions } from 'vuex'
 Vue.config.productionTip = false
 
-import * as bestime from '@bestime/js'
+// import * as bestime from '@bestime/js'
 
-window['ns'] = bestime
-Vue.prototype.ns = bestime
+// window['ns'] = bestime
+// Vue.prototype.ns = bestime
 
 
 
@@ -33,20 +33,5 @@ new Vue({
     ])
   },
 }).$mount('#app')
-
-
-var d
-
-console.log('清空', bestime.clear({
-  a: null,
-  b: '',
-  c: undefined,
-  d,
-  e: '大大'
-}))
-
-
-
-
 
 

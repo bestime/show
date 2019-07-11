@@ -136,14 +136,8 @@ export const routerList = [
     name: '404',
     component: () => import('@components/Page404.vue')
   }
-  
 ];
 
 export const router = new Router({
   routes: routerList
 })
-
-
-
-
-
