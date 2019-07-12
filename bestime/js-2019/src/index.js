@@ -39,7 +39,6 @@ var bestimeGroup = {
   isPhone: require('./split/isPhone'),
   isString: require('./split/isString'),
   loading: require('./split/loading'),
-  loopFunc: require('./split/loopFunc'),
   numberMax: require('./split/numberMax'),
   numberMin: require('./split/numberMin'),
   onDomRoll: require('./split/onDomRoll'),
@@ -52,7 +51,32 @@ var bestimeGroup = {
   split: require('./split/split'),
   trim: require('./split/trim'),
   unbind: require('./split/unbind'),
-  unique: require('./split/unique')
+  unique: require('./split/unique'),
+
+  throttle: require('./split/throttle'),
+  debounce: require('./split/debounce'),
+  FunctionOnce: require('./split/FunctionOnce'),
+  FunctionConfirm: require('./split/FunctionConfirm'),
+  FunctionLoop: require('./split/FunctionLoop'),
+  getNowTime: require('./split/getNowTime'),
+  zero: require('./split/zero'),
+  dialog: require('./split/dialog'),
+  Progress: require('./split/Progress'),
+  ready: require('./split/ready'),
+  getJsPath: require('./split/getJsPath'),
+  getMonthInfo: require('./split/getMonthInfo'),
+  backTop: require('./split/backTop'),
+  getEventTarget: require('./split/getEventTarget'),
+  mouseWheel: require('./split/mouseWheel'),
+  bindEasy: require('./split/bindEasy'),
+  thousands: require('./split/thousands'),
+  html: require('./split/html'),
+  getImgSize: require('./split/getImgSize'),
+  getUserFromIdCard: require('./split/getUserFromIdCard'),
+  onlyOneAddClass: require('./split/onlyOneAddClass'),
+  replaceCustom: require('./split/replaceCustom'),
+  https: require('./split/https'),
+  reduce: require('./split/reduce')
 };
 
 module.exports = !function (name) {

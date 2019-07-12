@@ -1,4 +1,3 @@
-
 // 版本测试
 
 import $getType from './split/getType' 
@@ -8,7 +7,6 @@ import $getRandom from './split/getRandom'
 import $createUUID from './split/createUUID'
 import $average from './split/average'
 import $fixed from './split/fixed'
-import $loopFunc from './split/loopFunc'
 
 import $_Number from './split/_Number' 
 import $_Function from './split/_Function'
@@ -72,6 +70,22 @@ import $debounce from './split/debounce'
 import $FunctionOnce from './split/FunctionOnce'
 import $FunctionConfirm from './split/FunctionConfirm'
 import $FunctionLoop from './split/FunctionLoop'
+import $Progress from './split/Progress'
+import $ready from './split/ready'
+import $getJsPath from './split/getJsPath'
+import $getMonthInfo from './split/getMonthInfo'
+import $backTop from './split/backTop'
+import $getEventTarget from './split/getEventTarget'
+import $mouseWheel from './split/mouseWheel'
+import $bindEasy from './split/bindEasy'
+import $thousands from './split/thousands'
+import $html from './split/html'
+import $getImgSize from './split/getImgSize'
+import $getUserFromIdCard from './split/getUserFromIdCard'
+import $onlyOneAddClass from './split/onlyOneAddClass'
+import $replaceCustom from './split/replaceCustom'
+import $https from './split/https'
+import $reduce from './split/reduce'
 
 
 export const getType = $getType
@@ -81,7 +95,7 @@ export const getRandom = $getRandom
 export const createUUID = $createUUID
 export const average = $average
 export const fixed = $fixed
-export const loopFunc = $loopFunc
+
 
 export const defaultType = $defaultType
 export const _Number = $_Number
@@ -137,6 +151,7 @@ export const bus = $bus
 export const oFetch = $oFetch
 export const dialog = $dialog
 export const loading = $loading
+
 export const throttle = $throttle
 export const debounce = $debounce
 export const FunctionOnce = $FunctionOnce
@@ -144,6 +159,22 @@ export const FunctionConfirm = $FunctionConfirm
 export const FunctionLoop = $FunctionLoop
 export const getNowTime = $getNowTime
 export const zero = $zero
+export const Progress = $Progress
+export const ready = $ready
+export const getJsPath = $getJsPath
+export const getMonthInfo = $getMonthInfo
+export const backTop = $backTop
+export const getEventTarget = $getEventTarget
+export const mouseWheel = $mouseWheel
+export const bindEasy = $bindEasy
+export const thousands = $thousands
+export const html = $html
+export const getImgSize = $getImgSize
+export const getUserFromIdCard = $getUserFromIdCard
+export const onlyOneAddClass = $onlyOneAddClass
+export const replaceCustom = $replaceCustom
+export const https = $https
+export const reduce = $reduce
 
 // 设置本地存储
 export function setStorage (key, value) {

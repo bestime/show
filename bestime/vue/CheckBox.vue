@@ -30,13 +30,10 @@
   span
     font-size 14px
 </style>
-
 <template>
   <div class="checkbox-vbt" :style="{'font-size': `${size}px`}" :class="useClass" @click="toggle">
     <div class="ckv-icon iconfont">{{ value ? '&#xe747;' : '' }}</div>
-    <div class="ckv-content">
-      <slot/>
-    </div>
+    <div class="ckv-content"><slot/></div>
   </div>  
 </template>
 

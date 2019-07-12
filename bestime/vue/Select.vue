@@ -6,16 +6,22 @@
   padding 2px
   box-sizing border-box
   vertical-align middle
-  font-size 14px
+  font-size 12px
   min-width 100px
+  .iconfont
+    font-size 12px
+    color #999
+    transition: 0.2s
+    &:hover
+      transform rotate(90deg)
+      color #444
   .select-main
     user-select none
     display flex
     width 100%
     border $staticBorderColor solid 1px
     cursor pointer
-    transition:0.15s  
-    height 100%
+    transition:0.15s
     position:relative
     display flex
     align-items stretch

@@ -11,11 +11,7 @@
 </style>
 
 <template>
-  <ul v-if="currentRouteName=='js'" class="js-split">
-    <li v-for="(item, key, index) in ns" :key="index">{{index+1}}、{{key}}</li>
-  </ul>
-  <router-view v-else></router-view>
-  
+  <router-view></router-view>
 </template>
 
 <script>

@@ -8,6 +8,8 @@ const _Number = require('./_Number')
 const getStyle = require('./getStyle')
 const getData = require('./getData')
 const prevent = require('./prevent')
+const getWindowSize = require('./getWindowSize')
+const createUUID = require('./createUUID')
 
 var cssTXT = '\
   .bt-drag{position:absolute !important;z-index:20;margin:0 !important;padding:0 !important;}\
@@ -23,6 +25,7 @@ var cssTXT = '\
  * @return {Object}
  *    @param {Function} updateFahter 更新父容器
  */
+
 
 function drag (opt) {
   opt = _Object(opt)

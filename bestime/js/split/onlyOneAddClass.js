@@ -1,0 +1,24 @@
+
+
+import removeClass from './removeClass'
+import addClass from './addClass'
+import each from './each'
+
+/**
+ * 仅给数组中当前索引的对象添加class  其余对象移除class
+ * toggleClass 改名为 onlyOneAddClass
+ * @param arr          对象合集的数组
+ * @param index        当前对象的下标
+ * @param className    需要切换的class  
+ */
+function onlyOneAddClass (arr, index, className) {
+	each(arr, function (el, i) {
+		if(i==index){
+			addClass(el, className);
+		}else {
+			removeClass(el, className);
+		}
+	});
+}
+
+export default onlyOneAddClass

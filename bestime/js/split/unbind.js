@@ -10,13 +10,13 @@
 
 export default function unbind (oDom, name, type, handler){
   try {
-    var computedFun = handler || oDom.bindInfo[type][name].handler
-    if (oDom.removeEventListener) {        
-			oDom.removeEventListener(type, computedFun, false);
-    }else if (oDom.detachEvent) {	
-    	oDom.detachEvent("on" + type, computedFun);
-    }
+      var computedFun = handler || oDom.bindInfo[type][name].handler
+      if (oDom.removeEventListener) {        
+          oDom.removeEventListener(type, computedFun, false);
+      }else if (oDom.detachEvent) {	
+          oDom.detachEvent("on" + type, computedFun);
+      }
   }catch(e) {
-    return false;
+      return false;
   }
 }

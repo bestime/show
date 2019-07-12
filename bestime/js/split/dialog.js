@@ -1,18 +1,20 @@
 
+const PlugName = 'bestime-dialog'
 import _Object from './_Object'
-import addClass from './addClass'
-import removeClass from './removeClass'
-import removeElement from './removeElement'
-import getByClass from './getByClass'
 import _String from './_String'
 import _Function from './_Function'
+import _Number from './_Number'
+import addClass from './addClass'
+import getByClass from './getByClass'
+import removeClass from './removeClass'
+import removeElement from './removeElement'
 import getType from './getType'
 import isFunction from './isFunction'
 import bind from './bind'
 import unbind from './unbind'
-import createUUID from './createUUID'
 import drag from './drag'
 import createStyleElement from './createStyleElement'
+import getData from './getData'
 
 const cssStr =  `
   .dialog-vbt{z-index:80000;position:fixed;left:0;right:0;bottom:0;top:0;display:flex;align-items:center;justify-content:center;}    
@@ -35,27 +37,42 @@ const cssStr =  `
   .dialog-vbt.group .dialog-bg{background:transparent;}    
 `;
 
-export default function dialog (opt) {
+/**
+ * 
+ * title
+ * msg
+ * maxWidth // 最大宽度
+ * startClose
+ * closed
+ * onShow
+ */
+
+export default function dialog (opt) {  
   opt = _Object(opt)
   opt.title = _String(opt.title) || '提示' // 标题
   opt.msg = _String(opt.msg) // 显示的内容
   opt.startClose = opt.startClose || null // 关闭前回调
   opt.closed = _Function(opt.closed) // 关闭完成回调
   opt.onShow = _Function(opt.onShow) // 显示完成回调
-  var wrpId = 'dialog_' + createUUID(); // 弹窗ID
 
-  createStyleElement('bt-dialog-css', cssStr, function () {
+  
+  const jcy = getData(); // 统一数据存放中心
+  jcy.dialog_id = _Number(jcy.dialog_id) + 1;
+  var useId = PlugName + '-' + jcy.dialog_id; // 弹窗ID  
+
+  createStyleElement(`${PlugName}-css`, cssStr, function () {
     var closeing = false; // 关闭中，禁止多次点击
     var timer_show = null; // 显示的timer
     var timer_autoClose = null // 自动关闭的timer
     var oldWrappers = getByClass('dialog-vbt')
     var oWrapper = document.createElement('div')
     var gpName = oldWrappers.length ? ` group dialog-${oldWrappers.length}` : ''
+    var maxWidth = opt.maxWidth ? `max-width:${opt.maxWidth};` : null;
     oWrapper.className = 'dialog-vbt' + gpName
-    oWrapper.id = wrpId
+    oWrapper.id = useId
     oWrapper.innerHTML = `
       <div class="dialog-bg"></div>
-      <div class="dialog-content">
+      <div class="dialog-content" style="${maxWidth}">
         <div class="dialog-title">
           <span>${opt.title}</span>
           <b class="duration"></b>
@@ -94,7 +111,7 @@ export default function dialog (opt) {
 
     // 监听按键
     function listenKeyBoard () {
-      bind(document, wrpId, 'keydown', function (e) {
+      bind(document, useId, 'keydown', function (e) {
         var ev = e || window.event        
         if(ev.keyCode ==27) {
           checkToClose()
@@ -104,7 +121,7 @@ export default function dialog (opt) {
 
     // 移除按键监听
     function removeKeyBoard () {
-      unbind(document, wrpId, 'keydown')
+      unbind(document, useId, 'keydown')
     }
 
     // 计算自动关闭

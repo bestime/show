@@ -17,8 +17,7 @@
     color #fff
     cursor pointer
     padding 0 15px
-    transition:0.15s  
-    height 100%  
+    transition:0.15s
     &:hover
       background getActiveColor(0.8)
     &:active

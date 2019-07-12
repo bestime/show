@@ -29,10 +29,10 @@ export const HomeList = [
         component: () => import('@components/vue-examples/scroll-bottom-eg.vue')
       },
       {
-        path: 'loopFunc',
-        name: 'loopFunc',
+        path: 'FunctionLoop',
+        name: 'FunctionLoop',
         label: '轮询',
-        component: () => import('@components/vue-examples/loopFunc-eg.vue')
+        component: () => import('@components/vue-examples/fcl-eg.vue')
       },
       {
         path: 'excel',

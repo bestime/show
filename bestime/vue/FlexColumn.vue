@@ -15,7 +15,7 @@
 
 <template>
   <div class="flex-column-vbt">
-    <div class="flex-column-vbt-content">
+    <div class="flex-column-vbt-content" :class="wrapperClass">
       <slot></slot>
     </div>
   </div>
@@ -23,6 +23,9 @@
 
 <script>
 export default {
-  name: 'flex-column-vbt'
+  name: 'flex-column-vbt',
+  props: {
+    wrapperClass: String
+  }
 }
 </script>
