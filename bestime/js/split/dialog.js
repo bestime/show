@@ -23,9 +23,9 @@ const cssStr =  `
   .dialog-content{z-index:2;position:relative;background:#fff;opacity:0;transform:translateY(-10%);;box-shadow:0 0 20px rgba(0,0,0,0.2);min-width:300px;max-width:80%;max-height:80%;display:flex;flex-direction:column;}
   .dialog-vbt.active .dialog-bg{opacity:1;}
   .dialog-vbt.active .dialog-content{transform:translateY(0);opacity:1;border-radius:4px;overflow:hidden;}
-  .dialog-title{font-size:16px;color:#000;border-bottom:#f2f2f2 solid 1px;padding:8px 10px;cursor:move;background:#fbfbfb;}
+  .dialog-title{font-size:16px;color:#666;border-bottom:#f2f2f2 solid 1px;padding:10px 10px;cursor:move;background:#fbfbfb;}
   .dialog-title *{display:inline-block;vertical-align:middle;}
-  .dialog-msg-box{padding:10px;font-size:14px;color:#585858;overflow:auto;}
+  .dialog-msg-box{padding:10px;font-size:14px;color:#585858;overflow:auto;word-break: break-all;line-height:1.6;}
   .dialog-btn-box{padding:0 5px 10px 10px;text-align:right;font-size:0;}
   .dialog-btn{font-size:12px;display:inline-block;cursor:pointer;user-select:none;padding:5px 10px;border-radius:4px;margin-right:5px;}
   .dialog-btn.confirm{background:rgba(100,150,255,1);color:#fff;}

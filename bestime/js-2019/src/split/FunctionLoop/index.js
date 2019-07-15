@@ -1,9 +1,10 @@
 
 const _Object = require('../_Object')
 const _Function = require('../_Function')
-const _Number = require('../_Number')
+const isNumber = require('../isNumber')
 const numberMin = require('../numberMin')
 const isObject = require('../isObject')
+const _Number = require('../_Number')
 
 
 
@@ -20,8 +21,8 @@ function FunctionLoop (opt) {
   }
 
   // 开始
-  function start (isWork) {
-    if(isWork===false) return stop.call(this)
+  function start () {
+    console.log('配置：', opt)
     const self = this
     times++
     if(times===1) {
@@ -56,7 +57,17 @@ function FunctionLoop (opt) {
     )
   }
 
-  return start
+  return {
+    start,
+    stop: stop,
+    setting: function (newSetting) {
+      if(isObject(newSetting)) {
+        isObject(newSetting.overTime) && (opt.overTime=newSetting.overTime)
+        isNumber(newSetting.sleepTime) && (opt.sleepTime=_Number(newSetting.sleepTime))
+        start.call(this)
+      }
+    }
+  }
 }
 
 module.exports = FunctionLoop

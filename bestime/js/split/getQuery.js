@@ -11,15 +11,16 @@ export default function getQuery (searchStr) {
 
 	let useStr = ''
 	each((searchStr || webHref).match(/\?[^?]*(?=(\?)?)/g), function (item) {
-		useStr += item.replace(/\#\/{0,}/g, '').replace(/^\?|\?/, '&')
+		useStr += item.replace(/^\?|\?/, '&')
 	})
 
 	var res = {};
 	each(split(useStr, '&'), function (item) {
 		var one = split(item, '=');
 		if(one[0]) {
-			res[one[0]] = decodeURIComponent(one[1]);
+			res[one[0]] = decodeURIComponent(one[1].replace(/#.*/g, ''));
 		}		
 	});
 	return res;
 }
+

@@ -18,8 +18,8 @@ function FunctionLoop (opt) {
   }
 
   // 开始
-  function start (isWork) {
-    if(isWork===false) return stop.call(this)
+  function start () {
+    console.log('配置：', opt)
     const self = this
     times++
     if(times===1) {
@@ -54,7 +54,17 @@ function FunctionLoop (opt) {
     )
   }
 
-  return start
+  return {
+    start,
+    stop: stop,
+    setting: function (newSetting) {
+      if(isObject(newSetting)) {
+        isObject(newSetting.overTime) && (opt.overTime=newSetting.overTime)
+        isNumber(newSetting.sleepTime) && (opt.sleepTime=_Number(newSetting.sleepTime))
+        start.call(this)
+      }
+    }
+  }
 }
 
 export default FunctionLoop
