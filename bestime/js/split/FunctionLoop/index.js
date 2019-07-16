@@ -3,6 +3,7 @@ import _Function from '../_Function'
 import _Number from '../_Number'
 import numberMin from '../numberMin'
 import isObject from '../isObject'
+import isNumber from '../isNumber'
 
 
 function FunctionLoop (opt) {
@@ -19,7 +20,6 @@ function FunctionLoop (opt) {
 
   // 开始
   function start () {
-    console.log('配置：', opt)
     const self = this
     times++
     if(times===1) {
@@ -57,7 +57,7 @@ function FunctionLoop (opt) {
   return {
     start,
     stop: stop,
-    setting: function (newSetting) {
+    updateProps: function (newSetting) {
       if(isObject(newSetting)) {
         isObject(newSetting.overTime) && (opt.overTime=newSetting.overTime)
         isNumber(newSetting.sleepTime) && (opt.sleepTime=_Number(newSetting.sleepTime))

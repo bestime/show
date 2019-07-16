@@ -41,14 +41,12 @@ const demo = FunctionLoop({
 
 #### 执行
 ```javascript
-// 可传一个参数，类型：Boolean，默认 true: 开始， false：停止
 demo.start.call(this); 
 ```
 
 #### 动态改变配置
 ```javascript
-// 可传一个参数，类型：Boolean，默认 true: 开始， false：停止
-demo.start.setting(this, {
+demo.start.updateProps(this, {
   sleepTime: 5000
 }); 
 ```
