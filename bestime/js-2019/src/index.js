@@ -76,7 +76,9 @@ var bestimeGroup = {
   onlyOneAddClass: require('./split/onlyOneAddClass'),
   replaceCustom: require('./split/replaceCustom'),
   https: require('./split/https'),
-  reduce: require('./split/reduce')
+  reduce: require('./split/reduce'),
+  Pager: require('./split/Pager'),
+  numberLimit: require('./split/numberLimit')
 };
 
 module.exports = !function (name) {

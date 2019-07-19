@@ -67,8 +67,13 @@
     <div class="home-floor">
       <div class="home-title">确认函数用户防止重复操作，比如请求接口</div>
       <div>
-        
         <button-vbt @click="confirmFunTest()">测试</button-vbt>
+      </div>
+    </div>
+
+    <div class="home-floor">
+      <div class="home-title">分页器</div>
+      <div ref="pager01">
       </div>
     </div>
 
@@ -76,7 +81,7 @@
 </template>
 
 <script>
-import { barCode, sleep, dialog, loading, throttle, debounce, FunctionOnce, FunctionConfirm } from '@bestime/js'
+import { barCode, sleep, dialog, loading, throttle, debounce, FunctionOnce, FunctionConfirm, Pager } from '@bestime/js'
 
 
 
@@ -98,7 +103,18 @@ export default {
   },
 
   mounted () {
-    
+    this.$nextTick(() => {
+      Pager({
+        el: this.$refs.pager01,
+        pageActive: 5,
+        pageTotal: 120,
+        showNum: 5,
+        onChange: function (page, next) {
+          console.log('准备去：', page)
+          next()
+        }
+    })
+    })
   },
 
   methods: {

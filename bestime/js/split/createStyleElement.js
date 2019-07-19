@@ -35,6 +35,6 @@ export default function createStyleElement (id, cssTXT, callback) {
         }
       },
       sleepTime: 30
-    })()
+    }).start()
   }
 }

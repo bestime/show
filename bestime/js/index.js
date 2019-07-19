@@ -86,6 +86,8 @@ import $onlyOneAddClass from './split/onlyOneAddClass'
 import $replaceCustom from './split/replaceCustom'
 import $https from './split/https'
 import $reduce from './split/reduce'
+import $numberLimit from './split/numberLimit'
+import $Pager from './split/Pager'
 
 
 export const getType = $getType
@@ -175,7 +177,8 @@ export const onlyOneAddClass = $onlyOneAddClass
 export const replaceCustom = $replaceCustom
 export const https = $https
 export const reduce = $reduce
-
+export const numberLimit = $numberLimit
+export const Pager = $Pager
 // 设置本地存储
 export function setStorage (key, value) {
   localStorage.setItem(key, JSON.stringify(value));
