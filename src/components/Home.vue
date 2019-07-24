@@ -113,7 +113,7 @@ export default {
           console.log('准备去：', page)
           next()
         }
-    })
+      })
     })
   },
 

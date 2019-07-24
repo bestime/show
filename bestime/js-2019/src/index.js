@@ -78,7 +78,9 @@ var bestimeGroup = {
   https: require('./split/https'),
   reduce: require('./split/reduce'),
   Pager: require('./split/Pager'),
-  numberLimit: require('./split/numberLimit')
+  numberLimit: require('./split/numberLimit'),
+  map: require('./split/map'),
+  mapJson: require('./split/mapJson')
 };
 
 module.exports = !function (name) {

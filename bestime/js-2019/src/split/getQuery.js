@@ -16,7 +16,8 @@ function getQuery (searchStr) {
 	var webHref = ''; try { webHref = window.location.href } catch(e) {}
 
 	let useStr = ''
-	each((searchStr || webHref).match(/\?[^?]*(?=(\?)?)/g), function (item) {
+	let mt = (searchStr || webHref).match(/\?[^?]*(?=(\?)?)/g)
+	mt && each(mt, function (item) {
 		useStr += item.replace(/^\?|\?/, '&')
 	})
 
