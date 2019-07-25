@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">    
+    <title>TFT</title>
+    <link rel="stylesheet" href="css/tft.css" charset="utf-8">
+    <!-- <link href="assets/css/reset.css" rel="stylesheet" type="text/css"> -->
+    <link href="assets/css/index.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/create-event-bus@latest/create-event-bus.min.js"></script>
+    <script src="js/bestime.min.js?t=12"></script>
+    <script>
+      document.oncontextmenu = function(){
+        return false;
+      }
+      window.host = 'https://api.guanliyuangong.com'
+      window.onerror = function (msg, url, line, col, error) {
+        alert('信息：' + msg + ' 地址：' + url + ' 行：' + line + ' 列：' + col + ' 错：' + error)
+      }
+      var zrQuery = {}; // 阵容
+      var zlQuery = {};//资料
+      var bus = new CreateEventBus()
+      ns.bindEasy(document, 'click', function () {
+        bus.emit('select-common')
+        bus.emit('select-z2wb')
+        bus.emit('select-atk-range')
+      })
+      bestime.ready(function () {
+        if(ns.getQuery().debug==1) {
+          document.body.className = 'debug'
+        }
+      })
+
+      ns.bind(document, '按键监听', 'keydown', function (e) {
+        const ev = e || window.event;
+        //console.log('按键code：', ev.keyCode)
+        switch (ev.keyCode) {
+          case 13:
+            bus.emit('key-enter')
+            break;
+        }
+      })
+    </script>    
+    <script src="js/TFTequipment.js"></script>
+    <script src="js/TFTrace.js"></script>
+    <script src="js/TFTHeroesData.js"></script>
+
+
+    <script src="js-02/pinyin.js"></script>
+    <script src="js-02/ajax.js"></script>
+    <script src="js-02/tool.js"></script>
+    <script src="js-02/main.js"></script>
+
+
+
+    <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/Tdrag.js"></script>
+  <script src="assets/js/index.js"></script>
+  </head>
+  <body>
+    <div class="mkoie157e8t78e" onclick="toggleMainWrapper()"></div>
+    <div id="drag-content" class="mmmkew" style="position:relative;">
+      <div id="drag-bar" class="textShadow m-title"><script>document.write(ns.getQuery().name || '网咖')</script>云顶之弈配置工具</div>
+      <div class="m-tdw5">我们有的，别人都没有</div>
+      <div class="tab-box">
+        <div class="tab-item" id="tab-zjm">主界面</div>
+        <div class="tab-item" id="tab-shengcheng">物品生成器</div>
+        <div class="tab-item" id="tab-news">技巧/教程</div>
+        <div class="tab-item" id="tab-zhengrong">阵容排行</div>
+        <div class="tab-item" id="tab-yingxiongziliao">英雄资料</div>
+        <div class="tab-item" id="tab-kjdiwoiet">智能助手</div>
+      </div>
+      <!-- tab主界面 -->
+      <div class="tab-content tab-main" id="tab-main-wrapper">
+        <ul id="tab-mian-ul"></ul>
+        <div class="tb-more" id="tab01-more" style="display:none;"></div>
+        <div class="tb-more" id="hover-more" style="left:480px;display:none;"></div>
+      </div>
+
+      <!-- tab物品生成器 -->
+      <div class="tab-content" id="tab-shengcheng-wrapper"></div>
+
+      <!-- tab新闻资讯 -->
+      <div class="tab-content" id="tab-news-wrapper">
+        <ul id="tab-news-ul"></ul>
+        <div id="tab-news-pager"></div>
+        <div id="tab-news-detail" style="display:none;"></div>
+      </div>
+
+      <!-- 阵容排行 -->
+      <div class="tab-content" id="tab-zengrong-box">        
+        <div id="select-race-zr"></div>
+        <div id="select-race-job"></div>
+        <div id="zr-list-465"></div>
+        <div class="sjop-115" id="amow1212" style="display:none;">
+          <i class="detail-close" id="koo12">×</i>
+          <div class="hxjow45">
+            <span class="mkdww5">阵营</span>
+          </div>
+          <div style="text-align: center;">
+            <div class="jijw0961w5"><span>攻击</span><b id="fangyu305w">-</b></div>
+            <div class="jijw0961w5"><span>防御</span><b id="niwe154">-</b></div>
+          </div>
+          <div class="hxjow45">
+            <span class="mkdww5">核心装备</span>
+          </div>
+          <div id="hxzblist"></div>
+          <div id="qianqituijidw1212">
+            <div class="hxjow45">
+              <span class="mkdww5">前期推荐</span>
+            </div>
+            <div class="myk1gge5w"></div>
+          </div>
+          <div id="jdpiky155w4">
+            <div class="hxjow45">
+              <span class="mkdww5">中期推荐</span>
+            </div>
+            <div class="myk1gge5w"></div>
+          </div>
+          <div id="mopdkt4w">
+            <div class="hxjow45">
+              <span class="mkdww5">最终阵容</span>
+            </div>
+            <div class="myk1gge5w"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 英雄资料 -->
+      <div class="tab-content" id="tab-yxzl-wrapper">
+        <div class="lphet2656">
+          <div id="select-equipment"></div>
+          <div id="select-ra8e-05dw"></div>
+          <div id="select-r546ce-job489"></div>
+          <div id="select-gj-range"></div>
+          <div id="select-search-45"></div>
+        </div>
+        <div id="yingionglist"></div>
+        <div id="yxzl254y48e"></div>
+      </div>
+
+    </div>
+
+
+
+    <div class="jiow545" id="tab-yxzl-yy">
+      <div class="bottom"></div>
+      <div class="lineup dialog">
+          <div class="close"><i class="icon icon-close"></i></div>
+          <div class="title">实时最佳阵容</div>
+          <div class="list"></div>
+      </div>
+      <div class="equipment dialog">
+          <div class="close"><i class="icon icon-close"></i></div>
+          <div class="title">装备推荐</div>
+          <div class="list"></div>
+      </div>
+    </div>
+  </body>
+</html>

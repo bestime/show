@@ -80,7 +80,8 @@ var bestimeGroup = {
   Pager: require('./split/Pager'),
   numberLimit: require('./split/numberLimit'),
   map: require('./split/map'),
-  mapJson: require('./split/mapJson')
+  mapJson: require('./split/mapJson'),
+  some: require('./split/some')
 };
 
 module.exports = !function (name) {

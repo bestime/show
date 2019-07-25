@@ -7,7 +7,7 @@ function mapJson (obj, handle) {
   var res = []
   var index = 0
   for(var key in obj) {
-    res.push(clone(handle(obj[key], index++, key)))
+    res.push(clone(handle(obj[key], key, index++)))
   }
   return res
 }
