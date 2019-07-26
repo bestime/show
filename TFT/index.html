@@ -3,19 +3,18 @@
   <head>
     <meta charset="utf-8">    
     <title>TFT</title>
-    <link rel="stylesheet" href="css/tft.css" charset="utf-8">
-    <!-- <link href="assets/css/reset.css" rel="stylesheet" type="text/css"> -->
-    <link href="assets/css/index.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/tft.min.css" charset="utf-8">
+    <link href="assets/css/index.min.css" rel="stylesheet" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/create-event-bus@latest/create-event-bus.min.js"></script>
-    <script src="js/bestime.min.js?t=12"></script>
+    <script src="js/bestime.min.js?t=14"></script>
+    <script src="assets/js/jquery1.9.1.min.js"></script>
     <script>
+      var debug = ns.getQuery().debug
       document.oncontextmenu = function(){
         return false;
       }
       window.host = 'https://api.guanliyuangong.com'
-      window.onerror = function (msg, url, line, col, error) {
-        alert('信息：' + msg + ' 地址：' + url + ' 行：' + line + ' 列：' + col + ' 错：' + error)
-      }
+      
       var zrQuery = {}; // 阵容
       var zlQuery = {};//资料
       var bus = new CreateEventBus()
@@ -25,8 +24,11 @@
         bus.emit('select-atk-range')
       })
       bestime.ready(function () {
-        if(ns.getQuery().debug==1) {
-          document.body.className = 'debug'
+        if(debug==1) {
+          ns.addClass(document.body, 'debug')
+          window.onerror = function (msg, url, line, col, error) {
+            alert('信息：' + msg + ' 地址：' + url + ' 行：' + line + ' 列：' + col + ' 错：' + error)
+          }
         }
       })
 
@@ -45,22 +47,20 @@
     <script src="js/TFTHeroesData.js"></script>
 
 
-    <script src="js-02/pinyin.js"></script>
-    <script src="js-02/ajax.js"></script>
-    <script src="js-02/tool.js"></script>
-    <script src="js-02/main.js"></script>
+    <script src="js-02/pinyin.min.js"></script>
+    <script src="js-02/ajax.min.js"></script>
+    <script src="js-02/tool.min.js"></script>
+    <script src="js-02/main.min.js"></script>
+    <script src="assets/js/index.min.js"></script>
 
-
-
-    <script src="assets/js/jquery.js"></script>
-  <script src="assets/js/Tdrag.js"></script>
-  <script src="assets/js/index.js"></script>
   </head>
   <body>
     <div class="mkoie157e8t78e" onclick="toggleMainWrapper()"></div>
     <div id="drag-content" class="mmmkew" style="position:relative;">
-      <div id="drag-bar" class="textShadow m-title"><script>document.write(ns.getQuery().name || '网咖')</script>云顶之弈配置工具</div>
-      <div class="m-tdw5">我们有的，别人都没有</div>
+      <div id="drag-bar" class="textShadow m-title">
+        <span><script>document.write(ns.getQuery().name || '网咖')</script>云顶之弈配置工具</span>
+        <span class="m-tdw5">我们有的，别人都没有</span>
+      </div>
       <div class="tab-box">
         <div class="tab-item" id="tab-zjm">主界面</div>
         <div class="tab-item" id="tab-shengcheng">物品生成器</div>
@@ -137,23 +137,27 @@
         <div id="yingionglist"></div>
         <div id="yxzl254y48e"></div>
       </div>
-
     </div>
 
 
-
+    <!-- lynn start -->
     <div class="jiow545" id="tab-yxzl-yy">
       <div class="bottom"></div>
-      <div class="lineup dialog">
+      <div class="lineup lynnduihuakuang">
+        <div style="padding: 15px 7px 5px 15px;">
           <div class="close"><i class="icon icon-close"></i></div>
           <div class="title">实时最佳阵容</div>
           <div class="list"></div>
+        </div>
       </div>
-      <div class="equipment dialog">
+      <div class="equipment lynnduihuakuang">
+        <div style="padding: 15px 7px 5px 15px;">
           <div class="close"><i class="icon icon-close"></i></div>
-          <div class="title">装备推荐</div>
-          <div class="list"></div>
+            <div class="title">装备推荐</div>
+            <div class="list"></div>
+        </div>
       </div>
     </div>
+    <!-- lynn end -->
   </body>
 </html>

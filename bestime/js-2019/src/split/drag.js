@@ -78,6 +78,8 @@ function drag (opt) {
         
         oWrapper.style.left = setX + 'px'
         oWrapper.style.top = setY + 'px'
+        oWrapper.style.bottom = 'auto'
+        oWrapper.style.right = 'auto'
       })
       bind(document, id, 'mouseup', clearEvent)
     }

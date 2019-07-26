@@ -81,10 +81,11 @@ var bestimeGroup = {
   numberLimit: require('./split/numberLimit'),
   map: require('./split/map'),
   mapJson: require('./split/mapJson'),
-  some: require('./split/some')
+  some: require('./split/some'),
+  toggleClass: require('./split/toggleClass')
 };
 
-module.exports = !function (name) {
-  window[name] = window['ns'] = bestimeGroup;
-} ('bestime');
+module.exports = !function () {
+  window['bestime'] = window['ns'] = bestimeGroup;
+} ();
 
