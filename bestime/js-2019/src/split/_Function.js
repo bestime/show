@@ -3,7 +3,9 @@ function emptyFunction () {}
 const name = 'Function'
 
 
-module.exports = function (data, def) {
+function _Function (data, def) {
   const tempFun = getType(def) === name ? def : emptyFunction
   return getType(data)===name ? data : tempFun
 }
+
+module.exports = _Function
