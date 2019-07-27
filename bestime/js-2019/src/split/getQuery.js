@@ -8,27 +8,20 @@
  * @return {Object | String} json对象
  */
 
-
-
-const split = require('./split')
-const each = require('./each')
-function getQuery (searchStr) {	
-	var webHref = ''; try { webHref = window.location.href } catch(e) {}
-
-	let useStr = ''
-	let mt = (searchStr || webHref).match(/\?[^?]*(?=(\?)?)/g)
-	mt && each(mt, function (item) {
-		useStr += item.replace(/^\?|\?/, '&')
-	})
-
-	var res = {};
-	each(split(useStr, '&'), function (item) {
-		var one = split(item, '=');
-		if(one[0]) {
-			res[one[0]] = decodeURIComponent(one[1].replace(/#.*/g, ''));
-		}		
-	});
-	return res;
+function getQuery (str) {
+  var res = {}
+  var href = ''; try { href = window.location.href } catch (e) {};
+  (str!==null || typeof str!=='undefined' ? str : href).replace(/[^=?&]*=[^=&?]*/g, function (g) {
+    res[decodeURIComponent(g.replace(/=.*/g, ''))] = decodeURIComponent(g.replace(/.*=/g, ''))
+  });
+  return res
 }
+
+// getQuery('name=张三'); // => { name: "张三" }
+// getQuery('???name=张三?&?age=26'); // => { name: "张三", age: "26" }
+// getQuery(null); // => {}
+// getQuery(undefined); // => {}
+// getQuery(''); // => {}
+// getQuery('abc'); // => {}
 
 module.exports = getQuery
