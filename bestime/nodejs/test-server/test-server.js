@@ -72,9 +72,7 @@ app.get('/get',function (req, res) {
 
 // post 测试，直接返回传过来的数据
 app.post('/post',function (req, res) {
-	setTimeout(function () {
-    res.json([1,2,3])
-  }, 2000)
+	res.json(req.body)
 })
 
 

@@ -8,7 +8,10 @@ export const HomeList = [
     path: '/index',
     name: '首页',
     label: '首页',
-    component: () => import('@components/Home.vue')
+    component: () => import('@components/Home.vue'),
+    meta: {
+      msg: '我的数据'
+    }
   },
   {
     path: '/js',

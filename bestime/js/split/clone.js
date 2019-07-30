@@ -2,37 +2,34 @@
 // {}
 // function
 import getType from './getType'
-import each from './each'
 
 export default function clone(data) {
-  var type = getType(data);
-
   var result = null;
-  if (type == 'Array') {
-    result = [];
-    each(data, function (item) {
-      result.push(clone(item));
-    });
-  } else if (type == 'Object') {
-    result = {};
-    for (var key in data) {
-      result[key] = clone(data[key]);
-    }
-  } else if (type == 'Function') {
-    function newFun() {
-      data.apply(this, arguments);
-    }
-
-    for (var proName in data.prototype) {
-      newFun.prototype[proName] = data.prototype[proName];
-    }
-
-    result = newFun;
-  } else {
-    result = data;
+  switch (getType(data)) {
+    case 'Array':
+      result = [];
+      for(var a = 0, len = data.length; a < len; a++) {
+        result.push(clone(data[a]));
+      }
+      break;
+    case 'Object':
+      result = {};
+      for (var key in data) {
+        result[key] = clone(data[key]);
+      }
+      break;
+    case 'Function':
+      function newFun() {
+        data.apply(this, arguments);
+      }
+      for (var proName in data.prototype) {
+        newFun.prototype[proName] = data.prototype[proName];
+      }
+      result = newFun;
+      break;
+    default: result = data
   }
-
-  return result;
+  return result
 }
 
 

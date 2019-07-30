@@ -35,3 +35,17 @@ new Vue({
 }).$mount('#app')
 
 
+new Vue({
+  name: 'demo',
+  router,
+  store,
+  render: h => h(App),
+  beforeMount () {
+    router.beforeResolve((to, from, next) => {
+      var color = to.meta.color;// 当然可以在路由配置中配置其他参数
+      next()
+    })
+  }
+}).$mount('#app')
+
+
