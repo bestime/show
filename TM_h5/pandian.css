@@ -1,0 +1,122 @@
+*{margin:0;padding:0;border:none;list-style:none;}
+.btdg-close{display: none !important;}
+
+.mainBox{width:6.4rem;padding:0;margin:0 auto;font-size:12px;position:relative;}
+.shaomiao{font-size:0.3rem;background:#2d8cf0;color:#ffff;text-align:center;line-height:2.7;}
+
+.tabs{font-size:0;}
+.tabs a{font-size:0.24rem;display:inline-block;background:#e6e6e6;color:#828282;width:50%;text-align:center;line-height:2.4;}
+.tabs a.active{background:#5a5a5a;color:#fff;}
+.tabs a .yd{background:#dd4215;color:#fff;font-size:0.2rem;height:0.3rem;min-width:0.1rem;border-radius:0.2rem;padding:0 0.1rem;display:inline-block;margin-left:0.05rem;line-height:1.6;}
+
+.tabContent{border-bottom:10px solid #26a57c;z-index:20;}
+.tabContent table{width:100%;}
+.tabContent table .head{background:#26a57c;font-size:0.24rem;}
+.tabContent table .head .part{color:#fff;}
+.tabContent table .part{padding:0.1rem 0.07rem;color:#696969;border-bottom:#f7f7f7 solid 1px;}
+/*.tabContent table .part:nth-of-type(1) {width:0.8rem;text-align:center;}
+.tabContent table .part:nth-of-type(3) {width:1.5rem;text-align:center;}
+.tabContent table .part:nth-of-type(4) {width:0.8rem;text-align:center;}*/
+.gimg{display:inline-block;width:0.5rem;height:0.5rem;vertical-align:middle;border-radius:50%;border:#ddd solid 1px;}
+.top{
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  z-index:21;
+  position:fixed;
+  left:0;
+  top:0;
+  right:0;
+  background:#fff;
+}
+
+
+
+.countBox{transition:0.5s ease-out;}
+.countBox{border:#ddd solid 1px;overflow:hidden;background:#fff;width: 1.7rem;}
+.countBox.active{box-shadow:0 0 0 2px rgba(45,140,240,0.2);border-color:rgba(45,140,240,1)}
+.countBox.change{border-color:rgba(45,140,240,1);}
+.countBox .add,.countBox .sub{width:0.5rem;height:0.5rem;line-height:0.50rem;overflow:hidden;font-size:0.24rem;text-align:center;}
+.countBox .sub{float:left;}
+.countBox .add{float:right;}
+.countBox .input{overflow:hidden;border:#eee solid 1px;border-top:none;border-bottom:none;}
+.countBox .input input{border:none;outline:none;margin:0;display:block;width:100%;font-size:0.24rem;line-height:0.50rem;height:0.50rem;background:none;text-align:center;color:#717171;}
+
+.pandianconfirm{background:#2d8cf0;color:#fff;font-size:0.24rem;padding:0.1rem 0rem;border-radius:0.05rem;position:relative;width: 0.8rem; text-align: center;}
+.pandianconfirm span{vertical-align:middle;}
+.pandianconfirm.loading span{opacity:0;}
+.ttname{display:inline-block;vertical-align: middle;}
+
+.comLoading{display:inline-block;position:absolute;left:0;top:0;bottom:0;right:0;vertical-align:middle;}
+.svgLoading01{position:absolute;font-size:0;width:0.24rem;height:0.24rem;left:50%;top:50%;margin-left:-0.12rem;margin-top:-0.12rem;}
+.svgLoading01 svg{width:100%;height:100%;}
+.svgLoading01 svg .pt1{fill:#fff;opacity:0.5;}
+.svgLoading01 svg .pt2{fill:#fff;}
+
+.sortBtn{display:inline-flex;align-items:center;justify-content: center;flex-direction:column;vertical-align: middle;}
+.sortBtn .s-top{
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  line-height: 0;
+  border-width: 6px;
+  border-color: rgba(255,255,255,0.5);
+  border-style: dashed;
+  border-top-width: 0;
+  border-bottom-style: solid;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  display: inline-block;
+}
+
+.sortBtn .s-bottom{
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  line-height: 0;
+  border-width: 6px;
+  border-color: rgba(255,255,255,0.5);
+  border-style: dashed;
+  border-bottom-width: 0;
+  border-top-style: solid;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  display: inline-block;
+  margin-top:1px;
+}
+
+.sortBtn .s-top.active {
+  border-color: rgba(255,255,0,1);
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+
+.sortBtn .s-bottom.active {
+  border-color: rgba(255,255,0,1);
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+
+
+
+.searchbox {
+  display: flex;
+  align-items:center;
+  justify-content: space-between;
+  padding:0.1rem 0.2rem;
+
+}
+.searchbox input {
+  flex: 1;
+  border:#f2f2f2 solid 1px;
+  font-size:12px;
+  color:#666;
+  outline:none;
+  padding:5px;
+  margin-right:10px;
+}
+
+.refreshbtn {
+  background:#26a57c;
+  color:#fff;
+  line-height:26px;
+  padding:0 10px;
+}

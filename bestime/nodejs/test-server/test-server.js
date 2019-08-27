@@ -34,6 +34,9 @@ const printColor = {
  * 这是一个简易的node测试 get 和 post 的服务器
  */
 var express = require('express');
+var multer  = require('multer')
+var fs = require('fs');
+var path = require('path')
 const config = {
 	port: 9997
 }
@@ -172,8 +175,6 @@ app.get('/jsonp-test', (req, res) => {
 
 
 
-
-
 app.get('/user/return-record/list',function (req, res) {
 	res.json({
 		code: 1,
@@ -199,3 +200,51 @@ app.post('/user/return-record/request',function (req, res) {
 		msg: '申请成功'
 	})
 })
+
+const WebSocket = require('ws');
+const wss = new WebSocket.Server({ port: 8787 });
+ 
+wss.on('connection', function connection(ws) {
+  console.log(printColor.green('Socket 连接成功'))
+  ws.on('message', function incoming(message) {
+    console.log(printColor.purple('Socket 消息进入：' + message))
+    ws.send(`{ "Sender":"5137701278@chatroom","Sender2":"wxid_99capkbhcy1w22", "data":"${message}" }`);
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var upload = multer({ dest: 'upload/' });
+
+// 单图上传
+app.post('/upload', upload.single('file'), function(req, res, next){
+    res.send({ret_code: '0'});
+});
