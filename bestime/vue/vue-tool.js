@@ -1,5 +1,3 @@
-import { getType } from '../js'
-
 // 寻找子组件 - 数组
 export function findComponentsDownward (context, componentName) {
   return context.$children.reduce((components, child) => {
@@ -28,10 +26,17 @@ export function findComponentUpward (context, componentName, componentNames) {
 
 // 判断vue是否有某个prop属性
 export function hasProp(data) {
-  switch(getType(data)) {
-    case 'Undefined': return false;
-    case 'String': return data==='false' ? false : true;
-    case 'Boolean': return data;
-    default: return false;
+  return data === '' || data === true || data === 'true'
+}
+
+function _Number (data, canEmpty) {
+  var res = Number(data);
+  var errorValue = 0
+  if (canEmpty) {
+    if (data === '' || typeof data === 'undefined') {
+      res = ''
+      errorValue = ''
+    }
   }
+  return res === Infinity || /e/g.test(res) || isNaN(res) ? errorValue : res
 }

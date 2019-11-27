@@ -40,7 +40,6 @@
   align-items center
   justify-content center
   background #f3f3f3
-
 </style>
 
 <template>
@@ -128,7 +127,7 @@ export default {
   },
   watch: {
     src (newSrc) {
-      this.on_load()
+      this.doing = true
       this.useSrc = newSrc
     }
   }

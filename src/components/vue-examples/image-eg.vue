@@ -9,12 +9,14 @@
     justify-content: center
     padding: 20px 0
     border-bottom:#f2f2f2 dashed 1px
+.s1fw51sfw5e
+  transition 0.2s
 </style>
 
 <template>
   <div class="img-eg-wrapper">
     <div>
-      <button @click="changepic">改变图片</button>
+      <button class="s1fw51sfw5e" @click="changepic">改变图片</button>
     </div>
     <ul>
       <li v-for="(item, index) in list" :key="index">
@@ -31,7 +33,7 @@ export default {
     return {
       list: new Array(100).fill('').map(item => {
         return {
-          pic: ''
+          pic: `${BASE_URL}images/d1.jpg`
         }
       })
     }

@@ -15,7 +15,7 @@
     <div class="s12e-12">
       <div style="height:400px;"></div>
       <div>
-        <select-vbt v-model="val_01" v-if="show01"/>        
+        <select-vbt deleteItem v-model="val_01" v-if="show01">开关</select-vbt>       
         <button-vbt @click="show01=!show01">{{ show01 ? '移除' : '显示' }}</button-vbt>
       </div>
       <div>

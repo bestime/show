@@ -1,5 +1,4 @@
 <style lang="stylus" rel="stylesheet/stylus">
-@import "./theme.styl"
 .drawer-vbt
   position fixed
   left 0
@@ -8,6 +7,8 @@
   top 0
   z-index 50
   display none
+  &.opened
+    display flex
   .drawer-content
     position absolute
     transition 0.2s ease-out
@@ -22,6 +23,18 @@
       left 15%
       background #fff
       transform translateX(100%)
+  &.dir-center
+    align-items center
+    justify-content center
+    .drawer-content
+      transition 0.2s cubic-bezier(0.245, 0.890, 0.175, 1.210)
+      position relative
+      z-index 20
+      display inline-block
+      background transparent
+      opacity 0
+      transform scale(0.7)
+      box-shadow 0 0 20px rgba(0,0,0,0.5)
   .drawer-bg
     position absolute
     left 0
@@ -37,6 +50,10 @@
     &.dir-right
       .drawer-content
         transform translateX(0)
+    &.dir-center
+      .drawer-content
+        transform scale(1)
+        opacity 1
 </style>
 
 <template>
@@ -56,16 +73,18 @@ export default {
     direction: {
       type: String,
       default: 'right'
+    },
+    maskclose: {
+      type: Boolean,
+      default: true
     }
   },
 
   data () {
     return {
-      active: false
+      active: false,
+      opened: false
     }
-  },
-
-  mounted() {
   },
   
   methods: {
@@ -75,15 +94,20 @@ export default {
         case 'right':
           dirClass = 'dir-right'
           break;
+        case 'center':
+          dirClass = 'dir-center'
+          break;
       }
       return [
         dirClass,
-        this.active ? 'active' : ''
+        this.active ? 'active' : '',
+        this.opened ? 'opened' : ''
       ]
     },
 
     show () {
-      this.$refs.wrapper.style.display = 'block'
+      if(!this.maskclose) return
+      this.opened = true
       setTimeout(() => {
         this.active = true
       }, 30)
@@ -92,7 +116,8 @@ export default {
     close () {
       this.active = false
       setTimeout(() => {
-        this.$refs.wrapper.style.display = 'none'
+        this.opened = false
+        this.$emit('on-closed')
       }, 200)
     }
   },

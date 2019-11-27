@@ -14,7 +14,12 @@ h1
       <swiper-item-vbt>6</swiper-item-vbt>
       <swiper-item-vbt>7</swiper-item-vbt>
     </swiper-wrapper-vbt>
-    
+    <button @click="openDrawer">打开Drawer</button>
+    <drawer-vbt ref="drawer" direction="center">
+      <div>
+        <h1>哈哈哈哈哈</h1>
+      </div>
+    </drawer-vbt>
   </div>
 </template>
 
@@ -27,6 +32,17 @@ export default {
     return {
       open: false,
       msg: ''
+    }
+  },
+  mounted(){
+    this.$nextTick(() => {
+      this.$refs.drawer.show()
+      this.openDrawer()
+    })
+  },
+  methods: {
+    openDrawer () {
+      this.$refs.drawer.show()
     }
   }
 }

@@ -1,86 +1,83 @@
 <style lang="stylus" rel="stylesheet/stylus">
+// 推荐根元素字体大小像素以下推荐[18, 20, 28, 26, 30, 34, 34+(2*n)]
 @import "./theme.styl"
-
-$switchTransition = 0.3s cubic-bezier(.25,.1,.25,1.2)
-$size = 28px
-$halfSize = $size / 2
-$width = $size * 1.9
-$diff = $width - $size
 .switch-vbt
-  display:inline-flex
-  align-items:center
-  user-select:none
-  font-size:0
-  text-align:left
-  .slb
-    font-size:12px
-    color: $staticTextColor
-    margin-left:5px
-    display:flex
-    align-items:stretch
+  display inline-flex
+  align-items center
+  user-select none
+  text-align left
+  vertical-align middle
+  .switch-main
+    flex-shrink 0
+    width 1.8em
+    background rgba(0,0,0,0.1)
+    padding 2px
+    border-radius 2em
+    transition 0.2s
+    cursor pointer
+    transition 0.2s
+    &:active
+      background rgba(0,0,0,0.2)
+      .vbt-cir
+        width 1.2em
+  .switch-vbt-text
+    font-size 0.45em
+    color #666
+  &.has-slots
+    .switch-vbt-text
+      margin-left 0.5em
   .vbt-cir
-    width:$width
-    height:$size
-    border-radius:$size
-    border:$staticBorderColor solid 2px
-    background: $staticBorderColor
-    cursor:pointer
-    position:relative
-    box-sizing:border-box
-    .zaw
-      overflow:hidden
-      display:inline-flex
-      align-items:center
-      justify-content:center
-      width:$size - 4px
-      height:$size - 4px
-      background: #fff
-      border-radius: $halfSize
-      transition:$switchTransition
-      position:relative
-      z-index:1
-      box-shadow:0 5px 5px -1px rgba(0, 0, 0, 0.2), 0 0 0 2px $staticBorderColor
-      transition-delay:0.02s
-    &:before
-      content: ''
-      display: block
-      background: #fff
-      left:0
-      top:0
-      right:0
-      bottom:0
-      transform:scale(1)
-      transition: $switchTransition
-      border-radius:$size
-      position:absolute
+    width 1em
+    height 1em
+    background #fff
+    border-radius 0.5em
+    position relative
+    left 0
+    top 0
+    transition 0.2s ease-out
+    display flex
+    align-items center
+    justify-content center
+    box-shadow 1px 0px 2px rgba(0,0,0,0.3)
+    &:after
+      content ''
+      position absolute
+      left 50%
+      top 50%
+      width 0.3em
+      height 0.3em
+      border-radius 50%
+      transform translate(-50%, -50%)
+      background #eee 
+      transition 0.2s ease-out
   &.open
-    .vbt-cir      
-      border-color: getActiveColor(1)
-      background: getActiveColor(1)
-      .zaw
-        box-shadow:0 5px 5px -1px rgba(0, 0, 0, 0.2), 0 0 0 2px getActiveColor(1)
-        transform:translate3D($diff, 0, 0)				
-      &:before
-        transform:scale(0) 
-  &.disabled    
-    opacity:0.7
+    .switch-main
+      background getActiveColor(1)
     .vbt-cir
-      cursor:not-allowed
+      left 100%
+      transform translateX(-100%)
+      &:after
+        background getActiveColor(1)
+    .switch-vbt-text
+      color getActiveColor(1)
 </style>
 
 <template>
-  <div class="switch-vbt" :class="{'open': value==1}">    
-    <div class="vbt-cir" @click="toggle"> 
-			<div class="zaw">
-        <Loading v-if="doing" :size='12'/>
+  <div class="switch-vbt" :class="{'open': value == 1, 'has-slots': hasSlots}" :style="{'font-size': `${size}px`}">   
+    <div class="switch-main" @click="toggle">
+      <div class="vbt-cir">
+        <Loading v-if="changeing"/>
       </div>
     </div>
-    <div class="slb"><slot></slot></div>
+    <div class="switch-vbt-text">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
 <script>
 import Loading from './Loading.vue'
+import { _Number } from './vue-tool'
 export default {
   name: 'switch-vbt',
   components: {
@@ -88,42 +85,52 @@ export default {
   },
   props: {
     value: {
+      type: [Number, String, Boolean],
       default: false
     },
-    index: {
-      default: 0
+    id: null,
+    size: {
+      default: 34
+    }
+  },
+  computed: {
+    hasSlots () {
+      return !!this.$slots.default
     }
   },
   data () {
     return {
-      doing: false,
-      timer: null
+      changeing: false,
+      count: 0
     }
   },
-
-  beforeDestroy () {
-    clearTimeout(this.timer)
-  },
-
   methods: {
     toggle () {
-      this.doing = true
+      if(this.changeing) return;
       const toVal = !Number(this.value)
-      this.$emit('input', toVal)
-      this.$emit('on-change', toVal, this.index)
-      clearTimeout(this.timer)
-      this.timer = setTimeout(() => {
-        this.doing = false
-      }, 10000)
+      this.count++
+      if(this.$listeners['on-change']) {
+        this.changeing = true
+        let count = this.count
+        this.$emit('on-change', toVal, () => {
+          // 可能由外部强制改变了，这个操作无效
+          if(this.count===count) {
+            this.changeing = false
+            this.$emit('input', toVal)
+          }
+        })
+      } else {
+        this.$emit('input', toVal)
+      }
     },
+    isLoading () {
+      return this.changeing
+    }
   },
-
   watch: {
     value (newVal, oldVal) {
-      if(newVal!==oldVal) {
-        clearTimeout(this.timer)
-        this.doing = false
-      }
+      this.count++
+      this.changeing = false
     }
   }
 }

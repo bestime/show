@@ -140,7 +140,7 @@
       <div class="text-wrapper">
         <TextOverflow class="text" line="1">{{ showLabel || placeholder }}</TextOverflow>
         <div class="del-wrapper" v-if="showLabel" @click="clear">
-          <Icon type="delete" color="#ddd"/>
+          
         </div>     
       </div>
       
@@ -158,7 +158,6 @@
 <script>
 import TextOverflow from './TextOverflow.vue'
 import { isObject, domShowDir, bind, unbind, createUUID, prevent, isEmpty } from '../js'
-import Icon from './Icon.vue'
 import { hasProp } from './vue-tool'
 
 const testArr = new Array(15).fill('').map((item, index) => {
@@ -167,9 +166,10 @@ const testArr = new Array(15).fill('').map((item, index) => {
     label: `示例${index}`
   }
 })
+
 export default {
   name: 'select-vbt',
-  components: { TextOverflow, Icon },
+  components: { TextOverflow },
   props: {
     deleteItem: null,
     value: null,

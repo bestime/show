@@ -1,3 +1,29 @@
+
+function getRandom (min, max) {
+  return Math.floor( Math.random() * ( max - min + 1 ) ) + min;    
+}
+function getRandomArray (arr, num) {
+  var usedIndex = {}, res = [], rdIdx;
+  ;(function add () {
+    if(res.length < num && res.length < arr.length) {
+      rdIdx = getRandom(0, arr.length - 1)
+      if(usedIndex[rdIdx]) {
+        add()
+      } else {
+        res.push(arr[rdIdx])
+        usedIndex[rdIdx] = true
+        add()
+      }
+    }
+  })();
+
+  for(var a = res.length; a<num; a++) {
+    res.push('R_'  + a)
+  }
+  
+  return res
+}
+
 const printColor = {
 	yellow: function (name) {
 		return "\033[33m"+ name +"\033[0m"
@@ -71,6 +97,17 @@ app.get('/',function (req, res) {
 // get 测试，直接返回传过来的数据
 app.get('/get',function (req, res) {
 	res.json(req.query)
+})
+
+app.get('/external/getadvert',function (req, res) {
+	res.json({
+    code: 0,
+    data: {
+      pic: 'http://pic27.nipic.com/20130313/9252150_092049419327_2.jpg',
+      price: '100',
+      price_now: '99'
+    }
+  })
 })
 
 // post 测试，直接返回传过来的数据
@@ -215,6 +252,9 @@ wss.on('connection', function connection(ws) {
 
 
 
+function getRandom (min, max) {
+  return Math.floor( Math.random() * ( max - min + 1 ) ) + min;    
+}
 
 
 
@@ -226,25 +266,173 @@ wss.on('connection', function connection(ws) {
 
 
 
+var allHeroId = ["55", "122", "50", "119", "106", "113", "201", "22", "127", "34", "28", "25", "60", "266", "110", "63", "114", "86", "10", "236", "89", "67", "555", "41", "104", "21", "30", "82", "203", "53", "157", "136", "102", "238", "84", "98", "85", "121", "421", "31", "38", "107", "19", "103", "76", "150", "117", "45", "78", "18", "4", "222", "254", "126", "164", "80"]
+
+var allSmallEqument = [
+  'aaaaaa_无所谓前缀_1038', 'aaaaaa_无所谓前缀_1038', 
+  'aaaaaa_无所谓前缀_1058', 'aaaaaa_无所谓前缀_1058',
+  'aaaaaa_无所谓前缀_1043', 'aaaaaa_无所谓前缀_1043',
+  'aaaaaa_无所谓前缀_3070', 'aaaaaa_无所谓前缀_3070',
+  'aaaaaa_无所谓前缀_1031', 'aaaaaa_无所谓前缀_1031',
+  'aaaaaa_无所谓前缀_1057', 'aaaaaa_无所谓前缀_1057',
+  'aaaaaa_无所谓前缀_1011', 'aaaaaa_无所谓前缀_1011',
+  'aaaaaa_无所谓前缀_4000', 'aaaaaa_无所谓前缀_4000',
+  'aaaaaa_无所谓前缀_MagicDust', 'aaaaaa_无所谓前缀_MagicDust',
+  'aaaaaa_无所谓前缀_CloakOfAgility', '_bbbbb_无所谓前缀_CloakOfAgility'
+] || ['_bbbbb_无所谓前缀_CloakOfAgility', '1038', '1058']
+
+var notSupport = '====技术有限，该功能暂不提供===='
+
+app.get('/tft_info',function (req, res) {
+	res.json({
+    code: 0,
+    msg: 'ok',
+    data: {
+      '全部英雄': [
+        { id: 55, health: getRandom(300, 3000), money: undefined, lv: undefined},
+        { id: 119, health: getRandom(300, 3000), money: undefined, lv: undefined},
+        { id: 55, health: getRandom(300, 3000), money: undefined, lv: undefined},
+        { id: 119, health: getRandom(300, 3000), money: undefined, lv: undefined},
+        { id: 55, health: getRandom(300, 3000), money: undefined, lv: undefined},
+        { id: 119, health: getRandom(300, 3000), money: undefined, lv: undefined}
+      ],
+      '星级概率': [
+        {price: 1, percent: 50},
+        {price: 2, percent: 10},
+        {price: 3, percent: 25},
+        {price: 4, percent: 15},
+      ],
+      '升级后剩余': 135,
+      '8个阵容': new Array(8).fill('').map(function (item, index) {
+        return {
+          //heros: getRandomArray(allHeroId, 8), // 英雄ID
+          //heros_num: [1,2,3,4,5,6,7], // 英雄数量
+          lv: getRandom(1,9), // Lv.x
+          money: undefined, // 玩家金币
+          isBig: index == 5,
+          // 场上英雄       
+          heros_info: [
+            { id: 107, health: getRandom(300, 3000), money: undefined, lv: undefined},
+            { id: 126, health: getRandom(300, 3000), money: undefined, lv: undefined},
+            { id: 84, health: getRandom(300, 3000), money: undefined, lv: undefined},
+            { id: 150, health: getRandom(300, 3000), money: undefined, lv: undefined},
+            { id: 254, health: getRandom(300, 3000), money: undefined, lv: undefined},
+            { id: 555, health: getRandom(300, 3000), money: undefined, lv: undefined},
+            { id: 76, health: getRandom(300, 3000), money: undefined, lv: undefined},
+            { id: 76, health: getRandom(300, 3000), money: undefined, lv: undefined},
+            { id: 76, health: getRandom(300, 3000), money: undefined, lv: undefined},
+            
+          ],
+          spare_hero: [
+            { id: 113, health: getRandom(300, 3000), money: undefined, lv: undefined},
+            { id: 203, health: getRandom(300, 3000), money: undefined, lv: undefined},
+            { id: 19, health: getRandom(300, 3000), money: undefined, lv: undefined},
+            { id: 55, health: getRandom(300, 3000), money: undefined, lv: undefined},
+            { id: 21, health: getRandom(300, 3000), money: undefined, lv: undefined},
+            { id: 102, health: getRandom(300, 3000), money: undefined, lv: undefined},
+            { id: 103, health: getRandom(300, 3000), money: undefined, lv: undefined},
+            { id: 122, health: getRandom(300, 3000), money: undefined, lv: undefined},
+            
+          ]
+        }
+      }),
+      '标记': [
+        {
+          buy_count: 10, // 购买次数
+          sell_count: 5, // 卖出次数
+          list: ['种族', '职业', '最佳', '敌需', '升级'] // 英雄标记
+        },
+        {
+          buy_count: 15,
+          sell_count: 2,
+          list: ['最佳', '敌需', '升级'],
+        },
+        {
+          buy_count: 0,
+          sell_count: 0,
+          list: []
+        },
+        {
+          buy_count: 33,
+          sell_count: 40,
+          list: ['升级']
+        },
+        {
+          buy_count: 60,
+          sell_count: 50,
+          list: ['职业', '最佳', '升级']
+        }
+      ],
+      '当前装备': allSmallEqument || [
+        1031
+      ],
+      
+      '布阵': notSupport || {
+        '第一排': [false, 55, 122, false, 50, false, false],
+        '第二排': [34, 28, false, false, false, false, 25],
+        '第三排': [21, 30, 82, false, false, false, false],
+      },
+      '合成推荐': notSupport || [
+        {
+          hero_id: 201,
+          recommend_equiment: ['3075', '3131']
+        },
+        {
+          hero_id: 236,
+          recommend_equiment: ['3190', '4005']
+        }
+      ],
+      '可换英雄': [
+        '麦林炮手',
+        '',
+        '无极剑圣',
+        '张三',
+        '',
+        '',
+        '李四',
+        '',
+        '',
+      ],
+      'C位推荐': notSupport || [
+        {
+          hero_id: 201,
+          recommend_equiment: ['3075', '3131'],
+          active: true
+        },
+        {
+          hero_id: 236,
+          recommend_equiment: ['3190', '4005'],
+          active: false
+        },
+        {
+          hero_id: 203,
+          recommend_equiment: ['3190', '4005'],
+          active: true
+        },
+        {
+          hero_id: 238,
+          recommend_equiment: ['3190', '4005'],
+          active: false
+        }
+      ],    
+      
+    }
+  })
+})
+
+
+
+
+
+app.get('/vip',function (req, res) {
+  res.json({
+    code: 0,
+    msg: '付费成功'
+  })
+})
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-var upload = multer({ dest: 'upload/' });
-
-// 单图上传
-app.post('/upload', upload.single('file'), function(req, res, next){
-    res.send({ret_code: '0'});
-});

@@ -1,4 +1,4 @@
-cd 到项目目录
+﻿cd 到项目目录
 
 git pull #将最新版本同步到本地
 
@@ -52,6 +52,10 @@ git reset --hard HEAD~2  #恢复到 【下num个】版本
 git reflog #如果回到某一个版本，找不到某些commit_id的时候可以通过这个查看操作记录，回到某一个版本
 
 
-强制拉去远程分支，放弃本地修改
-git fetch --all
-git reset --hard branchName
+强制拉取远程分支，放弃本地修改
+git fetch origin <branch>
+git reset --hard FETCH_HEAD
+
+git pull 相当于
+git fetch origin <branch>
+git merge FETCH_HEAD

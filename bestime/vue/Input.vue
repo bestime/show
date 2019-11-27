@@ -157,7 +157,6 @@
             :type="type"
           />
           <div class="it-del" @click="onCheck('')" v-if="value">
-            <Icon type="delete" color="#ddd"/>
           </div>        
         </div>
         <transition name="top_hide">
@@ -172,11 +171,9 @@
 <script>
 
 import { hasProp } from './vue-tool'
-import Icon from './Icon.vue'
 import _String from '../js/split/_String'
 export default {
-  name: 'input-vbt',
-  components: { Icon },
+  name: 'input-vbt', 
   props: {
     type: String,
     value: {
