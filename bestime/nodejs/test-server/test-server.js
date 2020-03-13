@@ -112,7 +112,12 @@ app.get('/external/getadvert',function (req, res) {
 
 // post 测试，直接返回传过来的数据
 app.post('/post',function (req, res) {
-	res.json(req.body)
+  const data = {
+    msg: '提交成功',
+    code: 1,
+    ...req.body
+  }
+	res.json(data)
 })
 
 
@@ -122,7 +127,8 @@ app.post('/post',function (req, res) {
 
 // 获取IP
 function getIP () {
-	var interfaces = require('os').networkInterfaces();　　
+	var interfaces = require('os').networkInterfaces();　
+  console.log('interfaces', interfaces)　
     for (var devName in interfaces) {　　　　
         var iface = interfaces[devName];　　　　　　
         for (var i = 0; i < iface.length; i++) {
@@ -432,7 +438,10 @@ app.get('/tft_info',function (req, res) {
 app.get('/vip',function (req, res) {
   res.json({
     code: 0,
-    msg: '付费成功'
+    msg: '付费成功',
+    data: {
+      username: req.query.name
+    }
   })
 })
 
