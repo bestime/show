@@ -5,23 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>Bestime测试</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
-    <script src="<%= VUE_APP_PATH %>/js/bestime.min.js"></script>
-    
+    <title>Bestime</title> 
+    <script src="<%= BASE_URL %>js/particle-slider.js"></script>
+    <!-- <script src="<%= VUE_APP_PATH %>/js/particle-slider.js"></script> -->
+<script>
+
+</script>
   </head>
-  <body>
+  <body >    
     <script>
-      window['BASE_URL'] = '<%= BASE_URL %>'
-      ns.ready(function () {
-        console.log('dom ready')
-      })
-      var oPro = ns.Progress()
-      oPro.run()
-      ns.bind(window, false, 'load', function () {
-        oPro.goTo(100)
-      })
+      window['BASE_URL'] = '<%= BASE_URL %>'      
     </script>
     <noscript>
       <strong>We're sorry but vue-base doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
